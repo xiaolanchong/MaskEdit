@@ -215,7 +215,7 @@ void	CNewSliderCtrl::	Draw(CDC* pDC) const
 	pDC->SelectObject( pOldBrush );
 }
 
-void CNewSliderCtrl::OnTimer(UINT nIDEvent) 
+void CNewSliderCtrl::OnTimer(UINT_PTR nIDEvent) 
 {
 	// TODO: Add your message handler code here and/or call default
 

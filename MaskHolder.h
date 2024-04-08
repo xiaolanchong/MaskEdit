@@ -25,12 +25,12 @@ MACRO_EXCEPTION(MaskUndoException, MaskListException)
 //! хранит маску как набор векторныъх фигур с возможностью отката
 class CMask 
 {
-	typedef std::list < boost::shared_ptr<CFigure> > MaskList_t;
+	typedef std::list < std::shared_ptr<CFigure> > MaskList_t;
 	//! стек образов
 	UndoRedoStack<MaskList_t>				m_MaskData;
 
 	//! bitmap of the raster mask
-	mutable			boost::shared_ptr<Bitmap > m_Bitmap;
+	mutable			std::shared_ptr<Bitmap > m_Bitmap;
 
 	//! нарисовать кешированную бмп как маску
 	void			DrawCached() const;
@@ -52,7 +52,7 @@ public:
 	void Draw(Graphics& gr, CFigure* pCurrent = 0) const;
 
 	//! add new item to the mask
-	void Add( const boost::shared_ptr<CFigure>& fig, bool bCreateNewSnapshot);
+	void Add( const std::shared_ptr<CFigure>& fig, bool bCreateNewSnapshot);
 
 	//! create mask with necessary sizes and clear it
 	void Create();	
@@ -62,7 +62,7 @@ public:
 
 	//! get mask for saving purpose, w/o vectors
 	//! \return an exact bitmap copy w/o vectors
-	boost::shared_ptr<Bitmap>	GetMaskForSave() const;
+	std::shared_ptr<Bitmap>	GetMaskForSave() const;
 
 	//! redraw mask
 	void Invalidate();

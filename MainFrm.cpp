@@ -52,20 +52,16 @@ static UINT indicators[] =
 CMainFrame::CMainFrame():
 	m_SizeHandler(ID_SIZE_0),
 	m_CamHandler(ID_OPEN_CAM1),
-	m_dlg(NULL)
+	m_dlg(std::make_unique<CLayerDlg>())
 {
-	// TODO: add member initialization code here
-	//Создать диалоговое окно для редактора слоев
-	m_dlg = new CLayerDlg();
 }
 
 CMainFrame::~CMainFrame()
 {
 	//Удалить диалоговое окно
-	if(m_dlg != NULL)
+	if(m_dlg != nullptr)
 	{
 		m_dlg->DestroyWindow();
-		SAFE_DELETE(m_dlg);
 	}
 }
 
@@ -269,7 +265,7 @@ void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 	// TODO: Add your message handler code here
 
 	::SendMessage(GetActiveView( )->GetSafeHwnd(), WM_ACTIVATE, nState << 16 | bMinimized, 
-					reinterpret_cast<long>(pWndOther->GetSafeHwnd()));
+					reinterpret_cast<LPARAM>(pWndOther->GetSafeHwnd()));
 
 
 	//Взять документ связанный с текущим представлением

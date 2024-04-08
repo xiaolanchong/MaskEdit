@@ -47,7 +47,7 @@ CMaskSaver::~CMaskSaver()
 void CMaskSaver::AddMask( const CMask& Mask, int Bit)
 {
 #if 1	
-	boost::shared_ptr<Bitmap> SaveBitmap = Mask.GetMaskForSave();
+	std::shared_ptr<Bitmap> SaveBitmap = Mask.GetMaskForSave();
 	Bitmap& Bmp = *SaveBitmap.get();
 #else
 	Bitmap& Bmp = const_cast< Bitmap& >(Mask.GetMask());

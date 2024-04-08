@@ -127,26 +127,23 @@ BOOL CRegistry::LoadString(LPCTSTR szKey, LPCTSTR szValueName, CString& csData, 
 		if((dwType == REG_SZ || dwType == REG_MULTI_SZ || dwType == REG_EXPAND_SZ) && cbData)
 		{
  
-			LPTSTR szBuffer = new TCHAR[cbData];
+			std::vector<TCHAR> szBuffer(cbData);
 			szBuffer[cbData-1] = _T('\0');
 
-			if(szBuffer)
 			{
 				// 
 				// При чтении cтроки указывается количество символов которое надо 
 				// загрузить, включая терминантный ноль 
 				//
 				
-				if(::RegQueryValueEx(hKey, szValueName, NULL, NULL, (LPBYTE)szBuffer, &cbData) == ERROR_SUCCESS)
+				if(::RegQueryValueEx(hKey, szValueName, NULL, NULL, (LPBYTE)&szBuffer[0], &cbData) == ERROR_SUCCESS)
 				{
-					csData.Format(_T("%s"), (LPCTSTR)szBuffer);
+					csData = &szBuffer[0];
 				}	 
 
 				// Переполнение буффера
 				if(szBuffer[cbData-1] != _T('\0'))
 					ASSERT(FALSE);
-				
-				SAFE_DELETE_ARRAY(szBuffer);
 			}
 		}
 	}

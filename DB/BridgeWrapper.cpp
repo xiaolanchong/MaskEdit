@@ -34,13 +34,13 @@ BridgeWrapper::~BridgeWrapper()
 
 }
 
-boost::shared_ptr<CIDBBridge>	BridgeWrapper::CreateBridge()
+std::shared_ptr<CIDBBridge>	BridgeWrapper::CreateBridge()
 {
 	CIDBBridge* pBridge;
 	long err = CreateDBBridge( NULL, &pBridge );
 	if( err == DBB_S_OK )
 	{
-		return boost::shared_ptr<CIDBBridge>( pBridge, boost::bind( &CIDBBridge::Release, _1 ) );
+		return std::shared_ptr<CIDBBridge>( pBridge, boost::bind( &CIDBBridge::Release, _1 ) );
 	}
 	else
 	{
@@ -50,7 +50,7 @@ boost::shared_ptr<CIDBBridge>	BridgeWrapper::CreateBridge()
 
 void	BridgeWrapper::SaveFile( int nCameraID, const std::vector<BYTE>& Data)
 {
-	boost::shared_ptr<CIDBBridge>	pBridge = CreateBridge();
+	std::shared_ptr<CIDBBridge>	pBridge = CreateBridge();
 	long err = pBridge->SetDBParameter( DBBS_MASTER, nCameraID, szMaskParam, DBBT_BLOB, Data.size(), &Data[0] );
 	if( err != DBB_S_OK )
 	{
@@ -60,7 +60,7 @@ void	BridgeWrapper::SaveFile( int nCameraID, const std::vector<BYTE>& Data)
 
 void	BridgeWrapper::LoadFile( int nCameraID, std::vector<BYTE>& BinArr )
 {
-	boost::shared_ptr<CIDBBridge>	pBridge = CreateBridge();
+	std::shared_ptr<CIDBBridge>	pBridge = CreateBridge();
 	DWORD	dwBufferSize;
 	void*	pBuffer;
 	long err = DBB_E_FAIL;

@@ -93,8 +93,8 @@ protected:
 	//Обрабатывать или нет сообщения от кнопки "Сетка"
 	BOOL m_bNeedShowGrid;
 
-	boost::shared_ptr<CFigure>		m_CurrentFigure;
-	boost::shared_ptr<CBackground>	m_CurrentBG;
+	std::shared_ptr<CFigure>		m_CurrentFigure;
+	std::shared_ptr<CBackground>	m_CurrentBG;
 
 	CPoint	m_Point;
 
@@ -200,7 +200,7 @@ protected:
 	afx_msg void OnVideoPlay();
 	afx_msg void OnVideoStop();
 	afx_msg void OnVideoPause();
-	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnUpdateVideoPlay(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateVideoStop(CCmdUI* pCmdUI);

@@ -18,10 +18,6 @@ CLayerDlg::CLayerDlg(CWnd* pParent /*=NULL*/)
 
 CLayerDlg::~CLayerDlg()
 {
-	//Удалить внутренние указатели в векторе
-	for(UINT i = 0; i<COUNT_LAYER; i++)
-		SAFE_DELETE(LayerInfo[i].strName);
-	
 }
 
 
@@ -53,7 +49,7 @@ BOOL CLayerDlg::OnInitDialog()
 		str.Format(_T("mask_field%d"), i);
 
 		//Сделать запрос если соединение успешно
-		LPCTSTR sName = NULL;
+		CString sName;
 		if(!dbbOk)
 			sName = CBridgeWrapper.LoadNameLayer((LPWSTR)(LPCWSTR)str);
 

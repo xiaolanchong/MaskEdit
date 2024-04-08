@@ -22,10 +22,10 @@
 //Количество tooltip
 #define COUNT_TOOLTIP 6
 
-typedef struct tagMyMenuItemInfo
+struct MYMENUITEMINFO
 {
 	// Constructor
-	tagMyMenuItemInfo()
+	MYMENUITEMINFO()
 	{
 		dwMask = 0;
 		dwStyle = 0;
@@ -48,23 +48,22 @@ typedef struct tagMyMenuItemInfo
 	// Позиция элемента
 	int nIndex;
 	// Текст
-	LPCTSTR szText;
+	CString szText;
 	// Всплывающая подсказка
-	LPCTSTR szTooltip;
+	CString szTooltip;
 	
-} MYMENUITEMINFO, *LPMYMENUITEMINFO;
+};
 
 
-typedef struct tagMyMenuItem
+struct MYMENUITEM
 {
 	// Constructor
-	tagMyMenuItem()
+	MYMENUITEM()
 	{
 		dwMask = 0;
 		dwStyle = 0;
 		nCommand = 0;
 		nImage = -1;
-		szText = szTooltip =  NULL;
 		hSubMenu = NULL;
 		nChekItem = 0;
 	}
@@ -80,17 +79,18 @@ typedef struct tagMyMenuItem
 	// Дескриптор подменю
 	HMENU hSubMenu;
 	// Текст
-	LPCTSTR szText;
+	CString szText;
 	// Всплывающая подсказка
-	LPCTSTR szTooltip;
+	CString szTooltip;
 	//Зачекить пункт меню
 	int nChekItem;
 
-} MYMENUITEM, *LPMYMENUITEM;
+};
 
 
-//Вектор с нашими структурами
-typedef std::vector<LPMYMENUITEMINFO> STLMenuVectorItem;
+// List with structure, pointers to a struct passed to user32 subsystem,
+// so once an item is allocated, no realloc allowed
+typedef std::list<MYMENUITEMINFO> MenuItemList;
 
 class CThicknessMenu: public CMenu
 {
@@ -104,7 +104,7 @@ public:
 	virtual void DrawItem (LPDRAWITEMSTRUCT lpMeasureItemStruct);
 
 	// Add items
-	BOOL AddItem(int nCount, LPMYMENUITEM pItem);
+	BOOL AddItem(int nCount, const MYMENUITEM* pItem);
 
 	//Создает тул типы
 	HWND CreateToolTip(CString szText);
@@ -113,19 +113,17 @@ public:
 	//Скрывает тул тип
 	void HideToolTip();
 
-public:
-	// Все прикрепленные данные
-	STLMenuVectorItem m_DataList;
+private:
 
 	// Массив данных
-	STLMenuVectorItem m_Items;
+	MenuItemList m_Items;
 
 	// GDI
-	CFont* m_FontTitle;
-	CPen* m_pSelBorder;
-	CBrush* m_pSelBkgnd;
-	CBrush* m_pCheckBkgnd;
-	CBrush* m_pCheckSelBkgnd;
+	CFont m_FontTitle;
+	CPen m_pSelBorder;
+	CBrush m_pSelBkgnd;
+	CBrush m_pCheckBkgnd;
+	CBrush m_pCheckSelBkgnd;
 
 	//Цвета заливки пунктов меню
 	DWORD m_dwTitleColor;

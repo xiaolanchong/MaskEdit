@@ -3,35 +3,12 @@
 #include "MsEdit.h"
 #include "CThicknessMenu.h"
 
-
-#ifndef New_TCHAR__
-#define New_TCHAR__
-
-// Создает копию строки. Удалять с помощью delete.
-LPTSTR New_TCHAR(LPCTSTR szText)
-{
-	if(!szText)
-		return NULL;
-
-	// Количество символов без завершиющего '\0'
-	SIZE_T nLength = _tcslen(szText) + 1;
-	// Размер в байтах необходимого буффера
-	SIZE_T nSize = nLength * sizeof(TCHAR);
-
-	TCHAR* szNewText = new TCHAR[nSize];
-
-	if(szNewText)
-	{
-		memcpy(szNewText, szText, nSize);
-	}
-
-	return szNewText;
-};
-
-#endif
-
-CThicknessMenu::CThicknessMenu():
-	m_dwTitleColor(RGB(0, 0, 0))
+CThicknessMenu::CThicknessMenu()
+	: m_dwTitleColor(RGB(0, 0, 0))
+	, m_pSelBorder(PS_SOLID, 1, RGB(0, 0, 0))
+	, m_pSelBkgnd(RGB(255, 238, 194))
+	, m_pCheckBkgnd(RGB(252, 192, 111))
+	, m_pCheckSelBkgnd(RGB(254, 128, 62))
 {
 	//Создать шрифт для текста в меню
 	HGDIOBJ hFont = ::GetStockObject(DEFAULT_GUI_FONT);
@@ -40,13 +17,9 @@ CThicknessMenu::CThicknessMenu():
 	::GetObject(hFont, sizeof(LOGFONT), &lgFont );
 	lgFont.lfWeight = FW_BOLD;
 
-	m_FontTitle = new CFont();
-	BOOL bRes = m_FontTitle->CreateFontIndirect(&lgFont);
+	BOOL bRes = m_FontTitle.CreateFontIndirect(&lgFont);
 	VERIFY(bRes);
-	m_pSelBorder = new CPen(PS_SOLID, 1, RGB(0, 0, 0));
-	m_pSelBkgnd = new CBrush(RGB(255, 238, 194));
-	m_pCheckBkgnd = new CBrush(RGB(252, 192, 111));
-	m_pCheckSelBkgnd = new CBrush(RGB(254, 128, 62));
+
 
 	//Загрузить строки с tool tip в массив
 	thString[0].LoadString(IDS_TOOLTIP_1);
@@ -66,24 +39,6 @@ CThicknessMenu::~CThicknessMenu()
 {
 	//Скрыть тул типы
 	HideToolTip();
-
-	// Delete attaches
-	for(STLMenuVectorItem::iterator i = m_Items.begin(); i != m_Items.end(); i++)
-	{
-		LPMYMENUITEMINFO pItem = (LPMYMENUITEMINFO)(*i);
-
-		SAFE_DELETE_ARRAY(pItem->szText);
-		SAFE_DELETE_ARRAY(pItem->szTooltip);
-		SAFE_DELETE(pItem);
-	}
-
-	// GDI
-	SAFE_DELETE(m_FontTitle);
-	SAFE_DELETE(m_pSelBorder);
-	SAFE_DELETE(m_pSelBkgnd);
-	SAFE_DELETE(m_pCheckBkgnd);
-	SAFE_DELETE(m_pCheckSelBkgnd);
-	
 }
 
 void CThicknessMenu:: MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct)
@@ -102,15 +57,15 @@ void CThicknessMenu::DrawItem (LPDRAWITEMSTRUCT lpDrawItemStruct)
 	HideToolTip();
 	
 	//Взять прикрепленные к узлу данные
-	LPMYMENUITEMINFO pItemInfo = (LPMYMENUITEMINFO)lpDrawItemStruct->itemData;
+	const MYMENUITEMINFO* pItemInfo = (const MYMENUITEMINFO*)lpDrawItemStruct->itemData;
 	//Взять контекст
 	CDC *pDC = CDC::FromHandle(lpDrawItemStruct->hDC);
 	
 	if(pDC)
 	{
 		//Назначить эелементы рисования
-		CFont* pOldFont = pDC->SelectObject(m_FontTitle);
-		CPen* pOldPen = pDC->SelectObject(m_pSelBorder);
+		CFont* pOldFont = pDC->SelectObject(&m_FontTitle);
+		CPen* pOldPen = pDC->SelectObject(&m_pSelBorder);
 		DWORD dwOldColor = pDC->SetTextColor(m_dwTitleColor);
 		pDC->SetBkMode(TRANSPARENT);
 
@@ -237,7 +192,7 @@ void CThicknessMenu::DrawItem (LPDRAWITEMSTRUCT lpDrawItemStruct)
 	}
 }
 
-BOOL CThicknessMenu::AddItem(int nCount, LPMYMENUITEM pItem)
+BOOL CThicknessMenu::AddItem(int nCount, const MYMENUITEM* pItem)
 {
 	if(nCount <= 0)
 	{
@@ -249,7 +204,8 @@ BOOL CThicknessMenu::AddItem(int nCount, LPMYMENUITEM pItem)
 	//Перебор всех узло
 	for(int i = 0; i<nCount; i++)
 	{
-		LPMYMENUITEMINFO pItemInfo = new MYMENUITEMINFO;
+		m_Items.push_back(MYMENUITEMINFO{});
+		MYMENUITEMINFO* const pItemInfo = &m_Items.back();
 		if(pItemInfo)
 		{
 			//Проверить какие поля используются
@@ -271,19 +227,19 @@ BOOL CThicknessMenu::AddItem(int nCount, LPMYMENUITEM pItem)
 
 			if(pItem[i].dwMask & ITEMMASK_TEXT)
 			{
-				pItemInfo->szText = New_TCHAR(pItem[i].szText);
-				pItemInfo->szTooltip = New_TCHAR(pItem[i].szTooltip);
+				pItemInfo->szText = (pItem[i].szText);
+				pItemInfo->szTooltip = (pItem[i].szTooltip);
 			}
 			else
 			{
-				pItemInfo->szText = NULL;
-				pItemInfo->szTooltip = NULL;
+				pItemInfo->szText = CString{};
+				pItemInfo->szTooltip = CString{};
 			}
 
 			//Задать ID пункта меню
 			pItemInfo->nCommand = pItem[i].nCommand;
 			//Положить в масив
-			m_Items.push_back(pItemInfo);
+			
 
 			if(pItemInfo->dwStyle & MENUITEMSTYLE_POPUP)
 			{
@@ -307,8 +263,8 @@ BOOL CThicknessMenu::AddItem(int nCount, LPMYMENUITEM pItem)
 				ItemInfo.wID = pItemInfo->nCommand;
 				ItemInfo.dwItemData = (DWORD_PTR)pItemInfo;
 
-				BOOL bRes = ::InsertMenuItem(m_hMenu, pItemInfo->nIndex, TRUE, &ItemInfo );
-				if(!bRes)
+				BOOL bResInsert = ::InsertMenuItem(m_hMenu, pItemInfo->nIndex, TRUE, &ItemInfo );
+				if(!bResInsert)
 					return FALSE;
 
 			}

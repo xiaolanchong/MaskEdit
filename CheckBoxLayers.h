@@ -9,7 +9,7 @@
 struct LayerInfo
 {
 	//Строка в CheckBox
-	LPCTSTR strName;
+	CString strName;
 	//Идентификатор записи
 	DWORD nID;
 };

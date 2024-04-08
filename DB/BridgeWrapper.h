@@ -32,9 +32,9 @@ class BridgeWrapper
 {
 	//! получить интерфейс с DBBridge
 	//! \return интерфейс с DBBridge
-	boost::shared_ptr<CIDBBridge>	CreateBridge();	
+	std::shared_ptr<CIDBBridge>	CreateBridge();
 #if 0
-	boost::optional<int>	GetParam( CIDBBridge* pBridge, int nCameraID, const wchar_t* szParamName) ;
+	std::optional<int>	GetParam( CIDBBridge* pBridge, int nCameraID, const wchar_t* szParamName) ;
 	void					SetParam( CIDBBridge* pBridge, int nCameraID, const wchar_t* szParamName, int nParam) ;
 	void					SetNullParam( CIDBBridge* pBridge, int nCameraID, const wchar_t* szParamName) ;
 #endif
@@ -58,7 +58,7 @@ public:
 	//! считать имя слоя
 	//! \param szNameLayer название столбца
 	//! \return буффер с именем слоя
-	LPCTSTR LoadNameLayer(LPWSTR szNameLayer);
+	CString LoadNameLayer(LPWSTR szNameLayer);
 
 	//! создать интерфейс CIDBBridge
 	//! \return результат подключения
@@ -86,17 +86,18 @@ public:
 	
 	long ConnectDB() { return OK; }
 
-	LPCTSTR LoadNameLayer(LPWSTR szNameLayer)
+	CString LoadNameLayer(LPWSTR szNameLayer)
 	{ 
 		CString newLayer;
-		newLayer.Format(_T("Layer%0u-"), static_cast<unsigned int>(m_loadedLayers.size()));
+		newLayer.Format(_T("Layer%u"), m_layerCounter);
+		++m_layerCounter;
+		newLayer += _T("_");
 		newLayer += szNameLayer;
-		m_loadedLayers.push_back(std::move(newLayer));
-		return static_cast<LPCTSTR>(m_loadedLayers.back());
+		return newLayer;
 	}
 	long ReleaseDbb() { return OK; }
 private:
-	std::vector<CString> m_loadedLayers;
+	unsigned int m_layerCounter = 1;
 };
 
 #endif // WITH_ORWELL

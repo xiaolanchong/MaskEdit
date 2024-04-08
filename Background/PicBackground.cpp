@@ -30,7 +30,7 @@ CPicBackground::CPicBackground(const std::wstring& FileName):
 		throw ImageFileException( szExc );
 	}
 	CSize size = GetEditorState().GetImageSize();
-	if( m_Image.GetWidth() != size.cx || m_Image.GetHeight() != size.cy )
+	if( m_Image.GetWidth() != static_cast<unsigned>(size.cx) || m_Image.GetHeight() != static_cast<unsigned>(size.cy) )
 	{
 		CString str = GetResourceMgr().GetAnsi(IDS_EXC_INVALID_IMAGE_SIZE);
 		str.Format( str, size.cx, size.cy, m_Image.GetWidth(), m_Image.GetHeight() );

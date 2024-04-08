@@ -7,7 +7,6 @@
 
 
 IMPLEMENT_DYNAMIC(CCheckBoxLayers, CCheckListBox)
-#define COUNT_LAYER 32
 
 CCheckBoxLayers::CCheckBoxLayers()
 {
@@ -87,7 +86,7 @@ void CCheckBoxLayers::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct)
 	{
 		pDC->FillSolidRect(&lpDrawItemStruct->rcItem, COLORREF(RGB(255, 255, 255)));
 		pDC->SetTextColor(cl);
-		if(sInfo->strName == NULL)
+		if(sInfo->strName.IsEmpty())
 			pDC->DrawText(ctr, &lpDrawItemStruct->rcItem, DT_SINGLELINE | DT_VCENTER);
 		else
 			pDC->DrawText(sInfo->strName, &lpDrawItemStruct->rcItem, DT_SINGLELINE | DT_VCENTER);
@@ -103,7 +102,7 @@ void CCheckBoxLayers::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct)
 		pDC->FillSolidRect(&lpDrawItemStruct->rcItem, cl/*COLORREF(RGB(49, 106, 197))*/);
 
 		pDC->SetTextColor(COLORREF(RGB(255, 255, 255)));
-		if(sInfo->strName == NULL)
+		if(sInfo->strName.IsEmpty())
 			pDC->DrawText(ctr, &lpDrawItemStruct->rcItem, DT_SINGLELINE | DT_VCENTER);	
 		else
 			pDC->DrawText(sInfo->strName, &lpDrawItemStruct->rcItem, DT_SINGLELINE | DT_VCENTER);
@@ -116,7 +115,7 @@ void CCheckBoxLayers::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct)
 		pDC->FillSolidRect(&lpDrawItemStruct->rcItem, COLORREF(RGB(255, 255, 255)));
 		
 		pDC->SetTextColor(cl);
-		if(sInfo->strName == NULL)
+		if(sInfo->strName.IsEmpty())
 			pDC->DrawText(ctr, &lpDrawItemStruct->rcItem, DT_SINGLELINE | DT_VCENTER);
 		else
 			pDC->DrawText(sInfo->strName, &lpDrawItemStruct->rcItem, DT_SINGLELINE | DT_VCENTER);

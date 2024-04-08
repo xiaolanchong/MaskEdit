@@ -623,7 +623,7 @@ void COXBitmapMenuOrganizer::OnInitMenuPopup(CMenu* pPopupMenu, UINT Index, BOOL
 		if (miiGet.dwItemData != 0 && !bNewBitmapMenu)
 		{
 			pItemInfo=(COXItemInfo*)miiGet.dwItemData;
-			miiPut.dwItemData=(DWORD)pItemInfo;
+			miiPut.dwItemData=(ULONG_PTR)pItemInfo;
 			if(miiGet.fType==MFT_STRING)
 			{
 				pItemInfo->SetText(sText);
@@ -631,9 +631,9 @@ void COXBitmapMenuOrganizer::OnInitMenuPopup(CMenu* pPopupMenu, UINT Index, BOOL
 		}
 		else
 		{
-			COXItemInfo* pItemInfo=new COXItemInfo(pImageInfo, sText);
-			miiPut.dwItemData=(DWORD)pItemInfo;
-			pBitmapMenu->AddItemInfo(pItemInfo);
+			COXItemInfo* pNewItemInfo=new COXItemInfo(pImageInfo, sText);
+			miiPut.dwItemData=(ULONG_PTR)pNewItemInfo;
+			pBitmapMenu->AddItemInfo(pNewItemInfo);
 		}
 
 		// Put the menuitem with the new data back in its place
@@ -730,9 +730,9 @@ CString COXBitmapMenuOrganizer::GetUniqueResourceString(UINT uResourceID,BOOL bB
 
 CString COXBitmapMenuOrganizer::GetUniqueResourceString(LPCTSTR pszResource,BOOL bBitmapIcon)
 {
-	if(HIWORD((DWORD)pszResource)==0)
+	if(HIWORD(pszResource)==0)
 	{
-		return GetUniqueResourceString(LOWORD((DWORD)pszResource),bBitmapIcon);
+		return GetUniqueResourceString(LOWORD(pszResource),bBitmapIcon);
 	}
 	else
 		return CString(pszResource)+
@@ -753,7 +753,7 @@ BOOL COXBitmapMenuOrganizer::SubclassFrameWindow(CFrameWnd* pFrameWnd)
 	{
 		// Already subclasses, check that hWnd and window proc is correct
 		if ( (m_hWnd != pFrameWnd->GetSafeHwnd()) || 
-		     ((WNDPROC)::GetWindowLong(pFrameWnd->GetSafeHwnd(), GWL_WNDPROC) != GlobalMenuOrganizerProc) )
+		     ((WNDPROC)::GetWindowLongPtr(pFrameWnd->GetSafeHwnd(), GWLP_WNDPROC) != GlobalMenuOrganizerProc) )
 		{
 			TRACE0("COXBitmapMenuOrganizer::SubclassFrameWindow : Failed because already subclassed by other window proc\n");
 			return FALSE;
@@ -771,8 +771,8 @@ BOOL COXBitmapMenuOrganizer::SubclassFrameWindow(CFrameWnd* pFrameWnd)
 
 	// ... Subclass window (Windows way, not MFC : because may already be subclessed by MFC)
 	m_hWnd=pFrameWnd->GetSafeHwnd();
-	m_pfnSuper=(WNDPROC)::GetWindowLong(pFrameWnd->GetSafeHwnd(), GWL_WNDPROC);
-	::SetWindowLong(m_hWnd, GWL_WNDPROC, (LONG)GlobalMenuOrganizerProc);
+	m_pfnSuper=(WNDPROC)::GetWindowLongPtr(pFrameWnd->GetSafeHwnd(), GWLP_WNDPROC);
+	::SetWindowLongPtr(m_hWnd, GWLP_WNDPROC, (LONG_PTR)GlobalMenuOrganizerProc);
 
 	// ... Store in the global map
 	m_allMenuOrganizers.SetAt(m_hWnd, this);
@@ -798,7 +798,7 @@ void COXBitmapMenuOrganizer::UnsubclassFrameWindow()
 		ASSERT(m_pfnSuper != NULL);
 		ASSERT(m_pfnSuper != GlobalMenuOrganizerProc);
 		// ... GlobalLayoutManagerProc is not used anymore : set WNDPROC back to original value
-		::SetWindowLong(m_hWnd, GWL_WNDPROC, (LONG)m_pfnSuper);
+		::SetWindowLongPtr(m_hWnd, GWLP_WNDPROC, (LONG_PTR)m_pfnSuper);
 		// ... Remove use from global map
 		m_allMenuOrganizers.RemoveKey(m_hWnd);
 		m_hWnd=NULL;
@@ -943,7 +943,8 @@ CMenu* COXBitmapMenuOrganizer::OwnFindPopupMenuFromID(CMenu* pMenu, UINT nID)
 			// ... If it is a cascade menu, use its handle instead of its ID (which is always -1)
 			//     So appearently Windows passes the HMENU instead of the ID for cascade manus
 			//     in MEASUREITEMSTRUCT when sending WM_MEASUREITEM
-			nItemID=(UINT)pMenu->GetSubMenu(iItem)->GetSafeHmenu();
+			// User32 handles are signed 32 bits
+			nItemID= HandleToUlong(pMenu->GetSubMenu(iItem)->GetSafeHmenu());
 
 		if (nItemID==nID)
 		{

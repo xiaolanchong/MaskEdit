@@ -77,7 +77,7 @@ protected:  // control bar embedded members
 	CToolBar		m_wndToolBar;
 
 	//Диалоговое окно со слоями
-	CLayerDlg* m_dlg;
+	std::unique_ptr<CLayerDlg> m_dlg;
 	
 	//Панель инструментов для управления видео потоком
 	CSeekToolBar	m_wndVideoBar;

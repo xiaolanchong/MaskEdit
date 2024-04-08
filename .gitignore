@@ -2,3 +2,7 @@
 /__Unicode Debug
 /baseclasses/Debug
 /MaskEditMod80.vcxproj.user
+/__Unicode Release
+/baseclasses/Release
+/baseclasses/x64/
+/x64

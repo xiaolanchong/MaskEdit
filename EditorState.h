@@ -9,9 +9,6 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-// can be boost::signal
-//#include <boost/signal.hpp>
-
 #pragma warning(disable : 4786)
 
 #include "common/Helper.h"

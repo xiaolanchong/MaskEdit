@@ -357,14 +357,14 @@ void CMsEditView::OnLButtonDown(UINT nFlags, CPoint point)
 		switch( GetEditorState().GetFigState() )
 		{
 		case CEditorState::fs_line :
-			m_CurrentFigure = boost::shared_ptr<CFigure> ( new CFigLine( pt, pt, CurrentColor, m_CurrentThickness));
+			m_CurrentFigure = std::shared_ptr<CFigure> ( new CFigLine( pt, pt, CurrentColor, m_CurrentThickness));
 				break;
 		case CEditorState::fs_rect :
-			m_CurrentFigure = boost::shared_ptr<CFigure> ( new CFigRect( pt , pt , CurrentColor ) );
+			m_CurrentFigure = std::shared_ptr<CFigure> ( new CFigRect( pt , pt , CurrentColor ) );
 				break;
 
 		case CEditorState::fs_filling :
-			m_CurrentFigure = boost::shared_ptr<CFigure> ( new CFigFill( pt , CurrentColor ) );
+			m_CurrentFigure = std::shared_ptr<CFigure> ( new CFigFill( pt , CurrentColor ) );
 				pDoc->GetHolder()[GetEditorState().GetCurrentMask()].Add(m_CurrentFigure, true);
 				m_CurrentFigure.reset();
 				m_bDrawMode = false;
@@ -373,11 +373,11 @@ void CMsEditView::OnLButtonDown(UINT nFlags, CPoint point)
 				break;
 
 		case CEditorState::fs_polyline :
-			m_CurrentFigure = boost::shared_ptr<CFigure> ( new CFigPolyline( CurrentColor , pt));
+			m_CurrentFigure = std::shared_ptr<CFigure> ( new CFigPolyline( CurrentColor , pt));
 				break;	
 
 		case CEditorState::fs_pen :
-			m_CurrentFigure = boost::shared_ptr<CFigure> ( new CFigPen( CurrentColor , pt , m_CurrentThickness));
+			m_CurrentFigure = std::shared_ptr<CFigure> ( new CFigPen( CurrentColor , pt , m_CurrentThickness));
 				break;
 		default:
 				m_CurrentFigure.reset();
@@ -811,7 +811,7 @@ LRESULT CMsEditView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		case WM_GRAPHNOTIFY:
 			HandleGraph();break;
 		case wm_slider:
-			HandleSeeker( wParam );break;
+			HandleSeeker( static_cast<int>(wParam) );break;
 		case WM_MOUSELEAVE:
 
 		case WM_MOUSEHOVER:
@@ -873,7 +873,7 @@ void CMsEditView::OnVideoPlay()
     {
 		static_cast<CMainFrame*>(AfxGetMainWnd())->GetVideoBar()->EnableSeeker(true);
         KillTimer(0); // Make sure an old timer is not still active.
-        int nTimerID = SetTimer(idt_timer_slider, freq, (TIMERPROC)NULL);
+        auto nTimerID = SetTimer(idt_timer_slider, freq, (TIMERPROC)NULL);
         if (nTimerID == 0)
         {
             /* Handle Error */
@@ -907,7 +907,7 @@ void CMsEditView::OnVideoPause()
 	m_PlayerSettings.State = PlayerSettings::pause;
 }
 
-void CMsEditView::OnTimer(UINT nIDEvent) 
+void CMsEditView::OnTimer(UINT_PTR nIDEvent) 
 {
 	// TODO: Add your message handler code here and/or call default
 
@@ -1038,7 +1038,7 @@ void CMsEditView::OnOpenImage()
 
 	try
 	{
-		m_CurrentBG = boost::shared_ptr<CBackground> ( new CPicBackground( str ) );
+		m_CurrentBG = std::shared_ptr<CBackground> ( new CPicBackground( str ) );
 	}
 	catch(ImageException& ex)
 	{
@@ -1063,7 +1063,7 @@ void CMsEditView::OnOpenVideo()
 		{
 			//CVideoBackground* bg = dynamic_cast<CVideoBackground*>( m_CurrentBG.get());
 			CVideoBackground* pBg = new CVideoBackground( this, str ) ;
-			m_CurrentBG = boost::shared_ptr<CBackground> ( pBg );
+			m_CurrentBG = std::shared_ptr<CBackground> ( pBg );
 			if( pBg->IsSeekable() )
 			{
 				static_cast<CMainFrame*>(AfxGetMainWnd())->GetVideoBar()->SetReceiver(this);
@@ -1078,7 +1078,7 @@ void CMsEditView::OnOpenVideo()
 //		USES_CONVERSION;
 		CString szExc = ex.what() ;
 			AfxMessageBox( szExc, MB_OK | MB_ICONERROR );
-			m_CurrentBG = boost::shared_ptr<CBackground> ( new CEmptyBackground(  ) );
+			m_CurrentBG = std::shared_ptr<CBackground> ( new CEmptyBackground(  ) );
 			ResetAllSettings();
 		}
 	Invalidate(FALSE);	
@@ -1107,7 +1107,7 @@ void CMsEditView::OnCameraDynamicMenu( UINT nID )
 	try
 	{
 		CRealtimeBackground* pBg = new CRealtimeBackground(  this, CamID ) ;
-		m_CurrentBG = boost::shared_ptr<CBackground> ( pBg );
+		m_CurrentBG = std::shared_ptr<CBackground> ( pBg );
 		ResetAllSettings();
 		m_PlayerSettings.State = PlayerSettings::play;
 		static_cast<CMainFrame*>(AfxGetMainWnd())->m_CamHandler.CheckItem( pMenu, nID );
@@ -1119,7 +1119,7 @@ void CMsEditView::OnCameraDynamicMenu( UINT nID )
 		CString szExc = ex.what();
 		AfxMessageBox( szExc, MB_OK | MB_ICONERROR );
 		ResetAllSettings();
-		m_CurrentBG = boost::shared_ptr<CBackground> ( new CEmptyBackground( )  );
+		m_CurrentBG = std::shared_ptr<CBackground> ( new CEmptyBackground( )  );
 		static_cast<CMainFrame*>(AfxGetMainWnd())->m_CamHandler.CheckItem( pMenu, 0 );
 		Invalidate(FALSE);
 	}
@@ -1147,7 +1147,7 @@ void CMsEditView::OnSizeDynamicMenu( UINT nID )
 		static_cast<CMainFrame*>(AfxGetMainWnd())->m_SizeHandler.CheckItem( pMenu, nID );
 		static_cast<CMainFrame*>(AfxGetMainWnd())->m_CamHandler.CheckItem( pMenu, 0 );
 		
-		m_CurrentBG = boost::shared_ptr<CBackground> ( new CEmptyBackground(  ) );
+		m_CurrentBG = std::shared_ptr<CBackground> ( new CEmptyBackground(  ) );
 		ResetAllSettings();
 		m_CurrentFigure.reset();
 
@@ -1325,7 +1325,7 @@ void CMsEditView::OnNotify( NMHDR* pNotifyStruct, LRESULT* result )
 				MenuItems[0].nImage = -1;
 				MenuItems[0].nCommand = 29;
 				MenuItems[0].szText = _T("Line Weight");
-				MenuItems[0].szTooltip = NULL;
+				MenuItems[0].szTooltip = CString{};
 				MenuItems[0].hSubMenu = NULL;
 				MenuItems[0].nChekItem = 0;
 
@@ -1336,7 +1336,7 @@ void CMsEditView::OnNotify( NMHDR* pNotifyStruct, LRESULT* result )
 					MenuItems[i].dwStyle = 0;
 					MenuItems[i].nImage = 0;
 					MenuItems[i].nCommand = 29 + i;
-					MenuItems[i].szText = NULL;
+					MenuItems[i].szText = CString{};
 					MenuItems[i].hSubMenu = NULL;
 					MenuItems[i].hSubMenu = NULL;
 

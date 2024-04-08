@@ -59,12 +59,12 @@ void CMask::Create()
 {
 	CSize size = GetEditorState().GetImageSize();
 	Bitmap *bmp = new  Bitmap (size.cx, size.cy, PixelFormat32bppARGB) ;
-	m_Bitmap = boost::shared_ptr<Bitmap>( bmp/*, Helper::Deleter<Bitmap>()*/);
+	m_Bitmap = std::shared_ptr<Bitmap>( bmp/*, Helper::Deleter<Bitmap>()*/);
 	Graphics MemGr( m_Bitmap.get() );
 	MemGr.Clear(Color(0,0,0,0));
 }
 
-void CMask::Add( const boost::shared_ptr<CFigure>& fig, bool bCreateNewSnapshot ) 
+void CMask::Add( const std::shared_ptr<CFigure>& fig, bool bCreateNewSnapshot )
 {
 	//! здесь можно обойтись без глубокого копирования
 	if(bCreateNewSnapshot)
@@ -145,7 +145,7 @@ void		CMask::Redo() MY_THROW (MaskRedoException)
 	Invalidate();
 }
 
-boost::shared_ptr<Bitmap>	CMask::GetMaskForSave() const
+std::shared_ptr<Bitmap>	CMask::GetMaskForSave() const
 {
 	Bitmap* pSaveBitmap = new Bitmap( m_Bitmap->GetWidth(), m_Bitmap->GetHeight(), PixelFormat32bppARGB  );
 	Graphics gr(pSaveBitmap);
@@ -155,7 +155,7 @@ boost::shared_ptr<Bitmap>	CMask::GetMaskForSave() const
 #endif
 	Invalidate( gr );
 
-	return boost::shared_ptr<Bitmap>(pSaveBitmap);
+	return std::shared_ptr<Bitmap>(pSaveBitmap);
 }
 
 ////////////////////////// Mask Holder ////////////////////////////////////////////////

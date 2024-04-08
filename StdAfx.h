@@ -51,11 +51,15 @@
 #include <set>
 #include <string>
 #include <algorithm>
+#include <memory>
+
+#ifdef WITH_ORWELL
 //Boost
 #include <boost/shared_ptr.hpp>
 #include <boost/optional.hpp>
 #include <boost/bind.hpp>
 #include <boost/format.hpp>
+#endif
 
 //ATL
 #include <atlconv.h>
@@ -93,9 +97,6 @@ const int sub_submenu_db_save	= 5;
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-
-#define SAFE_DELETE(p) {if(p){ delete (p); (p) = NULL;}}
-#define SAFE_DELETE_ARRAY(p) {if(p){ delete[] (p); (p) = NULL;}}
 #define APPNAME _T("MaskEdit")
 #include <Registry\Registry.h>
 

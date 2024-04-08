@@ -275,7 +275,7 @@ void CVideoBackground::Grab( CWnd * pWnd, const std::wstring& FileName)
 
     CComQIPtr< IMediaEventEx, &IID_IMediaEvent > pEvent( pGraph );
 
-	hr = pEvent->SetNotifyWindow( (long int)(pWnd->GetSafeHwnd()), WM_GRAPHNOTIFY , 0);
+	hr = pEvent->SetNotifyWindow( reinterpret_cast<OAHWND>(pWnd->GetSafeHwnd()), WM_GRAPHNOTIFY , 0);
 
         // activate the threads
     CComQIPtr< IMediaControl, &IID_IMediaControl > pControl(pGraph );
@@ -347,13 +347,14 @@ void			CVideoBackground::Replay()
 
 void	CVideoBackground::ProcessMessage()
 {
-	LONG evCode, evParam1, evParam2;
+   long evCode = 0;
+   LONG_PTR evParam1 = 0, evParam2 = 0;
 	HRESULT hr;
 	
 	CComQIPtr< IMediaEvent, &IID_IMediaEvent > pME(pGraph );
     // Process all queued events
-    while(SUCCEEDED(pME->GetEvent(&evCode, (LONG_PTR *) &evParam1,
-                    (LONG_PTR *) &evParam2, 0)))
+    while(SUCCEEDED(pME->GetEvent(&evCode, &evParam1,
+                    &evParam2, 0)))
     {
         // Free memory associated with callback, since we're not using it
         hr = pME->FreeEventParams(evCode, evParam1, evParam2);

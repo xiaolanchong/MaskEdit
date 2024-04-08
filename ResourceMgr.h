@@ -20,7 +20,7 @@ MACRO_EXCEPTION(ConfigException, ResourceMgrException)
 //! но в будущем, например, придется загружать из зависимой длл
 class CResourceMgr  
 {
-	// it can be boost::any for holding ansi & unicode string together
+	// it can be std::any for holding ansi & unicode string together
 	mutable	std::map< DWORD, CString >	m_CacheMap;
 public:
 	CResourceMgr();

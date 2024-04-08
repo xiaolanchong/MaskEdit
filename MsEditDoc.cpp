@@ -172,7 +172,7 @@ void	CMsEditDoc::LoadMask( CMaskLoader& Loader )
 			int nMaskID = CEditorState::IndexToMaskNumber( i );
 			Color cl = GetEditorState().GetColor( nMaskID );
 
-			boost::shared_ptr<CFigure> FigBmp(new CFigBitmap(Mask32, i, nMaskID ));
+			std::shared_ptr<CFigure> FigBmp(new CFigBitmap(Mask32, i, nMaskID ));
 			m_MaskHolder[nMaskID].Add( FigBmp, false );
 		}
 
@@ -199,7 +199,7 @@ void	CMsEditDoc::LoadMask( CMaskLoader& Loader )
 			int nMaskID = CEditorState::IndexToMaskNumber( i );
 			Color cl = GetEditorState().GetColor( nMaskID );
 
-			boost::shared_ptr<CFigure> FigBmp(new CFigBitmap(Mask8, i, nMaskID ));
+			std::shared_ptr<CFigure> FigBmp(new CFigBitmap(Mask8, i, nMaskID ));
 			m_MaskHolder[nMaskID].Add( FigBmp, false );
 		}
 	}
