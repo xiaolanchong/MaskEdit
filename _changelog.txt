@@ -1,0 +1,29 @@
+Mask Editor
+
+[*] Fixes
+[+] Features
+[-] Known bugs
+
+2004-08-17 Build 1.1.1.20
+[+] Добавлено 2 Unicode конфига
+[+] Добавлен Autoincrement build number
+
+2004-09-29 Build 1.1.3
+[+] Added localization stuff
+[+] Added code for resizing combobox dependending on its strings 
+
+2004-09-30 1.1.4
+[*]	Баг в русскоязычной версии MsEdit.rc - не полностью локализованные ресурсы MFC ( #include "afxres.rc" )
+
+2004-12-02 1.1.5
+[*] Баг USES_CONVERSION & atl macro converions
+[*] VideoBackground не показывал изображение
+
+2005-09-16 1.2.0
+[+]	Изменен столбец MaskData на main_RecognitionMaskFile в таблице Cameras
+[+] переход на один rc-файл 
+[*]	Ошибки локализации
+[+]	Изменена иконка заднего фона
+
+2005-10-17	1.3.0
+[+]	При соединении с БД используется DBBridge (строка состояния)

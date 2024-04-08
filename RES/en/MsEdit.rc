@@ -1,0 +1,1112 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_FIGURE              BITMAP                  "figure.bmp"
+IDR_SEEKER              BITMAP                  "toolbar1.bmp"
+IDR_MAINFRAME           BITMAP                  "Toolbar.bmp"
+IDB_MAIN_NORMAL         BITMAP                  "bitmap2.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_FIGURE TOOLBAR  17, 16
+BEGIN
+    BUTTON      ID_FIG_PEN
+    BUTTON      ID_FIG_LINE
+    BUTTON      ID_FIG_POLYLINE
+    BUTTON      ID_FIG_RECT
+    BUTTON      ID_FIG_FILL
+    BUTTON      ID_SCALE
+    BUTTON      ID_THICKNESS
+    BUTTON      ID_GRID
+END
+
+IDR_SEEKER TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_VIDEO_PLAY
+    BUTTON      ID_VIDEO_PAUSE
+    BUTTON      ID_VIDEO_STOP
+    BUTTON      ID_VIDEO_SEEK
+    BUTTON      ID_CURPOS
+END
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_BACKGROUND
+    BUTTON      ID_MASK_LAYER_2
+    BUTTON      ID_MASK_LAYER_3
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CAMIDDIALOG DIALOG  0, 0, 188, 50
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Добавить камеру"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,131,7,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,131,24,50,14
+    LTEXT           "ID камеры",IDC_STATIC,15,17,39,14
+    EDITTEXT        IDC_EDIT1,57,17,50,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_SIZEDIALOG DIALOG  0, 0, 192, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Добавить размер видео"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,135,7,50,14
+    PUSHBUTTON      "Отмена",IDCANCEL,135,24,50,14
+    LTEXT           "X",IDC_STATIC,22,7,35,12
+    LTEXT           "Y",IDC_STATIC,83,7,37,15
+    EDITTEXT        IDC_EDIT1,21,24,43,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT2,83,24,43,13,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "О программе..."
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Редактор маски",IDC_STATIC,39,30,63,8,SS_NOPREFIX
+    LTEXT           "Копирайт © ЭЛВИС, 2004-2005",IDC_STATIC,39,15,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "#",IDC_STATIC_VERSION,109,30,58,8
+END
+
+IDD_LAYERDLG DIALOGEX 0, 0, 118, 126
+STYLE DS_ABSALIGN | DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_WINDOWEDGE
+CAPTION "Редактор слоев"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LISTBOX         IDC_CHECK,0,0,118,126,LBS_SORT | LBS_OWNERDRAWFIXED | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CAMIDDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 181
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 43
+    END
+
+    IDD_SIZEDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 185
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CUR_CROSS           CURSOR                  "cursor1.cur"
+IDC_CUR_FILL            CURSOR                  "FloodFill.cur"
+IDC_CUR_PEN             CURSOR                  "Pen.cur"
+IDC_CURSOR_GLASS        CURSOR                  "cur_mag.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "Файл"
+    BEGIN
+        MENUITEM "Новый\tCtrl+N",               ID_FILE_NEW
+        MENUITEM "Открыть...\tCtrl+O",          ID_FILE_OPEN
+        POPUP "Открыть из БД"
+        BEGIN
+            MENUITEM "Нет камер",                   ID_OPEN_CAMERA_0
+        END
+        MENUITEM "&Сохранить\tCtrl+S",          ID_FILE_SAVE
+        MENUITEM "Сохранить как...",            ID_FILE_SAVE_AS
+        POPUP "Сохранить в БД"
+        BEGIN
+            MENUITEM "Нет камер",                   ID_SAVE_CAMERA_0
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "Вы&xод",                      ID_APP_EXIT
+    END
+    POPUP "Размер"
+    BEGIN
+        MENUITEM SEPARATOR
+        MENUITEM "Добавить размер..",           ID_SIZE_ADD
+    END
+    POPUP "Фон"
+    BEGIN
+        MENUITEM "Изображение..\tCtrl+I",       ID_OPEN_IMAGE
+        MENUITEM "Видео...\tCtrl+D",            ID_OPEN_VIDEO
+        MENUITEM SEPARATOR
+        MENUITEM "Добавить камеру...",          ID_OPEN_ADD_CAMERA
+    END
+    POPUP "Редактировать"
+    BEGIN
+        MENUITEM "&Отменить\tCtrl+Z",           ID_EDIT_UNDO
+        MENUITEM "&Повторить\tCtrl+Y",          ID_EDIT_REDO
+    END
+    POPUP "Цвета"
+    BEGIN
+        MENUITEM "Редактировать рамку...",      ID_COLORS_BORDER
+    END
+    POPUP "Помощь"
+    BEGIN
+        MENUITEM "О программе..",               ID_APP_ABOUT
+    END
+    POPUP "Окна"
+    BEGIN
+        MENUITEM "Слои",                        ID_WINDOW_LAYERS
+    END
+END
+
+IDR_MENU1 MENU 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "1x",                          ID_POPUP_1X
+        MENUITEM "2x",                          ID_POPUP_2X
+        MENUITEM "4x",                          ID_POPUP_4X
+        MENUITEM "8x",                          ID_POPUP_8X
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "MsEdit.ico"
+IDR_MSEDITTYPE          ICON                    "MsEditDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_OPEN_VIDEO,          VIRTKEY, CONTROL, NOINVERT
+    "I",            ID_OPEN_IMAGE,          VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "Редактор маски\n\nMsEdit\nФайлы маски(*.dat)\n.dat\nДокумент MsEdit\nMsEdit Document"
+    IDS_TOOLTIP_1           "Выберите толщину линий"
+    IDS_TOOLTIP_2           "Толщина линии 1"
+    IDS_TOOLTIP_3           "Толщина линии 2"
+    IDS_TOOLTIP_4           "Толщина линии 3"
+    IDS_TOOLTIP_5           "Толщина линии 4"
+    IDS_TOOLTIP_6           "Толщина линии 5"
+    IDS_FIG_PEN             "карандаш"
+    IDS_FIG_LINE            "линия"
+    IDS_FIG_RECT            "прямоугольник"
+    IDS_FIG_POLYLINE        "многоугольник"
+    IDS_FIG_FILL            "заливка"
+    IDS_MESSAGE             "Нельзя использовать инструмент ""%s"" потому что слой невидимый"
+    IDS_NAME_LAYER_0        "Первый слой"
+    IDS_NAME_LAYER_1        "Второй слой"
+    IDS_UNKLAYER            "Неизвестный слой"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Редактор маски"
+    AFX_IDS_IDLEMESSAGE     "Готов"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Создать новый документ\nНовый"
+    ID_FILE_OPEN            "Открыть  документ\nОткрыть"
+    ID_FILE_CLOSE           "Закрыть  документ\nЗакрыть"
+    ID_FILE_SAVE            "Сохранить  документ\nСохранить"
+    ID_FILE_SAVE_AS         "Сохранить  документ с другим именем\nСохранить как..."
+    ID_FILE_PAGE_SETUP      "Изменить опции печати\nНастройка страницы"
+    ID_FILE_PRINT_SETUP     "Изменить принтер и опции печати\nНастройка принтера"
+    ID_FILE_PRINT           "Напечатать документ\nПечать"
+    ID_FILE_PRINT_PREVIEW   "Показать превью\nПревью"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Вывести системную информацию о программе\nО программе"
+    ID_APP_EXIT             "Выйти из приложения с предложением сохраниться\nВыход"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Переключиться на следующий элемент окна\nСледующий элемент"
+    ID_PREV_PANE            "Переключиться на предыдующий элемент окна\nПредыдующий элемент"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Разделить активное окно на панели\nРазделить"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Стереть выделенное\nСтереть"
+    ID_EDIT_CLEAR_ALL       "Стереть все\nСтереть все"
+    ID_EDIT_COPY            "Скопировать в Clipboard\nСкопировать"
+    ID_EDIT_CUT             "Вырезать в  Clipboard\nВырезать"
+    ID_EDIT_FIND            "Найти текст\nНайти"
+    ID_EDIT_PASTE           "Вставить Clipboard\nВставить"
+    ID_EDIT_REPEAT          "Повторить действие\nПовторить"
+    ID_EDIT_REPLACE         "Найти и заменить текст\nЗамена"
+    ID_EDIT_SELECT_ALL      "Выделить весь документ\nВыделить все"
+    ID_EDIT_UNDO            "Отменить последнее действие\nОтменить"
+    ID_EDIT_REDO            "Сделать ранее отмененное действие\nПовторить"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Показать или убрать панель инструментов\nПанель инструментов"
+    ID_VIEW_STATUS_BAR      "Показать или убрать панель статуса\nПанель статуса"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Изменить размер окна"
+    AFX_IDS_SCMOVE          "Изменить положение окна"
+    AFX_IDS_SCMINIMIZE      "Свернуть окно"
+    AFX_IDS_SCMAXIMIZE      "Развернуть окно"
+    AFX_IDS_SCNEXTWINDOW    "Переключиться на следующее окно"
+    AFX_IDS_SCPREVWINDOW    "Переключиться на предыдущее окно"
+    AFX_IDS_SCCLOSE         "Закрыть окно с предложением сохранить изменения"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Развернуть окно"
+    AFX_IDS_SCTASKLIST      "Включить лист заданий"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Закрыть режим превью\nОтменить превью"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NOIMAGE             "Нет изображения"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EXC_TABLE_OPEN      "Не могу открыть таблицу БД"
+    IDS_MASK_ICON_UNKNOWN   "Н"
+    IDS_MASK_ICON_VEHICLES  "Т"
+    IDS_MASK_ICON_HUMANS    "Ч"
+    IDS_MASK_ICON_MOVEDETECTION "Д"
+    IDS_DB_CONNECT          "Ошибка при соединении с БД"
+    IDS_DB_DATA             "В БД нет данных для камеры"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPEN_CAMERA         "Камера"
+    IDS_FILTER_IMAGE        "Все файлы изображений|*.bmp;*.jpeg;*.jpg;*.png|BMP изображение(*.bmp)|*.bmp|JPEG изображение(*.jpeg,*.jpg)|*.jpeg;*.jpg|PNG изображение(*.png)|*.png||"
+    IDS_FILTER_VIDEO        "Видео(*.avi)|*.avi||"
+    IDS_EXC_INVALID_MASK_SIZE 
+                            "Неправильный размер маски, ожидалось %dx%d, имеется %dx%d"
+    IDS_EXC_INVALID_MASK_FILE "Неправильная маска или поврежденный файл"
+    IDS_EXC_CONNECT_ID      "Не могу связаться с указанным сервером"
+    IDS_EXC_CONNECT_SERVER  "Нет изображения с сервера"
+    IDS_EXC_DSHOW           "ошибка DirectShow"
+    IDS_EXC_INVALID_IMAGE_SIZE 
+                            "Неправильный размер изображения, ожидалось %dx%d, имеется %dx%d"
+    IDS_EXC_INVALID_IMAGE_FILE "Некорректное изображение"
+    IDS_REGISTRYKEY         "ElVEES"
+    IDS_REG_DB              "Software\\ElVEES\\Common"
+    IDS_REG_DB_PARAM        "DbInitString"
+    IDS_EXC_DATA_SOURCE     "Неправильное имя источника данных"
+    IDS_EXC_DB_CONNECT      "Не могу связаться с БД"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FIG_LINE             "Линия\nЛиния"
+    ID_FIG_RECT             "Заполненный прямоугольник\nЗаполненный прямоугольник"
+    ID_FIG_FILL             "Заливка\nЗаливка"
+    ID_FIG_PEN              "Ручка\nРучка"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_BACKGROUND           "Установить фон\nУстановить фон"
+    ID_VIDEO_PLAY           "Играть\nИграть"
+    ID_VIDEO_STOP           "Стоп\nСтоп"
+    ID_VIDEO_PAUSE          "Пауза\nПауза"
+    ID_FIG_POLYLINE         "Заполненный многоугольник\nЗаполненный многоугольник"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SCALE                "Масштабирование\nМасштабирование"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_THICKNESS            "Выбор толщины линии\nВыбор толщины линии"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_GRID                 "Сетка\nСетка"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INDEX_LAYER         "Слой %d"
+END
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_FIGURE              BITMAP                  "figure.bmp"
+IDR_SEEKER              BITMAP                  "toolbar1.bmp"
+IDR_MAINFRAME           BITMAP                  "Toolbar.bmp"
+IDB_MAIN_NORMAL         BITMAP                  "Untitled-1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_FIGURE TOOLBAR  17, 16
+BEGIN
+    BUTTON      ID_FIG_PEN
+    BUTTON      ID_FIG_LINE
+    BUTTON      ID_FIG_POLYLINE
+    BUTTON      ID_FIG_RECT
+    BUTTON      ID_FIG_FILL
+    BUTTON      ID_SCALE
+    BUTTON      ID_THICKNESS
+    BUTTON      ID_GRID
+END
+
+IDR_SEEKER TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_VIDEO_PLAY
+    BUTTON      ID_VIDEO_PAUSE
+    BUTTON      ID_VIDEO_STOP
+    BUTTON      ID_VIDEO_SEEK
+    BUTTON      ID_CURPOS
+END
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_BACKGROUND
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
+    BUTTON      ID_LAYERS
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CAMIDDIALOG DIALOG  0, 0, 188, 50
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add camera"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,131,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,131,24,50,14
+    LTEXT           "Camera ID",IDC_STATIC,15,17,39,14
+    EDITTEXT        IDC_EDIT1,57,17,50,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_SIZEDIALOG DIALOG  0, 0, 192, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add custom size"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,135,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,135,24,50,14
+    LTEXT           "X",IDC_STATIC,22,7,35,12
+    LTEXT           "Y",IDC_STATIC,83,7,37,15
+    EDITTEXT        IDC_EDIT1,21,24,43,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT2,83,24,43,13,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_ABOUTBOX DIALOG  0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Mask Editor"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Mask Editor",IDC_STATIC,39,30,63,8,SS_NOPREFIX
+    LTEXT           "Copyright © ElVEES, 2004-2005",IDC_STATIC,39,15,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "#",IDC_STATIC_VERSION,109,30,58,8
+END
+
+IDD_LAYERDLG DIALOGEX 0, 0, 117, 126
+STYLE DS_ABSALIGN | DS_SETFONT | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Layers Editor"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LISTBOX         IDC_CHECK,0,0,117,126,LBS_SORT | LBS_OWNERDRAWFIXED | LBS_NOINTEGRALHEIGHT | NOT WS_BORDER | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CAMIDDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 181
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 43
+    END
+
+    IDD_SIZEDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 185
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CUR_CROSS           CURSOR                  "cursor1.cur"
+IDC_CUR_FILL            CURSOR                  "FloodFill.cur"
+IDC_CUR_PEN             CURSOR                  "Pen.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "1x",                          ID_POPUP_1X
+        MENUITEM "2x",                          ID_POPUP_2X
+        MENUITEM "4x",                          ID_POPUP_4X
+        MENUITEM "8x",                          ID_POPUP_8X
+    END
+END
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        POPUP "Open From Database"
+        BEGIN
+            MENUITEM "No cameras",                  ID_OPEN_CAMERA_0
+        END
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        POPUP "Save To Database"
+        BEGIN
+            MENUITEM "No cameras",                  ID_SAVE_CAMERA_0
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Size"
+    BEGIN
+        MENUITEM SEPARATOR
+        MENUITEM "Add size...",                 ID_SIZE_ADD
+    END
+    POPUP "&Background"
+    BEGIN
+        MENUITEM "&Image file...\tCtrl+I",      ID_OPEN_IMAGE
+        MENUITEM "&Video file...\tCtrl+D",      ID_OPEN_VIDEO
+        MENUITEM SEPARATOR
+        MENUITEM "&Add camera...",              ID_OPEN_ADD_CAMERA
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM "&Redo\tCtrl+Y",               ID_EDIT_REDO
+    END
+    POPUP "Colors"
+    BEGIN
+        MENUITEM "Edit border...",              ID_COLORS_BORDER
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About Mask Editor...",       ID_APP_ABOUT
+    END
+    POPUP "Window"
+    BEGIN
+        MENUITEM "Layers",                      ID_WINDOW_LAYERS
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "MsEdit.ico"
+IDR_MSEDITTYPE          ICON                    "MsEditDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_OPEN_VIDEO,          VIRTKEY, CONTROL, NOINVERT
+    "I",            ID_OPEN_IMAGE,          VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,5,0,412
+ PRODUCTVERSION 1,5,0,412
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "ElVEES"
+            VALUE "FileDescription", "Mask Editor"
+            VALUE "FileVersion", "1, 5, 0, 412"
+            VALUE "InternalName", "MaskEdit"
+            VALUE "LegalCopyright", "Copyright © ElVEES, 2004-2005"
+            VALUE "OriginalFilename", "MsEdit.EXE"
+            VALUE "ProductName", "MaskEditor Application"
+            VALUE "ProductVersion", "1, 5, 0, 412"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "../resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "Mask Editor\n\nMsEdit\nMask files(*.dat)\n.dat\nMsEdit.Document\nMsEdit Document"
+    IDS_TOOLTIP_1           "Select thickness of line"
+    IDS_TOOLTIP_2           "Line weight 1"
+    IDS_TOOLTIP_3           "Line weight 2"
+    IDS_TOOLTIP_4           "Line weight 3"
+    IDS_TOOLTIP_5           "Line weight 4"
+    IDS_TOOLTIP_6           "Line weight 5"
+    IDS_FIG_PEN             "pen"
+    IDS_FIG_LINE            "line"
+    IDS_FIG_RECT            "rect"
+    IDS_FIG_POLYLINE        "polyline"
+    IDS_FIG_FILL            "fill"
+    IDS_MESSAGE             "Could not use the %s tool because the target layer is hidden"
+    IDS_LAYER               "Слой %s"
+    IDS_UNKLAYER            "Unknown layer"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Mask Editor"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NOIMAGE             "No image"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MASK_LAYER_1        "Layer 1"
+    IDS_MASK_LAYER_2        "Layer 2"
+    IDS_MASK_LAYER_3        "Layer 3"
+    IDS_MASK_LAYER_4        "Layer 4"
+    IDS_MASK_LAYER_5        "Layer 5"
+    IDS_MASK_LAYER_6        "Layer 6"
+    IDS_MASK_LAYER_7        "Layer 7"
+    IDS_MASK_LAYER_8        "Layer 8"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MASK_NONE           "None"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EXC_TABLE_OPEN      "Can't open the database table"
+    IDS_MASK_ICON_UNKNOWN   "U"
+    IDS_MASK_ICON_VEHICLES  "V"
+    IDS_MASK_ICON_HUMANS    "H"
+    IDS_MASK_ICON_MOVEDETECTION "M"
+    IDS_DB_CONNECT          "Database connection failed"
+    IDS_DB_DATA             "No camera data in the database"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OPEN_CAMERA         "Camera"
+    IDS_FILTER_IMAGE        "All Image files|*.bmp;*.jpeg;*.jpg;*.png|BMP Image file(*.bmp)|*.bmp|JPEG Image(*.jpeg,*.jpg)|*.jpeg;*.jpg|PNG Image(*.png)|*.png||"
+    IDS_FILTER_VIDEO        "Video file(*.avi)|*.avi||"
+    IDS_EXC_INVALID_MASK_SIZE 
+                            "Invalid size of mask, expected %dx%d, have %dx%d"
+    IDS_EXC_INVALID_MASK_FILE "Invalid mask or damaged file"
+    IDS_EXC_CONNECT_ID      "Can't connect to the server with this id"
+    IDS_EXC_CONNECT_SERVER  "Can't get an image from server"
+    IDS_EXC_DSHOW           "DirectShow error"
+    IDS_EXC_INVALID_IMAGE_SIZE 
+                            "Invalid image size, expected %dx%d, have %dx%d"
+    IDS_EXC_INVALID_IMAGE_FILE "Invalid image file"
+    IDS_REGISTRYKEY         "ElVEES"
+    IDS_REG_DB              "Software\\ElVEES\\Common"
+    IDS_REG_DB_PARAM        "DbInitString"
+    IDS_EXC_DATA_SOURCE     "Data source name is invalid"
+    IDS_EXC_DB_CONNECT      "Can't connect to database"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FIG_LINE             "Line\nLine"
+    ID_FIG_RECT             "Filled rectangle\nFilled rectangle"
+    ID_FIG_FILL             "Flood filling\nFlood filling"
+    ID_FIG_PEN              "Pen\nPen"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_BACKGROUND           "Set background image\nSet background image"
+    ID_VIDEO_PLAY           "Play\nPlay"
+    ID_VIDEO_STOP           "Stop\nStop"
+    ID_VIDEO_PAUSE          "Pause\nPause"
+    ID_FIG_POLYLINE         "Filled polygon\nFilled polygon"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_MASK_LAYER_1         "Toggle layer #1 mask\nToggle layer #1 mask"
+    ID_MASK_LAYER_2         "Toggle layer #2 mask\nToggle layer #2 mask"
+    ID_MASK_LAYER_3         "Toggle layer #3 mask\nToggle layer #3 mask"
+    ID_MASK_LAYER_4         "Toggle layer #4 mask\nToggle layer #4 mask"
+    ID_MASK_LAYER_5         "Toggle layer #5 mask\nToggle layer #5 mask"
+    ID_MASK_LAYER_6         "Toggle layer #6 mask\nToggle layer #6 mask"
+    ID_MASK_LAYER_7         "Toggle layer #7 mask\nToggle layer #7 mask"
+    ID_MASK_LAYER_8         "Toggle layer #8 mask\nToggle layer #8 mask"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_INDEX_LAYER         "Layer %d"
+    IDS_MASK_LAYER_9        "Layer 9"
+    IDS_MASK_LAYER_10       "Layer 10"
+    IDS_MASK_LAYER_11       "Layer 11"
+    IDS_MASK_LAYER_12       "Layer 12"
+    IDS_MASK_LAYER_13       "Layer 13"
+    IDS_MASK_LAYER_14       "Layer 14"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MASK_LAYER_15       "Layer 15"
+    IDS_MASK_LAYER_16       "Layer 16"
+    IDS_MASK_LAYER_17       "Layer 17"
+    IDS_MASK_LAYER_18       "Layer 18"
+    IDS_MASK_LAYER_19       "Layer 19"
+    IDS_MASK_LAYER_20       "Layer 20"
+    IDS_MASK_LAYER_21       "Layer 21"
+    IDS_MASK_LAYER_22       "Layer 22"
+    IDS_MASK_LAYER_23       "Layer 23"
+    IDS_MASK_LAYER_24       "Layer 24"
+    IDS_MASK_LAYER_25       "Layer 25"
+    IDS_MASK_LAYER_26       "Layer 26"
+    IDS_MASK_LAYER_27       "Layer 27"
+    IDS_MASK_LAYER_28       "Layer 28"
+    IDS_MASK_LAYER_29       "Layer 29"
+    IDS_MASK_LAYER_31       "Layer 30"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MASK_LAYER_32       "Layer 31"
+    IDS_MASK_LAYER_33       "Layer 32"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SCALE                "Scale\nScale"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_THICKNESS            "Thickness line\nThickness line"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_GRID                 "Grid\nGrid"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

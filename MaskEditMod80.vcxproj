@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Debug|Win32">
+      <Configuration>Unicode Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Unicode Release|Win32">
+      <Configuration>Unicode Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectName>MaskEdit</ProjectName>
+    <ProjectGuid>{C379ADF7-12A6-4A40-9F03-247A9A1CCC30}</ProjectGuid>
+    <RootNamespace>MaskEdit</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>17.0.34322.80</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+    <OutDir>__$(Configuration)\</OutDir>
+    <IntDir>__$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>__$(Configuration)\</OutDir>
+    <IntDir>__$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    <OutDir>__$(Configuration)\</OutDir>
+    <IntDir>__$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>__$(Configuration)\</OutDir>
+    <IntDir>__$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">
+    <CustomBuildStep>
+      <Command>copy "$(TargetPath)" "../../BIN/Release/$(TargetName).exe"
+</Command>
+      <Outputs>../../BIN/Release/$(TargetName).exe;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>.;../../../../3rd_party/BaseClasses_Apr05;../../../../3rd_party/boost_1_33_1;../../../../3rd_party/psdk2006mar/include;../../../../3rd_party/dxsdk2004jul/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;UNICODE;_WIN32_WINNT=0x0500;WINVER=0x0500;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>strmiids.lib;gdiplus.lib;version.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../../3rd_party/dxsdk2004jul/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CustomBuildStep>
+      <Command>copy "$(TargetPath)" "../BIN/Debug/$(TargetName).exe"
+</Command>
+      <Outputs>../BIN/Debug/$(TargetName).exe;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../../../../3rd_party/BaseClasses_Apr05;../../../../3rd_party/boost_1_33_1;../../../../3rd_party/psdk2006mar/include;../../../../3rd_party/dxsdk2004jul/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0400;WINVER=0x0500;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>strmiids.lib;gdiplus.lib;version.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../../3rd_party/dxsdk2004jul/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
+    <CustomBuildStep>
+      <Command>copy "$(TargetPath)" "../../BIN/Debug/$(TargetName).exe"
+</Command>
+      <Outputs>../../BIN/Debug/$(TargetName).exe;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../../../../3rd_party/BaseClasses_Apr05;../../../../3rd_party/boost_1_33_1;../../../../3rd_party/psdk2006mar/include;../../../../3rd_party/dxsdk2004jul/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0400;WINVER=0x0500;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>strmiids.lib;gdiplus.lib;version.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../../3rd_party/dxsdk2004jul/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CustomBuildStep>
+      <Command>copy "$(TargetPath)" "../BIN/Release/$(TargetName).exe"
+</Command>
+      <Outputs>../BIN/Release/$(TargetName).exe;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>.;../../../../3rd_party/BaseClasses_Apr05;../../../../3rd_party/boost_1_33_1;../../../../3rd_party/psdk2006mar/include;../../../../3rd_party/dxsdk2004jul/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_WIN32_WINNT=0x0400;WINVER=0x0500;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>strmiids.lib;gdiplus.lib;version.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../../3rd_party/dxsdk2004jul/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Background\Background.cpp" />
+    <ClCompile Include="Background\EmptyBackground.cpp" />
+    <ClCompile Include="Background\PicBackground.cpp" />
+    <ClCompile Include="Background\RealtimeBackground.cpp" />
+    <ClCompile Include="Background\VideoBackground.cpp" />
+    <ClCompile Include="CamMenuHadler.cpp" />
+    <ClCompile Include="CheckBoxLayers.cpp" />
+    <ClCompile Include="COMMON\Helper.cpp" />
+    <ClCompile Include="COMMON\Sync.cpp" />
+    <ClCompile Include="CThicknessMenu.cpp" />
+    <ClCompile Include="custom_ui\CamIDDialog.cpp" />
+    <ClCompile Include="custom_ui\NewSliderCtrl.cpp" />
+    <ClCompile Include="custom_ui\SeekToolBar.cpp" />
+    <ClCompile Include="custom_ui\SizeDialog.cpp" />
+    <ClCompile Include="Db\BridgeWrapper.cpp" />
+    <ClCompile Include="db\DBSerializer.cpp" />
+    <ClCompile Include="db\OleDBConnection.cpp" />
+    <ClCompile Include="EditorState.cpp" />
+    <ClCompile Include="Figure\FigBitmap.cpp" />
+    <ClCompile Include="Figure\FigFill.cpp" />
+    <ClCompile Include="Figure\FigLine.cpp" />
+    <ClCompile Include="Figure\FigPen.cpp" />
+    <ClCompile Include="Figure\FigPolyline.cpp" />
+    <ClCompile Include="Figure\FigRect.cpp" />
+    <ClCompile Include="Figure\Figure.cpp" />
+    <ClCompile Include="LayerDlg.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MaskHolder.cpp" />
+    <ClCompile Include="MaskSaver.cpp" />
+    <ClCompile Include="MsEdit.cpp" />
+    <ClCompile Include="MsEditDoc.cpp" />
+    <ClCompile Include="MsEditView.cpp" />
+    <ClCompile Include="Registry\Registry.cpp" />
+    <ClCompile Include="ResourceMgr.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Unicode Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ut\OXBitmapMenu.cpp" />
+    <ClCompile Include="ut\OXBitmapMenuOrganizer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Background\Background.h" />
+    <ClInclude Include="Background\EmptyBackground.h" />
+    <ClInclude Include="Background\PicBackground.h" />
+    <ClInclude Include="Background\RealtimeBackground.h" />
+    <ClInclude Include="Background\VideoBackground.h" />
+    <ClInclude Include="CamMenuHadler.h" />
+    <ClInclude Include="CheckBoxLayers.h" />
+    <ClInclude Include="COMMON\Array2D.h" />
+    <ClInclude Include="COMMON\Exception.h" />
+    <ClInclude Include="COMMON\Helper.h" />
+    <ClInclude Include="COMMON\ModuleVersion.h" />
+    <ClInclude Include="COMMON\Sync.h" />
+    <ClInclude Include="COMMON\tstring.h" />
+    <ClInclude Include="Common\UndoRedoStack.h" />
+    <ClInclude Include="CThicknessMenu.h" />
+    <ClInclude Include="custom_ui\CamIDDialog.h" />
+    <ClInclude Include="custom_ui\NewSliderCtrl.h" />
+    <ClInclude Include="custom_ui\SeekToolBar.h" />
+    <ClInclude Include="custom_ui\SizeDialog.h" />
+    <ClInclude Include="Db\BridgeWrapper.h" />
+    <ClInclude Include="db\DBAccessor.h" />
+    <ClInclude Include="db\DBHelper.h" />
+    <ClInclude Include="db\DBSerializer.h" />
+    <ClInclude Include="db\OleDBConnection.h" />
+    <ClInclude Include="EditorState.h" />
+    <ClInclude Include="Figure\FigBitmap.h" />
+    <ClInclude Include="Figure\FigFill.h" />
+    <ClInclude Include="Figure\FigLine.h" />
+    <ClInclude Include="Figure\FigPen.h" />
+    <ClInclude Include="Figure\FigPolyline.h" />
+    <ClInclude Include="Figure\FigRect.h" />
+    <ClInclude Include="Figure\Figure.h" />
+    <ClInclude Include="LayerDlg.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MaskHolder.h" />
+    <ClInclude Include="MaskSaver.h" />
+    <ClInclude Include="MsEdit.h" />
+    <ClInclude Include="MsEditDoc.h" />
+    <ClInclude Include="MsEditView.h" />
+    <ClInclude Include="Registry\Registry.h" />
+    <ClInclude Include="ResourceMgr.h" />
+    <ClInclude Include="RES\resource.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="ut\OXBitmapMenu.h" />
+    <ClInclude Include="ut\OXBitmapMenuOrganizer.h" />
+    <ClInclude Include="ut\OXDllExt.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="RES\en\bitmap2.bmp" />
+    <Image Include="RES\en\figure.bmp" />
+    <Image Include="RES\en\figure2.bmp" />
+    <Image Include="RES\en\figurebar.bmp" />
+    <Image Include="RES\en\main_nor.bmp" />
+    <Image Include="res\en\MsEdit.ico" />
+    <Image Include="res\en\MsEditDoc.ico" />
+    <Image Include="res\en\Toolbar.bmp" />
+    <Image Include="res\en\toolbar1.bmp" />
+    <Image Include="RES\en\Untitled-1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\en\cursor1.cur" />
+    <None Include="RES\en\cur_mag.cur" />
+    <None Include="res\en\FloodFill.cur" />
+    <None Include="res\en\Pen.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\en\MsEdit.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="Res\en\MsEdit.manifest" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Res\en\MsEdit.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

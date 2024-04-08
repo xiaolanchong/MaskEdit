@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{0e81de71-bc27-475e-a686-40677c3f44c7}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{61d10862-e6dc-4807-8f9d-136fff7aae89}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{5ee162d0-6eb3-4b60-a1e0-21bea143ab68}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="UT">
+      <UniqueIdentifier>{aa11927f-2555-404e-87e6-f41ba45253f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="db">
+      <UniqueIdentifier>{60812108-0f46-488f-9920-470d47cf496e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Figure">
+      <UniqueIdentifier>{3792b361-1ce5-44ec-bf84-21b3c5aed3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Background">
+      <UniqueIdentifier>{1b083901-949e-4cee-b018-01a20d8c78cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{0c9c4635-4c00-418f-bbc3-7751f03e0dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Custom_UI">
+      <UniqueIdentifier>{50e4e73e-adaa-426d-8d09-3327d0c4072e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Registry">
+      <UniqueIdentifier>{408f19ef-0e13-4ef9-ae37-f6dc25554274}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CamMenuHadler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckBoxLayers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CThicknessMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MaskHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MaskSaver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MsEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MsEditDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MsEditView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ut\OXBitmapMenu.cpp">
+      <Filter>UT</Filter>
+    </ClCompile>
+    <ClCompile Include="ut\OXBitmapMenuOrganizer.cpp">
+      <Filter>UT</Filter>
+    </ClCompile>
+    <ClCompile Include="Db\BridgeWrapper.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\DBSerializer.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\OleDBConnection.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure\FigBitmap.cpp">
+      <Filter>Figure</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure\FigFill.cpp">
+      <Filter>Figure</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure\FigLine.cpp">
+      <Filter>Figure</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure\FigPen.cpp">
+      <Filter>Figure</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure\FigPolyline.cpp">
+      <Filter>Figure</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure\FigRect.cpp">
+      <Filter>Figure</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure\Figure.cpp">
+      <Filter>Figure</Filter>
+    </ClCompile>
+    <ClCompile Include="Background\Background.cpp">
+      <Filter>Background</Filter>
+    </ClCompile>
+    <ClCompile Include="Background\EmptyBackground.cpp">
+      <Filter>Background</Filter>
+    </ClCompile>
+    <ClCompile Include="Background\PicBackground.cpp">
+      <Filter>Background</Filter>
+    </ClCompile>
+    <ClCompile Include="Background\RealtimeBackground.cpp">
+      <Filter>Background</Filter>
+    </ClCompile>
+    <ClCompile Include="Background\VideoBackground.cpp">
+      <Filter>Background</Filter>
+    </ClCompile>
+    <ClCompile Include="COMMON\Helper.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="COMMON\Sync.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="custom_ui\CamIDDialog.cpp">
+      <Filter>Custom_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="custom_ui\NewSliderCtrl.cpp">
+      <Filter>Custom_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="custom_ui\SeekToolBar.cpp">
+      <Filter>Custom_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="custom_ui\SizeDialog.cpp">
+      <Filter>Custom_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry\Registry.cpp">
+      <Filter>Registry</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CamMenuHadler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckBoxLayers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CThicknessMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MaskHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MaskSaver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MsEdit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MsEditDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MsEditView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RES\resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ut\OXBitmapMenu.h">
+      <Filter>UT</Filter>
+    </ClInclude>
+    <ClInclude Include="ut\OXBitmapMenuOrganizer.h">
+      <Filter>UT</Filter>
+    </ClInclude>
+    <ClInclude Include="ut\OXDllExt.h">
+      <Filter>UT</Filter>
+    </ClInclude>
+    <ClInclude Include="Db\BridgeWrapper.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\DBAccessor.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\DBHelper.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\DBSerializer.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\OleDBConnection.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure\FigBitmap.h">
+      <Filter>Figure</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure\FigFill.h">
+      <Filter>Figure</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure\FigLine.h">
+      <Filter>Figure</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure\FigPen.h">
+      <Filter>Figure</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure\FigPolyline.h">
+      <Filter>Figure</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure\FigRect.h">
+      <Filter>Figure</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure\Figure.h">
+      <Filter>Figure</Filter>
+    </ClInclude>
+    <ClInclude Include="Background\Background.h">
+      <Filter>Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Background\EmptyBackground.h">
+      <Filter>Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Background\PicBackground.h">
+      <Filter>Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Background\RealtimeBackground.h">
+      <Filter>Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Background\VideoBackground.h">
+      <Filter>Background</Filter>
+    </ClInclude>
+    <ClInclude Include="COMMON\Array2D.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="COMMON\Exception.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="COMMON\Helper.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="COMMON\ModuleVersion.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="COMMON\Sync.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="COMMON\tstring.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\UndoRedoStack.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="custom_ui\CamIDDialog.h">
+      <Filter>Custom_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="custom_ui\NewSliderCtrl.h">
+      <Filter>Custom_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="custom_ui\SeekToolBar.h">
+      <Filter>Custom_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="custom_ui\SizeDialog.h">
+      <Filter>Custom_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Registry\Registry.h">
+      <Filter>Registry</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="RES\en\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\en\figure.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\en\figure2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\en\figurebar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\en\main_nor.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\en\MsEdit.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\en\MsEditDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\en\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\en\toolbar1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\en\Untitled-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RES\en\cur_mag.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\en\cursor1.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\en\FloodFill.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\en\Pen.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\en\MsEdit.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="Res\en\MsEdit.manifest" />
+  </ItemGroup>
+</Project>

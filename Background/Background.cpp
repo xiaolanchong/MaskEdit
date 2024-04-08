@@ -1,0 +1,27 @@
+// Background.cpp: implementation of the CBackground class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#include "stdafx.h"
+#include "MsEdit.h"
+#include "Background.h"
+
+#ifdef _DEBUG
+#undef THIS_FILE
+static char THIS_FILE[]=__FILE__;
+#define new DEBUG_NEW
+#endif
+
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+
+CBackground::CBackground()
+{
+
+}
+
+CBackground::~CBackground()
+{
+
+}
