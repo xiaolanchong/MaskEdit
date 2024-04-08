@@ -21,7 +21,7 @@
 
 
 
-//! основное окно приложения
+//! РѕСЃРЅРѕРІРЅРѕРµ РѕРєРЅРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ
 class CMainFrame : public CFrameWnd
 {
 public: // create from serialization only
@@ -31,23 +31,23 @@ public: // create from serialization only
 // Attributes
 public:
 
-	//! панель инструментов наверху
+	//! РїР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РЅР°РІРµСЂС…Сѓ
 	CToolBar*			GetToolBar()		{ return &m_wndToolBar;				}
-	//! панель выбора текущей фигуры
+	//! РїР°РЅРµР»СЊ РІС‹Р±РѕСЂР° С‚РµРєСѓС‰РµР№ С„РёРіСѓСЂС‹
 	CToolBar*			GetFigureBar()		{ return &m_wndFigureBar;			}
-	//! панель прокрутки видео
+	//! РїР°РЅРµР»СЊ РїСЂРѕРєСЂСѓС‚РєРё РІРёРґРµРѕ
 	CSeekToolBar*		GetVideoBar()		{ return &m_wndVideoBar;			}
-	//! ползунок в m_wndVideoBar
+	//! РїРѕР»Р·СѓРЅРѕРє РІ m_wndVideoBar
 	CNewSliderCtrl*		GetSeeker()			{ return m_wndVideoBar.GetSlider();	}
 	
-	//! заполняет меню иден-ров камер
+	//! Р·Р°РїРѕР»РЅСЏРµС‚ РјРµРЅСЋ РёРґРµРЅ-СЂРѕРІ РєР°РјРµСЂ
 	CCamMenuHandler		m_CamHandler;
-	//! заполняет меню размеров масок
+	//! Р·Р°РїРѕР»РЅСЏРµС‚ РјРµРЅСЋ СЂР°Р·РјРµСЂРѕРІ РјР°СЃРѕРє
 	CSizeMenuHandler	m_SizeHandler;
 
-	// Картинка с кнопками для figure toolbar
+	// РљР°СЂС‚РёРЅРєР° СЃ РєРЅРѕРїРєР°РјРё РґР»СЏ figure toolbar
 	CBitmap m_bmpNormal;
-	// Список с картинками кнопок для main toolbar
+	// РЎРїРёСЃРѕРє СЃ РєР°СЂС‚РёРЅРєР°РјРё РєРЅРѕРїРѕРє РґР»СЏ main toolbar
 	CImageList m_listNormal;
 	
 // Operations
@@ -71,30 +71,30 @@ public:
 #endif
 
 protected:  // control bar embedded members
-	//Панель инструментов  с элементами рисования
+	//РџР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ  СЃ СЌР»РµРјРµРЅС‚Р°РјРё СЂРёСЃРѕРІР°РЅРёСЏ
 	CToolBar		m_wndFigureBar;
-	//Главная панель инструментов 
+	//Р“Р»Р°РІРЅР°СЏ РїР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ 
 	CToolBar		m_wndToolBar;
 
-	//Диалоговое окно со слоями
-	CLayerDlg* dlg;
+	//Р”РёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ СЃРѕ СЃР»РѕСЏРјРё
+	CLayerDlg* m_dlg;
 	
-	//Панель инструментов для управления видео потоком
+	//РџР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ РІРёРґРµРѕ РїРѕС‚РѕРєРѕРј
 	CSeekToolBar	m_wndVideoBar;
 	COXBitmapMenuOrganizer m_Organizer;
 	
-	//Картинки в меню Colors
+	//РљР°СЂС‚РёРЅРєРё РІ РјРµРЅСЋ Colors
 	CImageList		m_ilColors;
 
 	void	CreateMenu();
-	//! создать иконку с надписью (один символ)
-	//! \param strText символ
-	//! \param cl цвет
-	//! \return иконка
+	//! СЃРѕР·РґР°С‚СЊ РёРєРѕРЅРєСѓ СЃ РЅР°РґРїРёСЃСЊСЋ (РѕРґРёРЅ СЃРёРјРІРѕР»)
+	//! \param strText СЃРёРјРІРѕР»
+	//! \param cl С†РІРµС‚
+	//! \return РёРєРѕРЅРєР°
 	HICON	GetTextIcon(CString strText, Color cl);
-	//! создать иконку с квадратом
-	//! \param cl цвет заливки квалрата
-	//! \return иконка
+	//! СЃРѕР·РґР°С‚СЊ РёРєРѕРЅРєСѓ СЃ РєРІР°РґСЂР°С‚РѕРј
+	//! \param cl С†РІРµС‚ Р·Р°Р»РёРІРєРё РєРІР°Р»СЂР°С‚Р°
+	//! \return РёРєРѕРЅРєР°
 	HICON	GetRectIcon(Color cl);
 
 

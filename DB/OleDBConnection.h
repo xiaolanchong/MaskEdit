@@ -19,7 +19,7 @@ MACRO_EXCEPTION(DBConnectionException	,	DatabaseException)
 #endif
 MACRO_EXCEPTION(DBMustReconnectException,	DBConnectionException)
 
-//! \brief класс соединения с БД
+//! \brief РєР»Р°СЃСЃ СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ Р‘Р”
 //! \version 1.0
 //! \date 07-20-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
@@ -29,15 +29,15 @@ MACRO_EXCEPTION(DBMustReconnectException,	DBConnectionException)
 class COleDBConnection  
 {
 protected:
-	//! источник данных
+	//! РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…
 	CDataSource m_dbDataSource;
-	//! сессия
+	//! СЃРµСЃСЃРёСЏ
 	CSession	m_dbSession;
 
-	//! открыть окно установки соединения
+	//! РѕС‚РєСЂС‹С‚СЊ РѕРєРЅРѕ СѓСЃС‚Р°РЅРѕРІРєРё СЃРѕРµРґРёРЅРµРЅРёСЏ
 	void			OpenDataLinkWindow();
-	//! получить строку соединения
-	//! \return параметры соединения через ;
+	//! РїРѕР»СѓС‡РёС‚СЊ СЃС‚СЂРѕРєСѓ СЃРѕРµРґРёРЅРµРЅРёСЏ
+	//! \return РїР°СЂР°РјРµС‚СЂС‹ СЃРѕРµРґРёРЅРµРЅРёСЏ С‡РµСЂРµР· ;
 	std::tstring	GetConnectionString()
 	{
 		CComBSTR	str;
@@ -46,26 +46,26 @@ protected:
 		LPCWSTR toT = W2CT( str );
 		return std::tstring(toT);
 	}
-	//! получить описание ошибки
-	//! \param hr код ошибки
-	//! \return описание
+	//! РїРѕР»СѓС‡РёС‚СЊ РѕРїРёСЃР°РЅРёРµ РѕС€РёР±РєРё
+	//! \param hr РєРѕРґ РѕС€РёР±РєРё
+	//! \return РѕРїРёСЃР°РЅРёРµ
 	std::string GetErrorMessageA(HRESULT hr);
-	//! вывести через OutputDebugString описание
-	//! \param hr код ошибки
+	//! РІС‹РІРµСЃС‚Рё С‡РµСЂРµР· OutputDebugString РѕРїРёСЃР°РЅРёРµ
+	//! \param hr РєРѕРґ РѕС€РёР±РєРё
 	void		TraceError(HRESULT hr);
 
 public:
 	COleDBConnection();
 	virtual ~COleDBConnection();
 
-	//! открыть соединение
-	//! \param strConnectionString строка соединение
-	//! \param bShowWindow показать окно, если строка ошибочна
+	//! РѕС‚РєСЂС‹С‚СЊ СЃРѕРµРґРёРЅРµРЅРёРµ
+	//! \param strConnectionString СЃС‚СЂРѕРєР° СЃРѕРµРґРёРЅРµРЅРёРµ
+	//! \param bShowWindow РїРѕРєР°Р·Р°С‚СЊ РѕРєРЅРѕ, РµСЃР»Рё СЃС‚СЂРѕРєР° РѕС€РёР±РѕС‡РЅР°
 	void	Open(const std::tstring& strConnectionString, bool bShowWindow) ;
-	//! проверить соединение на валидность
-	//! \return есть контакт/нет
+	//! РїСЂРѕРІРµСЂРёС‚СЊ СЃРѕРµРґРёРЅРµРЅРёРµ РЅР° РІР°Р»РёРґРЅРѕСЃС‚СЊ
+	//! \return РµСЃС‚СЊ РєРѕРЅС‚Р°РєС‚/РЅРµС‚
 	bool	CheckConnection();
-	//! закрыть соединение
+	//! Р·Р°РєСЂС‹С‚СЊ СЃРѕРµРґРёРЅРµРЅРёРµ
 	void	Close();
 };
 

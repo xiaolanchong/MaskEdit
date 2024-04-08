@@ -7,15 +7,15 @@
 #ifndef New_TCHAR__
 #define New_TCHAR__
 
-// Создает копию строки. Удалять с помощью delete.
+// РЎРѕР·РґР°РµС‚ РєРѕРїРёСЋ СЃС‚СЂРѕРєРё. РЈРґР°Р»СЏС‚СЊ СЃ РїРѕРјРѕС‰СЊСЋ delete.
 LPTSTR New_TCHAR(LPCTSTR szText)
 {
 	if(!szText)
 		return NULL;
 
-	// Количество символов без завершиющего '\0'
+	// РљРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ Р±РµР· Р·Р°РІРµСЂС€РёСЋС‰РµРіРѕ '\0'
 	SIZE_T nLength = _tcslen(szText) + 1;
-	// Размер в байтах необходимого буффера
+	// Р Р°Р·РјРµСЂ РІ Р±Р°Р№С‚Р°С… РЅРµРѕР±С…РѕРґРёРјРѕРіРѕ Р±СѓС„С„РµСЂР°
 	SIZE_T nSize = nLength * sizeof(TCHAR);
 
 	TCHAR* szNewText = new TCHAR[nSize];
@@ -33,7 +33,7 @@ LPTSTR New_TCHAR(LPCTSTR szText)
 CThicknessMenu::CThicknessMenu():
 	m_dwTitleColor(RGB(0, 0, 0))
 {
-	//Создать шрифт для текста в меню
+	//РЎРѕР·РґР°С‚СЊ С€СЂРёС„С‚ РґР»СЏ С‚РµРєСЃС‚Р° РІ РјРµРЅСЋ
 	HGDIOBJ hFont = ::GetStockObject(DEFAULT_GUI_FONT);
 
 	LOGFONT lgFont;
@@ -42,13 +42,13 @@ CThicknessMenu::CThicknessMenu():
 
 	m_FontTitle = new CFont();
 	BOOL bRes = m_FontTitle->CreateFontIndirect(&lgFont);
-
+	VERIFY(bRes);
 	m_pSelBorder = new CPen(PS_SOLID, 1, RGB(0, 0, 0));
 	m_pSelBkgnd = new CBrush(RGB(255, 238, 194));
 	m_pCheckBkgnd = new CBrush(RGB(252, 192, 111));
 	m_pCheckSelBkgnd = new CBrush(RGB(254, 128, 62));
 
-	//Загрузить строки с tool tip в массив
+	//Р—Р°РіСЂСѓР·РёС‚СЊ СЃС‚СЂРѕРєРё СЃ tool tip РІ РјР°СЃСЃРёРІ
 	thString[0].LoadString(IDS_TOOLTIP_1);
 	thString[1].LoadString(IDS_TOOLTIP_2);
 	thString[2].LoadString(IDS_TOOLTIP_3);
@@ -56,7 +56,7 @@ CThicknessMenu::CThicknessMenu():
 	thString[4].LoadString(IDS_TOOLTIP_5);
 	thString[5].LoadString(IDS_TOOLTIP_6);
 
-	//Создать массив тултипов 
+	//РЎРѕР·РґР°С‚СЊ РјР°СЃСЃРёРІ С‚СѓР»С‚РёРїРѕРІ 
 	for(int i = 0; i<COUNT_TOOLTIP; i++)
 		m_hToolTip[i] = CreateToolTip(thString[i]);
 
@@ -64,7 +64,7 @@ CThicknessMenu::CThicknessMenu():
 
 CThicknessMenu::~CThicknessMenu()
 {
-	//Скрыть тул типы
+	//РЎРєСЂС‹С‚СЊ С‚СѓР» С‚РёРїС‹
 	HideToolTip();
 
 	// Delete attaches
@@ -94,34 +94,34 @@ void CThicknessMenu:: MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct)
 }
 void CThicknessMenu::DrawItem (LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
-	//Неправильные данные
+	//РќРµРїСЂР°РІРёР»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ
 	if(!lpDrawItemStruct->itemData)
 		return;
 
-	//Скрыть все тул типы
+	//РЎРєСЂС‹С‚СЊ РІСЃРµ С‚СѓР» С‚РёРїС‹
 	HideToolTip();
 	
-	//Взять прикрепленные к узлу данные
+	//Р’Р·СЏС‚СЊ РїСЂРёРєСЂРµРїР»РµРЅРЅС‹Рµ Рє СѓР·Р»Сѓ РґР°РЅРЅС‹Рµ
 	LPMYMENUITEMINFO pItemInfo = (LPMYMENUITEMINFO)lpDrawItemStruct->itemData;
-	//Взять контекст
+	//Р’Р·СЏС‚СЊ РєРѕРЅС‚РµРєСЃС‚
 	CDC *pDC = CDC::FromHandle(lpDrawItemStruct->hDC);
 	
 	if(pDC)
 	{
-		//Назначить эелементы рисования
+		//РќР°Р·РЅР°С‡РёС‚СЊ СЌРµР»РµРјРµРЅС‚С‹ СЂРёСЃРѕРІР°РЅРёСЏ
 		CFont* pOldFont = pDC->SelectObject(m_FontTitle);
 		CPen* pOldPen = pDC->SelectObject(m_pSelBorder);
 		DWORD dwOldColor = pDC->SetTextColor(m_dwTitleColor);
 		pDC->SetBkMode(TRANSPARENT);
 
-		//Если заголовок
+		//Р•СЃР»Рё Р·Р°РіРѕР»РѕРІРѕРє
 		if(pItemInfo->dwStyle & MENUITEMSTYLE_TITLE)
 		{
 			//
-			// Заголовок
+			// Р—Р°РіРѕР»РѕРІРѕРє
 			//
 
-			// Залить градиентом
+			// Р—Р°Р»РёС‚СЊ РіСЂР°РґРёРµРЅС‚РѕРј
 			TRIVERTEX arrVertex[2];
 
 			arrVertex[0].x = lpDrawItemStruct->rcItem.left;
@@ -145,7 +145,7 @@ void CThicknessMenu::DrawItem (LPDRAWITEMSTRUCT lpDrawItemStruct)
 			pDC->GradientFill(arrVertex, 2, &rect, 1, GRADIENT_FILL_RECT_H);
 
 
-			// Пишем текст
+			// РџРёС€РµРј С‚РµРєСЃС‚
 
 			if(pItemInfo->szText)
 			{
@@ -169,12 +169,12 @@ void CThicknessMenu::DrawItem (LPDRAWITEMSTRUCT lpDrawItemStruct)
 
 		}
 
-		// если обычный пункт меню
+		// РµСЃР»Рё РѕР±С‹С‡РЅС‹Р№ РїСѓРЅРєС‚ РјРµРЅСЋ
 
 		else
 		{
 
-			//Если выбран и зачекин
+			//Р•СЃР»Рё РІС‹Р±СЂР°РЅ Рё Р·Р°С‡РµРєРёРЅ
 			if((lpDrawItemStruct->itemState & ODS_CHECKED) &&  (lpDrawItemStruct->itemState & ODS_SELECTED))
 			{
 				
@@ -188,7 +188,7 @@ void CThicknessMenu::DrawItem (LPDRAWITEMSTRUCT lpDrawItemStruct)
 						ShowToolTip(m_hToolTip[pItemInfo->nIndex], pItemInfo->nIndex);
 
 			}
-			//если выбран этот пункт
+			//РµСЃР»Рё РІС‹Р±СЂР°РЅ СЌС‚РѕС‚ РїСѓРЅРєС‚
 			else if(lpDrawItemStruct->itemState & ODS_SELECTED)
 			{
 				// Set pen
@@ -201,7 +201,7 @@ void CThicknessMenu::DrawItem (LPDRAWITEMSTRUCT lpDrawItemStruct)
 						ShowToolTip(m_hToolTip[pItemInfo->nIndex], pItemInfo->nIndex);;
 			}
 
-			//если на этом пункте меню стоит чек
+			//РµСЃР»Рё РЅР° СЌС‚РѕРј РїСѓРЅРєС‚Рµ РјРµРЅСЋ СЃС‚РѕРёС‚ С‡РµРє
 			else if(lpDrawItemStruct->itemState & ODS_CHECKED)
 			{
 				// Set pen
@@ -220,7 +220,7 @@ void CThicknessMenu::DrawItem (LPDRAWITEMSTRUCT lpDrawItemStruct)
 			CRect rect(lpDrawItemStruct->rcItem.left + 10, lpDrawItemStruct->rcItem.top, 
 				lpDrawItemStruct->rcItem.right - 10, lpDrawItemStruct->rcItem.bottom);
 
-			//Рисовать линию нужной толщины
+			//Р РёСЃРѕРІР°С‚СЊ Р»РёРЅРёСЋ РЅСѓР¶РЅРѕР№ С‚РѕР»С‰РёРЅС‹
 			CPen pen(PS_SOLID, (lpDrawItemStruct->itemID - 29), COLORREF(RGB(0, 0, 0)));
 			CPen* m_pOldPen =  pDC->SelectObject(&pen);
 			pDC->MoveTo(rect.left, (rect.bottom + rect.top)/2 );
@@ -241,18 +241,18 @@ BOOL CThicknessMenu::AddItem(int nCount, LPMYMENUITEM pItem)
 {
 	if(nCount <= 0)
 	{
-		TRACE(_T("Ошибка в переданных данных"));
+		TRACE(_T("РћС€РёР±РєР° РІ РїРµСЂРµРґР°РЅРЅС‹С… РґР°РЅРЅС‹С…"));
 	}
 	
 	BOOL bRes = TRUE;
 
-	//Перебор всех узло
+	//РџРµСЂРµР±РѕСЂ РІСЃРµС… СѓР·Р»Рѕ
 	for(int i = 0; i<nCount; i++)
 	{
 		LPMYMENUITEMINFO pItemInfo = new MYMENUITEMINFO;
 		if(pItemInfo)
 		{
-			//Проверить какие поля используются
+			//РџСЂРѕРІРµСЂРёС‚СЊ РєР°РєРёРµ РїРѕР»СЏ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ
 			if(pItem[i].dwMask & ITEMMASK_STYLE)
 			{
 				pItemInfo->dwStyle = pItem[i].dwStyle;
@@ -280,9 +280,9 @@ BOOL CThicknessMenu::AddItem(int nCount, LPMYMENUITEM pItem)
 				pItemInfo->szTooltip = NULL;
 			}
 
-			//Задать ID пункта меню
+			//Р—Р°РґР°С‚СЊ ID РїСѓРЅРєС‚Р° РјРµРЅСЋ
 			pItemInfo->nCommand = pItem[i].nCommand;
-			//Положить в масив
+			//РџРѕР»РѕР¶РёС‚СЊ РІ РјР°СЃРёРІ
 			m_Items.push_back(pItemInfo);
 
 			if(pItemInfo->dwStyle & MENUITEMSTYLE_POPUP)
@@ -291,12 +291,12 @@ BOOL CThicknessMenu::AddItem(int nCount, LPMYMENUITEM pItem)
 			}
 			else if(pItemInfo->dwStyle & MENUITEMSTYLE_TITLE)
 			{
-				//Добавить в меню узел с заголовком
+				//Р”РѕР±Р°РІРёС‚СЊ РІ РјРµРЅСЋ СѓР·РµР» СЃ Р·Р°РіРѕР»РѕРІРєРѕРј
 
-				//Взять порядковый номер узла (для инсерта)
+				//Р’Р·СЏС‚СЊ РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ СѓР·Р»Р° (РґР»СЏ РёРЅСЃРµСЂС‚Р°)
 				pItemInfo->nIndex = GetMenuItemCount();
 				
-				//Создаем и заполняем поля структуры которую прикрепим к узлу
+				//РЎРѕР·РґР°РµРј Рё Р·Р°РїРѕР»РЅСЏРµРј РїРѕР»СЏ СЃС‚СЂСѓРєС‚СѓСЂС‹ РєРѕС‚РѕСЂСѓСЋ РїСЂРёРєСЂРµРїРёРј Рє СѓР·Р»Сѓ
 				MENUITEMINFO ItemInfo;
 				ZeroMemory(&ItemInfo, sizeof(MENUITEMINFO));
 
@@ -315,12 +315,12 @@ BOOL CThicknessMenu::AddItem(int nCount, LPMYMENUITEM pItem)
 			else
 			{
 
-				//Добавить в меню обыкновенный узел
+				//Р”РѕР±Р°РІРёС‚СЊ РІ РјРµРЅСЋ РѕР±С‹РєРЅРѕРІРµРЅРЅС‹Р№ СѓР·РµР»
 
-				//Взять порядковый номер узла (для инсерта)
+				//Р’Р·СЏС‚СЊ РїРѕСЂСЏРґРєРѕРІС‹Р№ РЅРѕРјРµСЂ СѓР·Р»Р° (РґР»СЏ РёРЅСЃРµСЂС‚Р°)
 				pItemInfo->nIndex = GetMenuItemCount();
 
-				//Создаем и заполняем поля структуры которую прикрепим к узлу
+				//РЎРѕР·РґР°РµРј Рё Р·Р°РїРѕР»РЅСЏРµРј РїРѕР»СЏ СЃС‚СЂСѓРєС‚СѓСЂС‹ РєРѕС‚РѕСЂСѓСЋ РїСЂРёРєСЂРµРїРёРј Рє СѓР·Р»Сѓ
 				MENUITEMINFO ItemInfo;
 				ZeroMemory(&ItemInfo, sizeof(MENUITEMINFO));
 

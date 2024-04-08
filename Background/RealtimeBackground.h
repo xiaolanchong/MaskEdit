@@ -17,10 +17,12 @@ MACRO_EXCEPTION(RealtimeVideoException, CommonException);
 MACRO_EXCEPTION(ConnectErrorException, RealtimeVideoException);
 MACRO_EXCEPTION(VideoFormatException, RealtimeVideoException);
 
+#ifdef WITH_ORWELL
+
 using namespace Elvees::Win32;
 
-//! \brief отрисовывать изображение с видеосервера
-//! изображения получаются из mapimg.dll
+//! \brief РѕС‚СЂРёСЃРѕРІС‹РІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ СЃ РІРёРґРµРѕСЃРµСЂРІРµСЂР°
+//! РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕР»СѓС‡Р°СЋС‚СЃСЏ РёР· mapimg.dll
 //! \version 1.0
 //! \date 02-23-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
@@ -29,7 +31,7 @@ using namespace Elvees::Win32;
 //!
 class CRealtimeBackground : public CControlBackground  
 {
-	//! like ССomPtr
+	//! like РЎРЎomPtr
 	//! can we replace it with boost::shared_ptr ?
 	template <class T>
 	class Ptr
@@ -74,33 +76,54 @@ class CRealtimeBackground : public CControlBackground
 		_PtrClass*p;
 	};
 
-	//! для синхронизации
+	//! РґР»СЏ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё
 	CSync		m_Sync;
-	//! событие для потока
+	//! СЃРѕР±С‹С‚РёРµ РґР»СЏ РїРѕС‚РѕРєР°
 	HANDLE		m_hEvent;
-	//! событик
+	//! СЃРѕР±С‹С‚РёРє
 	HANDLE		m_hFeedback;
-	//! окно куда отрисовывается изображение ( в основном, для сообщения )
+	//! РѕРєРЅРѕ РєСѓРґР° РѕС‚СЂРёСЃРѕРІС‹РІР°РµС‚СЃСЏ РёР·РѕР±СЂР°Р¶РµРЅРёРµ ( РІ РѕСЃРЅРѕРІРЅРѕРј, РґР»СЏ СЃРѕРѕР±С‰РµРЅРёСЏ )
 	CWnd*		m_pWnd;
-	//! изображение для отрисовки
+	//! РёР·РѕР±СЂР°Р¶РµРЅРёРµ РґР»СЏ РѕС‚СЂРёСЃРѕРІРєРё
 	Ptr<CImage>		pImage;
 
-	//! потоковая процедура
+	//! РїРѕС‚РѕРєРѕРІР°СЏ РїСЂРѕС†РµРґСѓСЂР°
 	static UINT ThreadProc(void * Param);
 	
 public:
-	//! создать
-	//! \param pWnd окно для уведомления
-	//! \param CamID идентификатор камеры, с которой берется изображение
+	//! СЃРѕР·РґР°С‚СЊ
+	//! \param pWnd РѕРєРЅРѕ РґР»СЏ СѓРІРµРґРѕРјР»РµРЅРёСЏ
+	//! \param CamID РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°РјРµСЂС‹, СЃ РєРѕС‚РѕСЂРѕР№ Р±РµСЂРµС‚СЃСЏ РёР·РѕР±СЂР°Р¶РµРЅРёРµ
 	CRealtimeBackground(CWnd* pWnd, int CamID);
 	virtual ~CRealtimeBackground();
 
 	virtual void Draw(Graphics& gr, CRect rc) const;
 
-	//! остановить взятие картинок с сервера
+	//! РѕСЃС‚Р°РЅРѕРІРёС‚СЊ РІР·СЏС‚РёРµ РєР°СЂС‚РёРЅРѕРє СЃ СЃРµСЂРІРµСЂР°
 	void	Stop();
-	//! начать получть изображение с сервера
+	//! РЅР°С‡Р°С‚СЊ РїРѕР»СѓС‡С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ СЃ СЃРµСЂРІРµСЂР°
 	void	Play();
 };
+
+#else
+
+class CRealtimeBackground : public CControlBackground
+{
+public:
+	CRealtimeBackground(CWnd* pWnd, int CamID)
+	{
+		throw RealtimeVideoException("Camera image background not supported");
+	}
+
+	void Draw(Graphics& /*gr*/, CRect /*rc*/) const /*override*/
+	{
+
+	}
+
+	void	Stop() override {}
+	void	Play() override {}
+};
+
+#endif
 
 #endif // !defined(AFX_REALTIMEBACKGROUND_H__66725E81_A287_4AB3_9241_CB53166E813E__INCLUDED_)

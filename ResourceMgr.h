@@ -15,9 +15,9 @@ MACRO_EXCEPTION(ResourceMgrException, CommonException)
 MACRO_EXCEPTION(ResourceException, ResourceMgrException)
 MACRO_EXCEPTION(ConfigException, ResourceMgrException)
 
-//! загружает ресурсы программы (строки)
-//! необходимости практически нет, ибо делает почти CString::LoadString
-//! но в будущем, например, придется загружать из зависимой длл
+//! Р·Р°РіСЂСѓР¶Р°РµС‚ СЂРµСЃСѓСЂСЃС‹ РїСЂРѕРіСЂР°РјРјС‹ (СЃС‚СЂРѕРєРё)
+//! РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РїСЂР°РєС‚РёС‡РµСЃРєРё РЅРµС‚, РёР±Рѕ РґРµР»Р°РµС‚ РїРѕС‡С‚Рё CString::LoadString
+//! РЅРѕ РІ Р±СѓРґСѓС‰РµРј, РЅР°РїСЂРёРјРµСЂ, РїСЂРёРґРµС‚СЃСЏ Р·Р°РіСЂСѓР¶Р°С‚СЊ РёР· Р·Р°РІРёСЃРёРјРѕР№ РґР»Р»
 class CResourceMgr  
 {
 	// it can be boost::any for holding ansi & unicode string together
@@ -26,9 +26,9 @@ public:
 	CResourceMgr();
 	virtual ~CResourceMgr();
 
-	//! загрузить строку из ресурсов
-	//! \param dwID идентиф-р строки
-	//! \return строка
+	//! Р·Р°РіСЂСѓР·РёС‚СЊ СЃС‚СЂРѕРєСѓ РёР· СЂРµСЃСѓСЂСЃРѕРІ
+	//! \param dwID РёРґРµРЅС‚РёС„-СЂ СЃС‚СЂРѕРєРё
+	//! \return СЃС‚СЂРѕРєР°
 	CString			GetAnsi(DWORD dwID) const;
 //	std::wstring	GetUnicode(DWORD dwID) const;
 

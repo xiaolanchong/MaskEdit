@@ -49,7 +49,7 @@ int GetEncoderClsid(const WCHAR* format, CLSID* pClsid)
    return -1;  // Failure
 }*/
 
-//Конструктор для 32 слойных файлов
+//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ 32 СЃР»РѕР№РЅС‹С… С„Р°Р№Р»РѕРІ
 CFigBitmap::CFigBitmap(const std::vector< std::vector < DWORD> >& Image, int nBit, int cl):
 	m_Bitmap(Image[0].size(), Image.size() , PixelFormat32bppARGB ),
 	m_Color(cl)
@@ -98,7 +98,7 @@ CFigBitmap::CFigBitmap(const std::vector< std::vector < DWORD> >& Image, int nBi
 	m_Bitmap.UnlockBits(&BmpData);
 }
 
-//Конструктор для 8 слойных файлов
+//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ 8 СЃР»РѕР№РЅС‹С… С„Р°Р№Р»РѕРІ
 CFigBitmap::CFigBitmap(const std::vector< std::vector < BYTE> >& Image, int nBit, int cl):
 m_Bitmap(Image[0].size(), Image.size() , PixelFormat32bppARGB ),
 m_Color(cl)

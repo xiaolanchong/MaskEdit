@@ -34,7 +34,7 @@ END_MESSAGE_MAP()
 
 void CCheckBoxLayers::AddItem(LayerInfo* sInfo)
 {
-	// Добавляем строку с список
+	// Р”РѕР±Р°РІР»СЏРµРј СЃС‚СЂРѕРєСѓ СЃ СЃРїРёСЃРѕРє
 	InsertString(sInfo->nID, (LPCTSTR)sInfo );
 }
 
@@ -42,20 +42,20 @@ void CCheckBoxLayers::OnLbnSelchange()
 {
 	// TODO: Add your control notification handler code here
 
-	//Установить как текущую маску
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РєР°Рє С‚РµРєСѓС‰СѓСЋ РјР°СЃРєСѓ
 	int nIndex = GetCurSel();
 	if(nIndex == CB_ERR) return;
 	int mask = m_Masks[nIndex + 1];
 	GetEditorState().SetCurrentMask( mask  );
 
-	//Переписать масив слоев
+	//РџРµСЂРµРїРёСЃР°С‚СЊ РјР°СЃРёРІ СЃР»РѕРµРІ
 	for(int i = 0; i<COUNT_LAYER; i++)
 	{
 		int nCheck = GetCheck(i); 
 		pDoc->nShowLayer[i] = nCheck;	
 	}
 
-	//Перерисовать слои
+	//РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ СЃР»РѕРё
 	pView->m_bNeedCreateMemDC = TRUE;
 	pView->Invalidate();
 	pView->UpdateWindow();
@@ -65,20 +65,20 @@ void CCheckBoxLayers::OnLbnSelchange()
 
 void CCheckBoxLayers::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
-	//Взять контекст
+	//Р’Р·СЏС‚СЊ РєРѕРЅС‚РµРєСЃС‚
 	CDC* pDC = CDC::FromHandle(lpDrawItemStruct->hDC);
 
-	//Взять прямоугольник с записью
+	//Р’Р·СЏС‚СЊ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє СЃ Р·Р°РїРёСЃСЊСЋ
 	CRect crTitleText(lpDrawItemStruct->rcItem);
 
-	// Данные прикрепленные к узлу
+	// Р”Р°РЅРЅС‹Рµ РїСЂРёРєСЂРµРїР»РµРЅРЅС‹Рµ Рє СѓР·Р»Сѓ
 	LayerInfo* sInfo = (LayerInfo*)lpDrawItemStruct->itemData;
 	
-	//Загрузить строку (если такой записи не будет в бд)
+	//Р—Р°РіСЂСѓР·РёС‚СЊ СЃС‚СЂРѕРєСѓ (РµСЃР»Рё С‚Р°РєРѕР№ Р·Р°РїРёСЃРё РЅРµ Р±СѓРґРµС‚ РІ Р±Рґ)
 	CString ctr;
 	ctr.LoadStringW(IDS_UNKLAYER);
 
-	//Взять индекс записи и ее цвет
+	//Р’Р·СЏС‚СЊ РёРЅРґРµРєСЃ Р·Р°РїРёСЃРё Рё РµРµ С†РІРµС‚
 	int Index = sInfo->nID;
 	int mask = m_Masks[Index + 1];
 	COLORREF cl = GetEditorState().GetColor( mask ).ToCOLORREF();
@@ -127,8 +127,8 @@ void CCheckBoxLayers::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct)
 void CCheckBoxLayers::MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct)
 {
 	// TODO: Add your message handler code here and/or call default
-	lpMeasureItemStruct->itemHeight = cy;
-	lpMeasureItemStruct->itemWidth = cx;
+	lpMeasureItemStruct->itemHeight = m_cy;
+	lpMeasureItemStruct->itemWidth = m_cx;
 
 }
 

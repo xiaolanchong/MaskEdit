@@ -48,9 +48,9 @@ static char THIS_FILE[] = __FILE__;
 #define ID_4PX 33
 #define ID_5PX 34
 
-//Возможные коэффициенты увеличения
+//Р’РѕР·РјРѕР¶РЅС‹Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚С‹ СѓРІРµР»РёС‡РµРЅРёСЏ
 enum ScaleUp { ScaleX1 = 1, ScaleX2 = 2, ScaleX4 = 4, ScaleX8 = 8 };
-//Возможная толщина линий
+//Р’РѕР·РјРѕР¶РЅР°СЏ С‚РѕР»С‰РёРЅР° Р»РёРЅРёР№
 enum WeightUp { WeightOwnPx = 1, WeightTwoPx = 2, WeightThreePx = 3, WeightFourPx = 4, WeightFivePx = 5};
 
 /////////////////////////////////////////////////////////////////////////////
@@ -110,26 +110,26 @@ BEGIN_MESSAGE_MAP(CMsEditView, CScrollView)
 	ON_COMMAND_RANGE( ID_OPEN_CAM1, ID_OPEN_CAM1 + 99, OnCameraDynamicMenu)
 	ON_COMMAND_RANGE( ID_SIZE_0, ID_SIZE_0 + 99, OnSizeDynamicMenu)
 
-	//Обработчик кнопки масштабирование
+	//РћР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ
 	ON_COMMAND(ID_SCALE, OnScaleButton)
 	ON_COMMAND(ID_THICKNESS, OnThickness)
 	ON_NOTIFY(TBN_DROPDOWN , AFX_IDW_TOOLBAR, OnNotify )
 	
 	
 
-	// Обработчик меню масштабирования
+	// РћР±СЂР°Р±РѕС‚С‡РёРє РјРµРЅСЋ РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ
 	ON_COMMAND(ID_POPUP_1X, OnPopup1X)
 	ON_COMMAND(ID_POPUP_2X, OnPopup2X)
 	ON_COMMAND(ID_POPUP_4X, OnPopup4X)
 	ON_COMMAND(ID_POPUP_8X, OnPopup8X)
-	//Обработчик меню толщины линий
+	//РћР±СЂР°Р±РѕС‚С‡РёРє РјРµРЅСЋ С‚РѕР»С‰РёРЅС‹ Р»РёРЅРёР№
 	ON_COMMAND(ID_1PX, OnPx1)
 	ON_COMMAND(ID_2PX, OnPx2)
 	ON_COMMAND(ID_3PX, OnPx3)
 	ON_COMMAND(ID_4PX, OnPx4)
 	ON_COMMAND(ID_5PX, OnPx5)
 
-	//Сетка
+	//РЎРµС‚РєР°
 	ON_COMMAND(ID_GRID, OnGrid)
 	ON_UPDATE_COMMAND_UI(ID_GRID, OnUpdateGrid)
 
@@ -276,12 +276,12 @@ void CMsEditView::OnLButtonDown(UINT nFlags, CPoint point)
 	CMsEditDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 
-	//Взять идентификатор маски в двоичном представлении
+	//Р’Р·СЏС‚СЊ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РјР°СЃРєРё РІ РґРІРѕРёС‡РЅРѕРј РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРё
 	int mask = GetEditorState().GetCurrentMask();
-	//Взять текущую фигуру
+	//Р’Р·СЏС‚СЊ С‚РµРєСѓС‰СѓСЋ С„РёРіСѓСЂСѓ
 	int nIDTools =  GetEditorState().GetFigState();
 
-	//Строка для MessageBox
+	//РЎС‚СЂРѕРєР° РґР»СЏ MessageBox
 	CString strMesBox;
 	switch(nIDTools)
 	{
@@ -302,7 +302,7 @@ void CMsEditView::OnLButtonDown(UINT nFlags, CPoint point)
 		break;
 	}
 
-	//Проверить видимый ли слой в котором рисуем
+	//РџСЂРѕРІРµСЂРёС‚СЊ РІРёРґРёРјС‹Р№ Р»Рё СЃР»РѕР№ РІ РєРѕС‚РѕСЂРѕРј СЂРёСЃСѓРµРј
 	BOOL bShow = FALSE;
 	for(std::vector<int>::iterator i = m_n2IDMask.begin(); i != m_n2IDMask.end(); i++)
 	{
@@ -314,23 +314,23 @@ void CMsEditView::OnLButtonDown(UINT nFlags, CPoint point)
 		}
 
 	}
-	//если не видимый - выдать сообщение об этом и не разрешить рисование
+	//РµСЃР»Рё РЅРµ РІРёРґРёРјС‹Р№ - РІС‹РґР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± СЌС‚РѕРј Рё РЅРµ СЂР°Р·СЂРµС€РёС‚СЊ СЂРёСЃРѕРІР°РЅРёРµ
 	if(!bShow)
 	{
 		CString strMessage;
 		CString str;
 		str.LoadString(IDS_MESSAGE);
-		strMessage.Format(str, strMesBox);
+		strMessage.Format(str, static_cast<LPCTSTR>(strMesBox));
 		AfxMessageBox(strMessage ,MB_ICONEXCLAMATION);
 		return;
 	}
 
-	//Взять размер маски
+	//Р’Р·СЏС‚СЊ СЂР°Р·РјРµСЂ РјР°СЃРєРё
 	CRect rcMask = GetMaskRect();
 
-	//Взять позицию скрола
+	//Р’Р·СЏС‚СЊ РїРѕР·РёС†РёСЋ СЃРєСЂРѕР»Р°
 	CPoint ScrollPos = GetScrollPosition();
-	//Посчитать точку клика с учетом скролов и масштабов
+	//РџРѕСЃС‡РёС‚Р°С‚СЊ С‚РѕС‡РєСѓ РєР»РёРєР° СЃ СѓС‡РµС‚РѕРј СЃРєСЂРѕР»РѕРІ Рё РјР°СЃС€С‚Р°Р±РѕРІ
 	CPoint pt((point.x + ScrollPos.x - rcMask.left)/m_nScale , (point.y + ScrollPos.y - rcMask.top)/m_nScale );
 	
 	
@@ -390,7 +390,7 @@ void CMsEditView::OnLButtonDown(UINT nFlags, CPoint point)
 		SetCapture();
 	}
 
-	//Перерисовать представление
+	//РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ
 	m_bNeedCreateMemDC = TRUE;
 
 	CScrollView::OnLButtonDown(nFlags, point);
@@ -402,13 +402,13 @@ void CMsEditView::OnLButtonUp(UINT nFlags, CPoint point)
 	CMsEditDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 
-	//Необходимо переисовать представление
+	//РќРµРѕР±С…РѕРґРёРјРѕ РїРµСЂРµРёСЃРѕРІР°С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ
 	m_bNeedCreateMemDC = TRUE;
-	//Взять позицию скрола
+	//Р’Р·СЏС‚СЊ РїРѕР·РёС†РёСЋ СЃРєСЂРѕР»Р°
 	CPoint ScrollPos = GetScrollPosition();
-	//Взять размер маски
+	//Р’Р·СЏС‚СЊ СЂР°Р·РјРµСЂ РјР°СЃРєРё
 	CRect rcMask = GetMaskRect();
-	//Посчитать точку клика с учетом скролла и масштаба
+	//РџРѕСЃС‡РёС‚Р°С‚СЊ С‚РѕС‡РєСѓ РєР»РёРєР° СЃ СѓС‡РµС‚РѕРј СЃРєСЂРѕР»Р»Р° Рё РјР°СЃС€С‚Р°Р±Р°
 	CPoint pt((point.x + ScrollPos.x - rcMask.left)/m_nScale, (point.y + ScrollPos.y - rcMask.top)/m_nScale);
 	
 	if(m_bDrawMode && m_CurrentFigure)
@@ -469,13 +469,13 @@ void CMsEditView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
 
-	//Перерисовать представление
+	//РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ
 	m_bNeedCreateMemDC = TRUE;
-	//Взять позицию скрола
+	//Р’Р·СЏС‚СЊ РїРѕР·РёС†РёСЋ СЃРєСЂРѕР»Р°
 	CPoint ScrollPos = GetScrollPosition();
-	//Взять размер маски
+	//Р’Р·СЏС‚СЊ СЂР°Р·РјРµСЂ РјР°СЃРєРё
 	CRect rcMask = GetMaskRect();
-	//Посчитать точку с учетом скрола и масштаба
+	//РџРѕСЃС‡РёС‚Р°С‚СЊ С‚РѕС‡РєСѓ СЃ СѓС‡РµС‚РѕРј СЃРєСЂРѕР»Р° Рё РјР°СЃС€С‚Р°Р±Р°
 	CPoint pt((point.x + ScrollPos.x - rcMask.left)/m_nScale, (point.y + ScrollPos.y - rcMask.top)/m_nScale);
 
 	if(m_bDrawMode)
@@ -502,13 +502,14 @@ int FigID[] =
 	ID_FIG_PEN
 };
 
-//! здесь надо было обработчик OnUpdate
+//! Р·РґРµСЃСЊ РЅР°РґРѕ Р±С‹Р»Рѕ РѕР±СЂР°Р±РѕС‚С‡РёРє OnUpdate
 void CMsEditView::ChangeFigure( int nID, CEditorState::FigState nFigure, BOOL bStyle) 
 {
 	CToolBar* pToolBar = static_cast< CMainFrame* >(AfxGetMainWnd())->GetFigureBar();
 	int nIndexDropBtScale = pToolBar->CommandToIndex(ID_SCALE);
+	VERIFY(nIndexDropBtScale > 0);
 	int nIndexDropBt = pToolBar->CommandToIndex(ID_SCALE);
-
+	VERIFY(nIndexDropBt > 0);
 	
 	for(int i = 0 ; i < (sizeof(FigID)/ sizeof(int)); ++i)
 	{
@@ -630,9 +631,9 @@ BOOL CMsEditView::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 
 void CMsEditView::OnSize(UINT nType, int cx, int cy) 
 {
-	//Пересчитать размер виртуального окна
+	//РџРµСЂРµСЃС‡РёС‚Р°С‚СЊ СЂР°Р·РјРµСЂ РІРёСЂС‚СѓР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°
 	RecalcVirtualWindow();
-	//Перерисовать окно
+	//РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ РѕРєРЅРѕ
 	Invalidate();
 	UpdateWindow();
 
@@ -657,22 +658,20 @@ void CMsEditView::OnMaskChange()
 
 void	CMsEditView::Draw(CDC* pDC)
 {
-	CMsEditDoc* pDoc = GetDocument();
-
-	//Назначить видимые слои
+	//РќР°Р·РЅР°С‡РёС‚СЊ РІРёРґРёРјС‹Рµ СЃР»РѕРё
 	ShowLayer();
 
-	//Взять размер клиетской области окна
+	//Р’Р·СЏС‚СЊ СЂР°Р·РјРµСЂ РєР»РёРµС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё РѕРєРЅР°
 	CRect csClientRect;
 	GetClientRect(&csClientRect);
 
-	//Размер картинки
+	//Р Р°Р·РјРµСЂ РєР°СЂС‚РёРЅРєРё
 	CSize size = GetEditorState().GetImageSize();
 
-	//Если надо то перерисовываем
+	//Р•СЃР»Рё РЅР°РґРѕ С‚Рѕ РїРµСЂРµСЂРёСЃРѕРІС‹РІР°РµРј
 	if(m_bNeedCreateMemDC)
 	{
-		//Удаляем и создаем контекст
+		//РЈРґР°Р»СЏРµРј Рё СЃРѕР·РґР°РµРј РєРѕРЅС‚РµРєСЃС‚
 		HRESULT hRes = ClearDC( &m_MemDC, &m_MemBitmap, m_pOldBitmap );
 		if(SUCCEEDED(hRes))
 			m_pOldBitmap = CreateDC(pDC, &m_MemDC, &m_MemBitmap, CSize(size.cx, size.cy));
@@ -686,10 +685,10 @@ void	CMsEditView::Draw(CDC* pDC)
 	}
 
 	
-	//Копировать на темно серый
+	//РљРѕРїРёСЂРѕРІР°С‚СЊ РЅР° С‚РµРјРЅРѕ СЃРµСЂС‹Р№
 	m_GreenDC.BitBlt(  (m_sizeTotal.cx/m_nScale - size.cx)/2, (m_sizeTotal.cy/m_nScale - size.cy)/2, size.cx, size.cy, &m_MemDC, 0, 0, SRCCOPY);
 	
-	//Если увеличенно и надо показывать сетку
+	//Р•СЃР»Рё СѓРІРµР»РёС‡РµРЅРЅРѕ Рё РЅР°РґРѕ РїРѕРєР°Р·С‹РІР°С‚СЊ СЃРµС‚РєСѓ
 	if((m_nScale > 2) && (m_bCheckGrid))
 	{
 		CDC GridDC;
@@ -721,31 +720,31 @@ void	CMsEditView::Draw(CDC* pDC)
 		
 	}
 	else
-		//Копировать на первичный
+		//РљРѕРїРёСЂРѕРІР°С‚СЊ РЅР° РїРµСЂРІРёС‡РЅС‹Р№
 		pDC->StretchBlt( 0, 0, m_sizeTotal.cx, m_sizeTotal.cy, &m_GreenDC, 0, 0, m_sizeTotal.cx/m_nScale, m_sizeTotal.cy/m_nScale, SRCCOPY);
 
 }
 
 void CMsEditView::OnMemDraw(CDC* pDC)
 {
-	//Взять Document
+	//Р’Р·СЏС‚СЊ Document
 	CMsEditDoc* pDoc = GetDocument();
 	
 
-	//Залить серым цветом
+	//Р—Р°Р»РёС‚СЊ СЃРµСЂС‹Рј С†РІРµС‚РѕРј
 	m_GreenDC.FillSolidRect(0, 0, m_sizeTotal.cx, m_sizeTotal.cy, COLORREF(RGB(128, 128, 128)));
 
-	//Размер внутренего контекста
+	//Р Р°Р·РјРµСЂ РІРЅСѓС‚СЂРµРЅРµРіРѕ РєРѕРЅС‚РµРєСЃС‚Р°
 	CSize size = GetEditorState().GetImageSize();
 
-	// Создаем временный буфер
+	// РЎРѕР·РґР°РµРј РІСЂРµРјРµРЅРЅС‹Р№ Р±СѓС„РµСЂ
 	Graphics native(m_MemDC);
 	Bitmap backBuffer(size.cx, size.cy, &native);
 	Graphics graphics(&backBuffer);
 	
-	//Залить светлым тоном серого (квадрат в центре)
+	//Р—Р°Р»РёС‚СЊ СЃРІРµС‚Р»С‹Рј С‚РѕРЅРѕРј СЃРµСЂРѕРіРѕ (РєРІР°РґСЂР°С‚ РІ С†РµРЅС‚СЂРµ)
 	graphics.Clear(Color(192, 192, 192));
-	//Текст "No image"
+	//РўРµРєСЃС‚ "No image"
 	m_CurrentBG->Draw(graphics, CRect( CPoint(0, 0), size));
 
 	// red mask for e.g.
@@ -759,7 +758,7 @@ void CMsEditView::OnMemDraw(CDC* pDC)
 		}
 	}
 
-	//Скопировать grafic
+	//РЎРєРѕРїРёСЂРѕРІР°С‚СЊ grafic
 	native.DrawImage(&backBuffer, 0 , 0);
 	
 }
@@ -767,30 +766,30 @@ void CMsEditView::OnMemDraw(CDC* pDC)
 CBitmap* CMsEditView::CreateDC(CDC* pDC, CDC* m_CreateDC, CBitmap* m_CreateBitmap, CSize m_BitmapSize)
 {
 	
-	// Создание контеста
+	// РЎРѕР·РґР°РЅРёРµ РєРѕРЅС‚РµСЃС‚Р°
 	m_CreateDC->CreateCompatibleDC(pDC);
-	// Cоздание битмапа
+	// CРѕР·РґР°РЅРёРµ Р±РёС‚РјР°РїР°
 	m_CreateBitmap->CreateCompatibleBitmap(pDC, m_BitmapSize.cx, m_BitmapSize.cy);
-	// Назначение битмапа контексту
-	CBitmap* m_pOldBitmap = m_CreateDC->SelectObject(m_CreateBitmap);
+	// РќР°Р·РЅР°С‡РµРЅРёРµ Р±РёС‚РјР°РїР° РєРѕРЅС‚РµРєСЃС‚Сѓ
+	CBitmap* pOldBitmap = m_CreateDC->SelectObject(m_CreateBitmap);
 	
-	//Вернуть старую картинку
-	return m_pOldBitmap;
+	//Р’РµСЂРЅСѓС‚СЊ СЃС‚Р°СЂСѓСЋ РєР°СЂС‚РёРЅРєСѓ
+	return pOldBitmap;
 
 }
-HRESULT CMsEditView::ClearDC(CDC* m_CreateDC, CBitmap* m_CreateBitmap, CBitmap* m_pOldBitmap)
+HRESULT CMsEditView::ClearDC(CDC* m_CreateDC, CBitmap* m_CreateBitmap, CBitmap* pOldBitmap)
 {
-	//Результат выполнения
+	//Р РµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
 	BOOL bOk = TRUE;
 
-	// Уничтожить контекст
-	if((m_CreateDC->GetSafeHdc() != NULL) && (m_pOldBitmap != NULL))
+	// РЈРЅРёС‡С‚РѕР¶РёС‚СЊ РєРѕРЅС‚РµРєСЃС‚
+	if((m_CreateDC->GetSafeHdc() != NULL) && (pOldBitmap != NULL))
 	{
-		m_CreateDC->SelectObject(m_pOldBitmap);
+		m_CreateDC->SelectObject(pOldBitmap);
 		bOk = m_CreateDC->DeleteDC();
 	}
 
-	// Уничтожить битмап
+	// РЈРЅРёС‡С‚РѕР¶РёС‚СЊ Р±РёС‚РјР°Рї
 	if(m_CreateBitmap->GetSafeHandle() != NULL)
 	{
 		bOk = m_CreateBitmap->DeleteObject();
@@ -1062,7 +1061,7 @@ void CMsEditView::OnOpenVideo()
 		std::wstring str = Helper::Convert( dlg.GetPathName() );
 		try
 		{
-			CVideoBackground* bg = dynamic_cast<CVideoBackground*>( m_CurrentBG.get());
+			//CVideoBackground* bg = dynamic_cast<CVideoBackground*>( m_CurrentBG.get());
 			CVideoBackground* pBg = new CVideoBackground( this, str ) ;
 			m_CurrentBG = boost::shared_ptr<CBackground> ( pBg );
 			if( pBg->IsSeekable() )
@@ -1155,10 +1154,10 @@ void CMsEditView::OnSizeDynamicMenu( UINT nID )
 		Invalidate(FALSE);
 	}
 
-	//Пересчитать размер виртуального окна
+	//РџРµСЂРµСЃС‡РёС‚Р°С‚СЊ СЂР°Р·РјРµСЂ РІРёСЂС‚СѓР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°
 	RecalcVirtualWindow();
 
-	//Перерисовать 
+	//РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ 
 	Invalidate();
 	UpdateWindow();
 
@@ -1184,10 +1183,10 @@ CRect	CMsEditView::GetMaskRect() const
 	CRect rcClient;
 	GetClientRect(&rcClient);
 	
-	//Размер маски
+	//Р Р°Р·РјРµСЂ РјР°СЃРєРё
 	CSize size = GetEditorState().GetImageSize();
 
-	//Посчитать размер маски с учетом масштаба
+	//РџРѕСЃС‡РёС‚Р°С‚СЊ СЂР°Р·РјРµСЂ РјР°СЃРєРё СЃ СѓС‡РµС‚РѕРј РјР°СЃС€С‚Р°Р±Р°
 	CRect rc(0, 0, rcClient.Width(), rcClient.Height());
 	if(!m_bVirtualRight)
 	{
@@ -1271,36 +1270,36 @@ LRESULT CMsEditView::OnColor(WPARAM, LPARAM)
 	return TRUE;
 }
 
-//Обработчик drop down кнопок
+//РћР±СЂР°Р±РѕС‚С‡РёРє drop down РєРЅРѕРїРѕРє
 void CMsEditView::OnNotify( NMHDR* pNotifyStruct, LRESULT* result )
 {
-	//Вызвать обработчик кнопки масштабирования
+	//Р’С‹Р·РІР°С‚СЊ РѕР±СЂР°Р±РѕС‚С‡РёРє РєРЅРѕРїРєРё РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ
 	OnScaleButton();
 
-	//Структура, содержащая ID кнопки
+	//РЎС‚СЂСѓРєС‚СѓСЂР°, СЃРѕРґРµСЂР¶Р°С‰Р°СЏ ID РєРЅРѕРїРєРё
 	NMTOOLBAR* toolbarInfo = (NMTOOLBAR*)pNotifyStruct;
 	
-	//Выбрать кнопку от которой пришло сообщение
+	//Р’С‹Р±СЂР°С‚СЊ РєРЅРѕРїРєСѓ РѕС‚ РєРѕС‚РѕСЂРѕР№ РїСЂРёС€Р»Рѕ СЃРѕРѕР±С‰РµРЅРёРµ
 	switch(toolbarInfo->iItem)
 	{
 	case (ID_SCALE):
 		{
-			// Для того чтобы меню исчезало
+			// Р”Р»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ РјРµРЅСЋ РёСЃС‡РµР·Р°Р»Рѕ
 			SetForegroundWindow();
 
-			//Загрузить меню из ресурсов
+			//Р—Р°РіСЂСѓР·РёС‚СЊ РјРµРЅСЋ РёР· СЂРµСЃСѓСЂСЃРѕРІ
 			CMenu menu;
 			menu.LoadMenu(146);
 			CMenu* pSubMenu = menu.GetSubMenu(0);
 
-			//Взять позицию курсора
+			//Р’Р·СЏС‚СЊ РїРѕР·РёС†РёСЋ РєСѓСЂСЃРѕСЂР°
 			POINT pt;
 			::GetCursorPos(&pt);
-			//Поставить чек
+			//РџРѕСЃС‚Р°РІРёС‚СЊ С‡РµРє
 			pSubMenu->CheckMenuRadioItem(ID_POPUP_1X, ID_POPUP_8X, nIDCheckItem, MF_CHECKED);
-			//Показать меню
+			//РџРѕРєР°Р·Р°С‚СЊ РјРµРЅСЋ
 			BOOL bOK = pSubMenu->TrackPopupMenu(0, pt.x, pt.y, this);
-
+			VERIFY(bOK);
 		}
 		break;
 
@@ -1308,14 +1307,14 @@ void CMsEditView::OnNotify( NMHDR* pNotifyStruct, LRESULT* result )
 		{
 			SetForegroundWindow();
 
-			//Меню с толщиной линий
+			//РњРµРЅСЋ СЃ С‚РѕР»С‰РёРЅРѕР№ Р»РёРЅРёР№
 			CThicknessMenu menu;
 
-			//Взять позицию курсора
+			//Р’Р·СЏС‚СЊ РїРѕР·РёС†РёСЋ РєСѓСЂСЃРѕСЂР°
 			POINT pt;
 			::GetCursorPos(&pt);
 
-			//Создать меню
+			//РЎРѕР·РґР°С‚СЊ РјРµРЅСЋ
 			BOOL bRes = menu.CreatePopupMenu();
 			if(bRes)
 			{
@@ -1347,10 +1346,10 @@ void CMsEditView::OnNotify( NMHDR* pNotifyStruct, LRESULT* result )
 						MenuItems[i].nChekItem = 0;
 				}
 
-				//Добавить пункт в меню с прикрепленной структурой
+				//Р”РѕР±Р°РІРёС‚СЊ РїСѓРЅРєС‚ РІ РјРµРЅСЋ СЃ РїСЂРёРєСЂРµРїР»РµРЅРЅРѕР№ СЃС‚СЂСѓРєС‚СѓСЂРѕР№
 				menu.AddItem(6, MenuItems);
 
-				// Показать меню
+				// РџРѕРєР°Р·Р°С‚СЊ РјРµРЅСЋ
 				menu.TrackPopupMenu(0, pt.x, pt.y, this);
 			}
 		}
@@ -1369,33 +1368,33 @@ void CMsEditView::OnThickness()
 
 void CMsEditView::OnPopup1X()
 {
-	//Переопределить всё что связано с масштабом
+	//РџРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ РІСЃС‘ С‡С‚Рѕ СЃРІСЏР·Р°РЅРѕ СЃ РјР°СЃС€С‚Р°Р±РѕРј
 	OnScale(ScaleX1);
-	//Назначить идентификатор строки с chek'ом
+	//РќР°Р·РЅР°С‡РёС‚СЊ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СЂРѕРєРё СЃ chek'РѕРј
 	nIDCheckItem = ID_POPUP_1X;	
 }
 
 void CMsEditView::OnPopup2X()
 {
-	//Переопределить всё что связано с масштабом
+	//РџРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ РІСЃС‘ С‡С‚Рѕ СЃРІСЏР·Р°РЅРѕ СЃ РјР°СЃС€С‚Р°Р±РѕРј
 	OnScale(ScaleX2);
-	//Назначить идентификатор строки с chek'ом
+	//РќР°Р·РЅР°С‡РёС‚СЊ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СЂРѕРєРё СЃ chek'РѕРј
 	nIDCheckItem = ID_POPUP_2X;
 }
 
 void CMsEditView::OnPopup4X()
 {
-	//Переопределить всё что связано с масштабом
+	//РџРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ РІСЃС‘ С‡С‚Рѕ СЃРІСЏР·Р°РЅРѕ СЃ РјР°СЃС€С‚Р°Р±РѕРј
 	OnScale(ScaleX4);
-	//Назначить идентификатор строки с chek'ом
+	//РќР°Р·РЅР°С‡РёС‚СЊ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СЂРѕРєРё СЃ chek'РѕРј
 	nIDCheckItem = ID_POPUP_4X;
 }
 
 void CMsEditView::OnPopup8X()
 {
-	//Переопределить всё что связано с масштабом
+	//РџРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ РІСЃС‘ С‡С‚Рѕ СЃРІСЏР·Р°РЅРѕ СЃ РјР°СЃС€С‚Р°Р±РѕРј
 	OnScale(ScaleX8);
-	//Назначить идентификатор строки с chek'ом
+	//РќР°Р·РЅР°С‡РёС‚СЊ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СЂРѕРєРё СЃ chek'РѕРј
 	nIDCheckItem = ID_POPUP_8X;
 }
 
@@ -1408,14 +1407,14 @@ void CMsEditView::OnInitialUpdate()
 void CMsEditView::RecalcVirtualWindow()
 {
 
-	//Взять размер клиентской области
+	//Р’Р·СЏС‚СЊ СЂР°Р·РјРµСЂ РєР»РёРµРЅС‚СЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё
 	CRect rcClientRect;
 	GetClientRect(&rcClientRect);
 
-	//Размер контекста на котором рисует
+	//Р Р°Р·РјРµСЂ РєРѕРЅС‚РµРєСЃС‚Р° РЅР° РєРѕС‚РѕСЂРѕРј СЂРёСЃСѓРµС‚
 	CSize size = GetEditorState().GetImageSize();
 
-	//Посчитать нужный размер виртуального окна
+	//РџРѕСЃС‡РёС‚Р°С‚СЊ РЅСѓР¶РЅС‹Р№ СЂР°Р·РјРµСЂ РІРёСЂС‚СѓР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°
 	if(rcClientRect.right > size.cx*m_nScale)
 	{
 		m_sizeTotal.cx = rcClientRect.right;
@@ -1438,23 +1437,23 @@ void CMsEditView::RecalcVirtualWindow()
 		m_bVirtualBottom = TRUE;
 	}
 
-	//Установить размер виртуального окна
+	//РЈСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂ РІРёСЂС‚СѓР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°
 	SetScrollSizes(MM_TEXT, m_sizeTotal);
 
-	//Пересоздать контексты и перерисовать
+	//РџРµСЂРµСЃРѕР·РґР°С‚СЊ РєРѕРЅС‚РµРєСЃС‚С‹ Рё РїРµСЂРµСЂРёСЃРѕРІР°С‚СЊ
 	m_bNeedCreateMemDC = TRUE;
 
 }
 
 void CMsEditView::OnScale(INT nScaleUp)
 {
-	//Назначить текущий масштаб
+	//РќР°Р·РЅР°С‡РёС‚СЊ С‚РµРєСѓС‰РёР№ РјР°СЃС€С‚Р°Р±
 	m_nScale = nScaleUp;
 
-	//Пересчитать размер виртуального окна
+	//РџРµСЂРµСЃС‡РёС‚Р°С‚СЊ СЂР°Р·РјРµСЂ РІРёСЂС‚СѓР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°
 	RecalcVirtualWindow();
 
-	//Перерисовать представление
+	//РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ
 	Invalidate();
 	UpdateWindow();
 
@@ -1465,12 +1464,12 @@ void CMsEditView::OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu)
 	CScrollView::OnMenuSelect(nItemID, nFlags, hSysMenu);
 }
 
-//Обработчики меню с линиями
+//РћР±СЂР°Р±РѕС‚С‡РёРєРё РјРµРЅСЋ СЃ Р»РёРЅРёСЏРјРё
 void CMsEditView::OnPx1()
 {
-	//Назначить текущую толщину линии
+	//РќР°Р·РЅР°С‡РёС‚СЊ С‚РµРєСѓС‰СѓСЋ С‚РѕР»С‰РёРЅСѓ Р»РёРЅРёРё
 	m_CurrentThickness = WeightOwnPx;
-	//ID строки где должно стоять выделение
+	//ID СЃС‚СЂРѕРєРё РіРґРµ РґРѕР»Р¶РЅРѕ СЃС‚РѕСЏС‚СЊ РІС‹РґРµР»РµРЅРёРµ
 	nIDCheckItemLine = WeightOwnPx;
 }
 void CMsEditView::OnPx2()
@@ -1497,10 +1496,10 @@ void CMsEditView::OnPx5()
 
 void CMsEditView::ShowLayer()
 {
-	//Назначить видимые и невидимые слои
+	//РќР°Р·РЅР°С‡РёС‚СЊ РІРёРґРёРјС‹Рµ Рё РЅРµРІРёРґРёРјС‹Рµ СЃР»РѕРё
 	CMsEditDoc* pDoc = (CMsEditDoc*)GetDocument();
 
-	//Обнулить масив с двоичными ID маски	
+	//РћР±РЅСѓР»РёС‚СЊ РјР°СЃРёРІ СЃ РґРІРѕРёС‡РЅС‹РјРё ID РјР°СЃРєРё	
 	for(int i = 0; i<COUNT_LAYER; i++)
 		m_n2IDMask[i] = 0;
 	

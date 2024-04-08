@@ -17,14 +17,16 @@
 
 #include "OleDBConnection.h"
 
-MACRO_EXCEPTION( SaveDBFileException, DatabaseException)
-MACRO_EXCEPTION( LoadDBFileException, DatabaseException)
-MACRO_EXCEPTION( CameraListException, DatabaseException)
+MACRO_EXCEPTION(SaveDBFileException, DatabaseException)
+MACRO_EXCEPTION(LoadDBFileException, DatabaseException)
+MACRO_EXCEPTION(CameraListException, DatabaseException)
+
+#ifdef WITH_ORWELL
 //======================================================================================//
 //                                  class DBSerializer                                  //
 //======================================================================================//
 
-//! \brief сохранить/загрузить маску из БД
+//! \brief СЃРѕС…СЂР°РЅРёС‚СЊ/Р·Р°РіСЂСѓР·РёС‚СЊ РјР°СЃРєСѓ РёР· Р‘Р”
 //! \version 1.0
 //! \date 07-20-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
@@ -39,19 +41,41 @@ public:
 	DBSerializer();
 	virtual ~DBSerializer();
 
-	//! сохранить маску
-	//! \param nCameraID идент-р ккамеры, с которой сохраняем маску
-	//! \param Data данные маски (несколько слоев)
-	void	SaveFile( int nCameraID, const std::vector<BYTE>& Data);
+	//! СЃРѕС…СЂР°РЅРёС‚СЊ РјР°СЃРєСѓ
+	//! \param nCameraID РёРґРµРЅС‚-СЂ РєРєР°РјРµСЂС‹, СЃ РєРѕС‚РѕСЂРѕР№ СЃРѕС…СЂР°РЅСЏРµРј РјР°СЃРєСѓ
+	//! \param Data РґР°РЅРЅС‹Рµ РјР°СЃРєРё (РЅРµСЃРєРѕР»СЊРєРѕ СЃР»РѕРµРІ)
+	void	SaveFile(int nCameraID, const std::vector<BYTE>& Data);
 
-	//! загрузить маску
-	//! \param nCameraID идент-р ккамеры, с которой сохраняем маску
-	//! \param BinArr данные маски (несколько слоев)
-	void	LoadFile( int nCameraID, std::vector<BYTE>& BinArr ); 
+	//! Р·Р°РіСЂСѓР·РёС‚СЊ РјР°СЃРєСѓ
+	//! \param nCameraID РёРґРµРЅС‚-СЂ РєРєР°РјРµСЂС‹, СЃ РєРѕС‚РѕСЂРѕР№ СЃРѕС…СЂР°РЅСЏРµРј РјР°СЃРєСѓ
+	//! \param BinArr РґР°РЅРЅС‹Рµ РјР°СЃРєРё (РЅРµСЃРєРѕР»СЊРєРѕ СЃР»РѕРµРІ)
+	void	LoadFile(int nCameraID, std::vector<BYTE>& BinArr);
 
-	//! получить список камер в системе
-	//! \param CameraArr массив идент-ров
-	void	GetCameraList( std::vector<int>& CameraArr ); 
+	//! РїРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РєР°РјРµСЂ РІ СЃРёСЃС‚РµРјРµ
+	//! \param CameraArr РјР°СЃСЃРёРІ РёРґРµРЅС‚-СЂРѕРІ
+	void	GetCameraList(std::vector<int>& CameraArr);
 };
+
+#else
+class DBSerializer : protected COleDBConnection
+{
+public:
+	void	GetCameraList(std::vector<int>& CameraArr)
+	{
+		CameraArr = {1, 2, 3, 4, 5};
+	}
+
+	void	SaveFile(int /*nCameraID*/, const std::vector<BYTE>& /*Data*/)
+	{
+
+	}
+
+	void	LoadFile(int /*nCameraID*/, std::vector<BYTE>& /*BinArr*/)
+	{
+
+	}
+};
+
+#endif // WITH_ORWELL
 
 #endif // _D_B_SERIALIZER_3409536366849194_

@@ -2,24 +2,24 @@
 
 #include "RES\resource.h"
 
-// Используемые поля
-// Установлено поле "Стили"
+// РСЃРїРѕР»СЊР·СѓРµРјС‹Рµ РїРѕР»СЏ
+// РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ РїРѕР»Рµ "РЎС‚РёР»Рё"
 #define ITEMMASK_STYLE		0x1
-// Есть картинка 
+// Р•СЃС‚СЊ РєР°СЂС‚РёРЅРєР° 
 #define ITEMMASK_IMAGE		0x2
-// Есть текст
+// Р•СЃС‚СЊ С‚РµРєСЃС‚
 #define ITEMMASK_TEXT		0x8
 
 
-// Стили
-// Заголовок
+// РЎС‚РёР»Рё
+// Р—Р°РіРѕР»РѕРІРѕРє
 #define MENUITEMSTYLE_TITLE		0x1
-// Строка имеет подменю 
+// РЎС‚СЂРѕРєР° РёРјРµРµС‚ РїРѕРґРјРµРЅСЋ 
 #define MENUITEMSTYLE_POPUP		0x2
-// Строка - разделитель
+// РЎС‚СЂРѕРєР° - СЂР°Р·РґРµР»РёС‚РµР»СЊ
 #define MENUITEMSTYLE_SEPARATOR	0x3
 
-//Количество tooltip
+//РљРѕР»РёС‡РµСЃС‚РІРѕ tooltip
 #define COUNT_TOOLTIP 6
 
 typedef struct tagMyMenuItemInfo
@@ -35,21 +35,21 @@ typedef struct tagMyMenuItemInfo
 		nIndex = -1;
 	}
 
-	// Можно задать поля которые использовать
+	// РњРѕР¶РЅРѕ Р·Р°РґР°С‚СЊ РїРѕР»СЏ РєРѕС‚РѕСЂС‹Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
 	DWORD dwMask;
-	// Cтиль элемента
+	// CС‚РёР»СЊ СЌР»РµРјРµРЅС‚Р°
 	DWORD dwStyle;
-	// ID комманды 
+	// ID РєРѕРјРјР°РЅРґС‹ 
 	UINT nCommand;
-	// Позиция картинки в ImageList. Если нет картинки -1.
+	// РџРѕР·РёС†РёСЏ РєР°СЂС‚РёРЅРєРё РІ ImageList. Р•СЃР»Рё РЅРµС‚ РєР°СЂС‚РёРЅРєРё -1.
 	int nImage;
-	// Дескриптор подменю
+	// Р”РµСЃРєСЂРёРїС‚РѕСЂ РїРѕРґРјРµРЅСЋ
 	HMENU hSubMenu;
-	// Позиция элемента
+	// РџРѕР·РёС†РёСЏ СЌР»РµРјРµРЅС‚Р°
 	int nIndex;
-	// Текст
+	// РўРµРєСЃС‚
 	LPCTSTR szText;
-	// Всплывающая подсказка
+	// Р’СЃРїР»С‹РІР°СЋС‰Р°СЏ РїРѕРґСЃРєР°Р·РєР°
 	LPCTSTR szTooltip;
 	
 } MYMENUITEMINFO, *LPMYMENUITEMINFO;
@@ -69,27 +69,27 @@ typedef struct tagMyMenuItem
 		nChekItem = 0;
 	}
 
-	// Можно задать поля которые использовать
+	// РњРѕР¶РЅРѕ Р·Р°РґР°С‚СЊ РїРѕР»СЏ РєРѕС‚РѕСЂС‹Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ
 	DWORD dwMask;
-	// Cтиль элемента
+	// CС‚РёР»СЊ СЌР»РµРјРµРЅС‚Р°
 	DWORD dwStyle;
-	// ID комманды 
+	// ID РєРѕРјРјР°РЅРґС‹ 
 	UINT nCommand;
-	// Позиция картинки в ImageList. Если нет картинки -1.
+	// РџРѕР·РёС†РёСЏ РєР°СЂС‚РёРЅРєРё РІ ImageList. Р•СЃР»Рё РЅРµС‚ РєР°СЂС‚РёРЅРєРё -1.
 	int nImage;
-	// Дескриптор подменю
+	// Р”РµСЃРєСЂРёРїС‚РѕСЂ РїРѕРґРјРµРЅСЋ
 	HMENU hSubMenu;
-	// Текст
+	// РўРµРєСЃС‚
 	LPCTSTR szText;
-	// Всплывающая подсказка
+	// Р’СЃРїР»С‹РІР°СЋС‰Р°СЏ РїРѕРґСЃРєР°Р·РєР°
 	LPCTSTR szTooltip;
-	//Зачекить пункт меню
+	//Р—Р°С‡РµРєРёС‚СЊ РїСѓРЅРєС‚ РјРµРЅСЋ
 	int nChekItem;
 
 } MYMENUITEM, *LPMYMENUITEM;
 
 
-//Вектор с нашими структурами
+//Р’РµРєС‚РѕСЂ СЃ РЅР°С€РёРјРё СЃС‚СЂСѓРєС‚СѓСЂР°РјРё
 typedef std::vector<LPMYMENUITEMINFO> STLMenuVectorItem;
 
 class CThicknessMenu: public CMenu
@@ -99,25 +99,25 @@ public:
 	virtual ~CThicknessMenu();
 public:
 
-	//Перегруженные методы, отвечающие за самостоятельную перерисовку меню
+	//РџРµСЂРµРіСЂСѓР¶РµРЅРЅС‹Рµ РјРµС‚РѕРґС‹, РѕС‚РІРµС‡Р°СЋС‰РёРµ Р·Р° СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅСѓСЋ РїРµСЂРµСЂРёСЃРѕРІРєСѓ РјРµРЅСЋ
 	virtual void MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 	virtual void DrawItem (LPDRAWITEMSTRUCT lpMeasureItemStruct);
 
 	// Add items
 	BOOL AddItem(int nCount, LPMYMENUITEM pItem);
 
-	//Создает тул типы
+	//РЎРѕР·РґР°РµС‚ С‚СѓР» С‚РёРїС‹
 	HWND CreateToolTip(CString szText);
-	//Показывает тул тип
+	//РџРѕРєР°Р·С‹РІР°РµС‚ С‚СѓР» С‚РёРї
 	void ShowToolTip(HWND hToolTip, int nIndex);
-	//Скрывает тул тип
+	//РЎРєСЂС‹РІР°РµС‚ С‚СѓР» С‚РёРї
 	void HideToolTip();
 
 public:
-	// Все прикрепленные данные
+	// Р’СЃРµ РїСЂРёРєСЂРµРїР»РµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ
 	STLMenuVectorItem m_DataList;
 
-	// Массив данных
+	// РњР°СЃСЃРёРІ РґР°РЅРЅС‹С…
 	STLMenuVectorItem m_Items;
 
 	// GDI
@@ -127,21 +127,21 @@ public:
 	CBrush* m_pCheckBkgnd;
 	CBrush* m_pCheckSelBkgnd;
 
-	//Цвета заливки пунктов меню
+	//Р¦РІРµС‚Р° Р·Р°Р»РёРІРєРё РїСѓРЅРєС‚РѕРІ РјРµРЅСЋ
 	DWORD m_dwTitleColor;
 	DWORD m_dwEnableColor;
 	DWORD m_dwEnableSelColor;
 	DWORD m_dwCheckColor;
 
 
-	// Размеры
-	// Параметры заголовка  
+	// Р Р°Р·РјРµСЂС‹
+	// РџР°СЂР°РјРµС‚СЂС‹ Р·Р°РіРѕР»РѕРІРєР°  
 	const static int m_cnTitleLeft = 4, m_cnTitleTop = 4, m_cyTitleBottom = 4;
 
 	//ToolTip
 	HWND m_hToolTip[COUNT_TOOLTIP];
 
-	// массив с подсказками
+	// РјР°СЃСЃРёРІ СЃ РїРѕРґСЃРєР°Р·РєР°РјРё
 	CString thString[COUNT_TOOLTIP];
 	
 

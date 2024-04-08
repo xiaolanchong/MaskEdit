@@ -15,7 +15,7 @@
 
 namespace ISSHelper
 {
-	//! для записи блобов в БД
+	//! РґР»СЏ Р·Р°РїРёСЃРё Р±Р»РѕР±РѕРІ РІ Р‘Р”
 	struct MemStreamRead :  ISequentialStream
 	{
 		const std::vector<unsigned char>& m_Buffer;
@@ -70,11 +70,11 @@ namespace ISSHelper
 	}
 }
 
-//! записать блоб в БД
-//! \param	ses		соединение с БД
-//! \param szQuery	SQL запрос, кот. определяет поле записи -e.g. "SELECT MyField FROM MyTable"
-//! \param Data		собс-но данные
-//! \return			успех/ошибка при записи
+//! Р·Р°РїРёСЃР°С‚СЊ Р±Р»РѕР± РІ Р‘Р”
+//! \param	ses		СЃРѕРµРґРёРЅРµРЅРёРµ СЃ Р‘Р”
+//! \param szQuery	SQL Р·Р°РїСЂРѕСЃ, РєРѕС‚. РѕРїСЂРµРґРµР»СЏРµС‚ РїРѕР»Рµ Р·Р°РїРёСЃРё -e.g. "SELECT MyField FROM MyTable"
+//! \param Data		СЃРѕР±СЃ-РЅРѕ РґР°РЅРЅС‹Рµ
+//! \return			СѓСЃРїРµС…/РѕС€РёР±РєР° РїСЂРё Р·Р°РїРёСЃРё
 template <class T> bool		WriteBlobData(CSession& ses, LPCWSTR szQuery, const std::vector<BYTE>& Data)
 {
 	if( !ses.m_spOpenRowset ) return false;
@@ -112,11 +112,11 @@ template <class T> bool		WriteBlobData(CSession& ses, LPCWSTR szQuery, const std
 	return res;
 }
 
-//! считать блоб из БД
-//! \param	ses		соединение с БД
-//! \param szQuery	SQL запрос, кот. определяет поле записи -e.g. "SELECT MyField FROM MyTable"
-//! \param Data		буфер для данных
-//! \return			успех/ошибка при чтении
+//! СЃС‡РёС‚Р°С‚СЊ Р±Р»РѕР± РёР· Р‘Р”
+//! \param	ses		СЃРѕРµРґРёРЅРµРЅРёРµ СЃ Р‘Р”
+//! \param szQuery	SQL Р·Р°РїСЂРѕСЃ, РєРѕС‚. РѕРїСЂРµРґРµР»СЏРµС‚ РїРѕР»Рµ Р·Р°РїРёСЃРё -e.g. "SELECT MyField FROM MyTable"
+//! \param Data		Р±СѓС„РµСЂ РґР»СЏ РґР°РЅРЅС‹С…
+//! \return			СѓСЃРїРµС…/РѕС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё
 template <class T> bool		ReadBlobData(CSession& ses,LPCWSTR szQuery, std::vector<BYTE>& Data)
 {
 	HRESULT hr;

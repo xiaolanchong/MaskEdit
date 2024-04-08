@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 
-//! \brief управляет меню размеров маски
+//! \brief СѓРїСЂР°РІР»СЏРµС‚ РјРµРЅСЋ СЂР°Р·РјРµСЂРѕРІ РјР°СЃРєРё
 //! \version 1.0
 //! \date 03-22-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
@@ -33,7 +33,7 @@ public:
 	void		AddItem(CMenu* pMenu, const SizePair_t& p);
 };
 
-//! \brief управляет меню идент-ров камер
+//! \brief СѓРїСЂР°РІР»СЏРµС‚ РјРµРЅСЋ РёРґРµРЅС‚-СЂРѕРІ РєР°РјРµСЂ
 //! \version 1.0
 //! \date 03-22-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)

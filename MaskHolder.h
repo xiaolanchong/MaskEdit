@@ -17,24 +17,24 @@
 
 MACRO_EXCEPTION(MaskException, CommonException)
 MACRO_EXCEPTION(MaskListException, MaskException)
-//! попытались откатиться когда впереди в стеке нет данных
+//! РїРѕРїС‹С‚Р°Р»РёСЃСЊ РѕС‚РєР°С‚РёС‚СЊСЃСЏ РєРѕРіРґР° РІРїРµСЂРµРґРё РІ СЃС‚РµРєРµ РЅРµС‚ РґР°РЅРЅС‹С…
 MACRO_EXCEPTION(MaskRedoException, MaskListException)
-//! попытались откатиться , когда стек предыдущих маско пуст
+//! РїРѕРїС‹С‚Р°Р»РёСЃСЊ РѕС‚РєР°С‚РёС‚СЊСЃСЏ , РєРѕРіРґР° СЃС‚РµРє РїСЂРµРґС‹РґСѓС‰РёС… РјР°СЃРєРѕ РїСѓСЃС‚
 MACRO_EXCEPTION(MaskUndoException, MaskListException)
 
-//! хранит маску как набор векторныъх фигур с возможностью отката
+//! С…СЂР°РЅРёС‚ РјР°СЃРєСѓ РєР°Рє РЅР°Р±РѕСЂ РІРµРєС‚РѕСЂРЅС‹СЉС… С„РёРіСѓСЂ СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ РѕС‚РєР°С‚Р°
 class CMask 
 {
 	typedef std::list < boost::shared_ptr<CFigure> > MaskList_t;
-	//! стек образов
+	//! СЃС‚РµРє РѕР±СЂР°Р·РѕРІ
 	UndoRedoStack<MaskList_t>				m_MaskData;
 
 	//! bitmap of the raster mask
 	mutable			boost::shared_ptr<Bitmap > m_Bitmap;
 
-	//! нарисовать кешированную бмп как маску
+	//! РЅР°СЂРёСЃРѕРІР°С‚СЊ РєРµС€РёСЂРѕРІР°РЅРЅСѓСЋ Р±РјРї РєР°Рє РјР°СЃРєСѓ
 	void			DrawCached() const;
-	//! нарисовать заново все фигуры
+	//! РЅР°СЂРёСЃРѕРІР°С‚СЊ Р·Р°РЅРѕРІРѕ РІСЃРµ С„РёРіСѓСЂС‹
 	void			DrawUncached() const;
 
 	//! draw all items on the mask
@@ -46,9 +46,9 @@ class CMask
 	void			Invalidate( Graphics& gr ) const;
 public:
 
-	//! нарисовать на контексте маску
-	//! \param gr контекст
-	//! \param pCurrent текущая фигура (та что еще рисуется)
+	//! РЅР°СЂРёСЃРѕРІР°С‚СЊ РЅР° РєРѕРЅС‚РµРєСЃС‚Рµ РјР°СЃРєСѓ
+	//! \param gr РєРѕРЅС‚РµРєСЃС‚
+	//! \param pCurrent С‚РµРєСѓС‰Р°СЏ С„РёРіСѓСЂР° (С‚Р° С‡С‚Рѕ РµС‰Рµ СЂРёСЃСѓРµС‚СЃСЏ)
 	void Draw(Graphics& gr, CFigure* pCurrent = 0) const;
 
 	//! add new item to the mask
@@ -76,16 +76,16 @@ public:
 	{
 		return m_MaskData.IsEmpty() || m_MaskData.Top().empty();
 	}	
-	//! откатиться по стеку назад
+	//! РѕС‚РєР°С‚РёС‚СЊСЃСЏ РїРѕ СЃС‚РµРєСѓ РЅР°Р·Р°Рґ
 	void			Undo() MY_THROW (MaskUndoException);
-	//! откатиться по стеку вперед
+	//! РѕС‚РєР°С‚РёС‚СЊСЃСЏ РїРѕ СЃС‚РµРєСѓ РІРїРµСЂРµРґ
 	void			Redo() MY_THROW (MaskRedoException);
 
-	//! возможно ли откат назад
-	//! \return да/нет
+	//! РІРѕР·РјРѕР¶РЅРѕ Р»Рё РѕС‚РєР°С‚ РЅР°Р·Р°Рґ
+	//! \return РґР°/РЅРµС‚
 	bool			IsUndo() const ;
-	//! возможно ли откат вперед
-	//! \return да/нет
+	//! РІРѕР·РјРѕР¶РЅРѕ Р»Рё РѕС‚РєР°С‚ РІРїРµСЂРµРґ
+	//! \return РґР°/РЅРµС‚
 	bool			IsRedo() const 
 	{ 
 		return m_MaskData.CanRedo();
@@ -97,35 +97,35 @@ MACRO_EXCEPTION(NoSuchMaskException, MaskHolderException);
 
 typedef std::map<int , CMask>	MaskHolder_t;
 
-//! содержит все слои маски
+//! СЃРѕРґРµСЂР¶РёС‚ РІСЃРµ СЃР»РѕРё РјР°СЃРєРё
 class CMaskHolder : protected MaskHolder_t
 {
 public:
 	CMaskHolder() {};
 	CMaskHolder(const CMaskHolder & MaskHolder);
-	//! добавить слой в маску
-	//! \param Key идент-р слоя
-	//! \param Mask маска, куда добавляется слой
-	//! \return добалено/нет (такой слой уже есть)
+	//! РґРѕР±Р°РІРёС‚СЊ СЃР»РѕР№ РІ РјР°СЃРєСѓ
+	//! \param Key РёРґРµРЅС‚-СЂ СЃР»РѕСЏ
+	//! \param Mask РјР°СЃРєР°, РєСѓРґР° РґРѕР±Р°РІР»СЏРµС‚СЃСЏ СЃР»РѕР№
+	//! \return РґРѕР±Р°Р»РµРЅРѕ/РЅРµС‚ (С‚Р°РєРѕР№ СЃР»РѕР№ СѓР¶Рµ РµСЃС‚СЊ)
 	bool			Add(int Key, const CMask& Mask) /*throw ( MaskDuplicateException);*/;
-	//! получить слой в маске для чтения
-	//! \param Key идент-р слоя
-	//! \return слой
-	//! \exception NoSuchMaskException нет такого слоя
+	//! РїРѕР»СѓС‡РёС‚СЊ СЃР»РѕР№ РІ РјР°СЃРєРµ РґР»СЏ С‡С‚РµРЅРёСЏ
+	//! \param Key РёРґРµРЅС‚-СЂ СЃР»РѕСЏ
+	//! \return СЃР»РѕР№
+	//! \exception NoSuchMaskException РЅРµС‚ С‚Р°РєРѕРіРѕ СЃР»РѕСЏ
 	const CMask&	operator[](int Key) const MY_THROW ( NoSuchMaskException);
-	//! получить слой в маске для чтения/записи
-	//! \param Key идент-р слоя
-	//! \return слой
-	//! \exception NoSuchMaskException нет такого слоя
+	//! РїРѕР»СѓС‡РёС‚СЊ СЃР»РѕР№ РІ РјР°СЃРєРµ РґР»СЏ С‡С‚РµРЅРёСЏ/Р·Р°РїРёСЃРё
+	//! \param Key РёРґРµРЅС‚-СЂ СЃР»РѕСЏ
+	//! \return СЃР»РѕР№
+	//! \exception NoSuchMaskException РЅРµС‚ С‚Р°РєРѕРіРѕ СЃР»РѕСЏ
 	CMask&			operator[](int Key) MY_THROW ( NoSuchMaskException);
-	//! стереть все слои
+	//! СЃС‚РµСЂРµС‚СЊ РІСЃРµ СЃР»РѕРё
 	void			Clear();
 
-	//! для итерации по доступным слоям
+	//! РґР»СЏ РёС‚РµСЂР°С†РёРё РїРѕ РґРѕСЃС‚СѓРїРЅС‹Рј СЃР»РѕСЏРј
 	MaskHolder_t::const_iterator begin() const { return MaskHolder_t::begin();}
 	MaskHolder_t::const_iterator end() const { return MaskHolder_t::end();}
 
-	//! отрисовать содержимое всех слоев заново
+	//! РѕС‚СЂРёСЃРѕРІР°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ РІСЃРµС… СЃР»РѕРµРІ Р·Р°РЅРѕРІРѕ
 	void Invalidate();
 	
 };

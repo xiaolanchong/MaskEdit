@@ -21,7 +21,7 @@
 //                                   class DBAccessor                                   //
 //======================================================================================//
 
-//! аксессор для списка камер системы
+//! Р°РєСЃРµСЃСЃРѕСЂ РґР»СЏ СЃРїРёСЃРєР° РєР°РјРµСЂ СЃРёСЃС‚РµРјС‹
 struct DBA_Camera
 {
 	int		m_nCameraID;
@@ -36,7 +36,7 @@ struct DBA_Camera
 	DEFINE_COMMAND_EX(DBA_Camera, _T("SELECT CameraID, CameraType FROM Camera  ORDER BY CameraID ASC"))
 };
 
-//! аксессор для записи/чтения
+//! Р°РєСЃРµСЃСЃРѕСЂ РґР»СЏ Р·Р°РїРёСЃРё/С‡С‚РµРЅРёСЏ
 struct DBA_Camera_Mask
 {
 	ISequentialStream*	m_BLOBDATA;

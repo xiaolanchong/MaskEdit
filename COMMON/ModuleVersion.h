@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-//! класс для взятия версии программы из ресурсов приложения
+//! РєР»Р°СЃСЃ РґР»СЏ РІР·СЏС‚РёСЏ РІРµСЂСЃРёРё РїСЂРѕРіСЂР°РјРјС‹ РёР· СЂРµСЃСѓСЂСЃРѕРІ РїСЂРёР»РѕР¶РµРЅРёСЏ
 class CModuleVersion : public VS_FIXEDFILEINFO {
 protected:
    BYTE* m_pVersionInfo;   // all version info

@@ -11,7 +11,7 @@
 
 #include "Figure.h"
 
-//! \brief отрезок
+//! \brief РѕС‚СЂРµР·РѕРє
 //! \version 1.0
 //! \date 03-22-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)

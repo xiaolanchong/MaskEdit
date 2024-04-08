@@ -16,6 +16,8 @@
 #include "DBAccessor.h"
 #include "DBSerializer.h"
 
+#ifdef WITH_ORWELL
+
 #include "../../DBBridge/trunk/DBBridge.h"
 #include "BridgeWrapper.h"
 
@@ -86,18 +88,6 @@ catch( DatabaseException )
 
 void	DBSerializer::Connect()
 {
-	//! old code, use DBBridge instead
-/*	TCHAR szBuf[1024];
-	DWORD dwSize = sizeof( szBuf );
-	DWORD dwType = REG_SZ;
-	DWORD res = SHGetValue( HKEY_LOCAL_MACHINE, _T("Software\\ElVEES\\Common"), _T("DbInitString"), &dwType, szBuf, &dwSize );
-	if( res != ERROR_SUCCESS  ) throw  DBConnectionException("Invalid connection string");
-	std::tstring sCS (szBuf);
-#if 1
-	sCS += _T(";User ID=OrwellSAdmin;Password=t*e_AVafrEzUtaTha2rEmUJE@ew#xaze"); 
-#endif
-	Open( sCS, false );*/
-
 	DWORD dwSize = 0;
 	long res = GetO2KDBString( NULL, &dwSize, true);
 	if(res != DBB_S_OK)
@@ -148,25 +138,5 @@ catch( DatabaseException )
 };
 
 const size_t c_nMaxCameraNumber = 8;
-/*
-void	DBSerializer::SaveDirectionVectors( int nCameraID, const	std::vector<boost::optional<CPoint> >&	VectorArr )
-try
-{
-	BridgeWrapper br;
-	br.SaveDirectionVectors( nCameraID, VectorArr );
-}
-catch( BridgeWrapper::BridgeWrapperException )
-{
-	throw SaveDBFileException("Failed to save vectors");
-};
 
-void	DBSerializer::LoadDirectionVectors( int nCameraID,		std::vector<boost::optional<CPoint> >&	VectorArr )
-try
-{
-	BridgeWrapper br;
-	br.LoadDirectionVectors( nCameraID, VectorArr );
-}
-catch( BridgeWrapper::BridgeWrapperException )
-{
-	throw LoadDBFileException("Failed to load vectors");
-};*/
+#endif // WITH_ORWELL

@@ -1,10 +1,10 @@
 //======================================================================================//
 //                                         DVR                                          //
 //                                                                                      //
-//                               Copyright© ElVEES, 2006                                //
+//                               CopyrightВ© ElVEES, 2006                                //
 //                                                                                      //
 //--------------------------------------------------------------------------------------//
-/* Description: Взаимодействие с DBBridge
+/* Description: Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ DBBridge
 
     Author: Eugene Gorbachev (Eugene.Gorbachev@biones.com)
     Date:   13.03.2006
@@ -13,13 +13,15 @@
 #ifndef _BRIDGE_WRAPPER_9390592062245748_
 #define _BRIDGE_WRAPPER_9390592062245748_
 
+#ifdef WITH_ORWELL
+
 class CIDBBridge;
 
 //======================================================================================//
 //                                 class BridgeWrapper                                  //
 //======================================================================================//
 
-//! \brief Взаимодействие с DBBridge
+//! \brief Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ DBBridge
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
 //! \date   13.03.2006
 //! \version 1.0
@@ -28,8 +30,8 @@ class CIDBBridge;
 
 class BridgeWrapper
 {
-	//! получить интерфейс с DBBridge
-	//! \return интерфейс с DBBridge
+	//! РїРѕР»СѓС‡РёС‚СЊ РёРЅС‚РµСЂС„РµР№СЃ СЃ DBBridge
+	//! \return РёРЅС‚РµСЂС„РµР№СЃ СЃ DBBridge
 	boost::shared_ptr<CIDBBridge>	CreateBridge();	
 #if 0
 	boost::optional<int>	GetParam( CIDBBridge* pBridge, int nCameraID, const wchar_t* szParamName) ;
@@ -37,42 +39,66 @@ class BridgeWrapper
 	void					SetNullParam( CIDBBridge* pBridge, int nCameraID, const wchar_t* szParamName) ;
 #endif
 public:
-	//! исключение, если что-то не так
+	//! РёСЃРєР»СЋС‡РµРЅРёРµ, РµСЃР»Рё С‡С‚Рѕ-С‚Рѕ РЅРµ С‚Р°Рє
 	class BridgeWrapperException : public std::exception{};
 
 	BridgeWrapper();
 	virtual ~BridgeWrapper();
 
-	//! сохранить файл с маской
-	//! \param nCameraID камера иден-р, от которой сохраняется маска
-	//! \param Data сам файл (двоичный массив)
+	//! СЃРѕС…СЂР°РЅРёС‚СЊ С„Р°Р№Р» СЃ РјР°СЃРєРѕР№
+	//! \param nCameraID РєР°РјРµСЂР° РёРґРµРЅ-СЂ, РѕС‚ РєРѕС‚РѕСЂРѕР№ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ РјР°СЃРєР°
+	//! \param Data СЃР°Рј С„Р°Р№Р» (РґРІРѕРёС‡РЅС‹Р№ РјР°СЃСЃРёРІ)
 	void	SaveFile( int nCameraID, const std::vector<BYTE>& Data);
 
-	//! загрузить файл с маской
-	//! \param nCameraID камера иден-р, от которой сохраняется маска
-	//! \param BinArr сам файл (двоичный массив)
+	//! Р·Р°РіСЂСѓР·РёС‚СЊ С„Р°Р№Р» СЃ РјР°СЃРєРѕР№
+	//! \param nCameraID РєР°РјРµСЂР° РёРґРµРЅ-СЂ, РѕС‚ РєРѕС‚РѕСЂРѕР№ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ РјР°СЃРєР°
+	//! \param BinArr СЃР°Рј С„Р°Р№Р» (РґРІРѕРёС‡РЅС‹Р№ РјР°СЃСЃРёРІ)
 	void	LoadFile( int nCameraID, std::vector<BYTE>& BinArr ); 
 
-	//! считать имя слоя
-	//! \param szNameLayer название столбца
-	//! \return буффер с именем слоя
+	//! СЃС‡РёС‚Р°С‚СЊ РёРјСЏ СЃР»РѕСЏ
+	//! \param szNameLayer РЅР°Р·РІР°РЅРёРµ СЃС‚РѕР»Р±С†Р°
+	//! \return Р±СѓС„С„РµСЂ СЃ РёРјРµРЅРµРј СЃР»РѕСЏ
 	LPCTSTR LoadNameLayer(LPWSTR szNameLayer);
 
-	//! создать интерфейс CIDBBridge
-	//! \return результат подключения
+	//! СЃРѕР·РґР°С‚СЊ РёРЅС‚РµСЂС„РµР№СЃ CIDBBridge
+	//! \return СЂРµР·СѓР»СЊС‚Р°С‚ РїРѕРґРєР»СЋС‡РµРЅРёСЏ
 	long ConnectDB();
 
-	//! уничтожить интерфейс
-	//! \результат уничтожения
+	//! СѓРЅРёС‡С‚РѕР¶РёС‚СЊ РёРЅС‚РµСЂС„РµР№СЃ
+	//! \СЂРµР·СѓР»СЊС‚Р°С‚ СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ
 	long ReleaseDbb();
 
 
 	long SaveNameLayer(LPWSTR szNameLayer);
 
 public:
-	//Интерфейс для работы с бд
+	//РРЅС‚РµСЂС„РµР№СЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р±Рґ
 	CIDBBridge* iDBBridge;
 
 };
+
+#else
+
+class BridgeWrapper
+{
+	static constexpr long OK = 0;
+public:
+	
+	long ConnectDB() { return OK; }
+
+	LPCTSTR LoadNameLayer(LPWSTR szNameLayer)
+	{ 
+		CString newLayer;
+		newLayer.Format(_T("Layer%0u-"), static_cast<unsigned int>(m_loadedLayers.size()));
+		newLayer += szNameLayer;
+		m_loadedLayers.push_back(std::move(newLayer));
+		return static_cast<LPCTSTR>(m_loadedLayers.back());
+	}
+	long ReleaseDbb() { return OK; }
+private:
+	std::vector<CString> m_loadedLayers;
+};
+
+#endif // WITH_ORWELL
 
 #endif // _BRIDGE_WRAPPER_9390592062245748_

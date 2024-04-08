@@ -1,4 +1,4 @@
-// Microsoft Visual C++ generated resource script.
+п»ї// Microsoft Visual C++ generated resource script.
 //
 #include "../resource.h"
 
@@ -76,22 +76,22 @@ END
 
 IDD_CAMIDDIALOG DIALOG  0, 0, 188, 50
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Добавить камеру"
+CAPTION "Р”РѕР±Р°РІРёС‚СЊ РєР°РјРµСЂСѓ"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,131,7,50,14
-    PUSHBUTTON      "Отмена",IDCANCEL,131,24,50,14
-    LTEXT           "ID камеры",IDC_STATIC,15,17,39,14
+    PUSHBUTTON      "РћС‚РјРµРЅР°",IDCANCEL,131,24,50,14
+    LTEXT           "ID РєР°РјРµСЂС‹",IDC_STATIC,15,17,39,14
     EDITTEXT        IDC_EDIT1,57,17,50,14,ES_AUTOHSCROLL | ES_NUMBER
 END
 
 IDD_SIZEDIALOG DIALOG  0, 0, 192, 55
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Добавить размер видео"
+CAPTION "Р”РѕР±Р°РІРёС‚СЊ СЂР°Р·РјРµСЂ РІРёРґРµРѕ"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,135,7,50,14
-    PUSHBUTTON      "Отмена",IDCANCEL,135,24,50,14
+    PUSHBUTTON      "РћС‚РјРµРЅР°",IDCANCEL,135,24,50,14
     LTEXT           "X",IDC_STATIC,22,7,35,12
     LTEXT           "Y",IDC_STATIC,83,7,37,15
     EDITTEXT        IDC_EDIT1,21,24,43,12,ES_AUTOHSCROLL | ES_NUMBER
@@ -100,12 +100,12 @@ END
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "О программе..."
+CAPTION "Рћ РїСЂРѕРіСЂР°РјРјРµ.."
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "Редактор маски",IDC_STATIC,39,30,63,8,SS_NOPREFIX
-    LTEXT           "Копирайт © ЭЛВИС, 2004-2005",IDC_STATIC,39,15,119,8
+    LTEXT           "Р РµРґР°РєС‚РѕСЂ РјР°СЃРєРё",IDC_STATIC,39,30,63,8,SS_NOPREFIX
+    LTEXT           "РљРѕРїРёСЂР°Р№С‚ В© Р­Р›Р’РРЎ, 2004-2005",IDC_STATIC,39,15,119,8
     DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
     LTEXT           "#",IDC_STATIC_VERSION,109,30,58,8
 END
@@ -113,7 +113,7 @@ END
 IDD_LAYERDLG DIALOGEX 0, 0, 118, 126
 STYLE DS_ABSALIGN | DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_TOOLWINDOW | WS_EX_WINDOWEDGE
-CAPTION "Редактор слоев"
+CAPTION "Р РµРґР°РєС‚РѕСЂ СЃР»РѕРµРІ"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     LISTBOX         IDC_CHECK,0,0,118,126,LBS_SORT | LBS_OWNERDRAWFIXED | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
@@ -172,53 +172,53 @@ IDC_CURSOR_GLASS        CURSOR                  "cur_mag.cur"
 
 IDR_MAINFRAME MENU 
 BEGIN
-    POPUP "Файл"
+    POPUP "Р¤Р°Р№Р»"
     BEGIN
-        MENUITEM "Новый\tCtrl+N",               ID_FILE_NEW
-        MENUITEM "Открыть...\tCtrl+O",          ID_FILE_OPEN
-        POPUP "Открыть из БД"
+        MENUITEM "РќРѕРІС‹Р№\tCtrl+N",               ID_FILE_NEW
+        MENUITEM "РћС‚РєСЂС‹С‚СЊ...\tCtrl+O",          ID_FILE_OPEN
+        POPUP "РћС‚РєСЂС‹С‚СЊ РёР· Р‘Р”"
         BEGIN
-            MENUITEM "Нет камер",                   ID_OPEN_CAMERA_0
+            MENUITEM "РќРµС‚ РєР°РјРµСЂ",                   ID_OPEN_CAMERA_0
         END
-        MENUITEM "&Сохранить\tCtrl+S",          ID_FILE_SAVE
-        MENUITEM "Сохранить как...",            ID_FILE_SAVE_AS
-        POPUP "Сохранить в БД"
+        MENUITEM "&РЎРѕС…СЂР°РЅРёС‚СЊ\tCtrl+S",          ID_FILE_SAVE
+        MENUITEM "РЎРѕС…СЂР°РЅРёС‚СЊ РєР°Рє...",            ID_FILE_SAVE_AS
+        POPUP "РЎРѕС…СЂР°РЅРёС‚СЊ РІ Р‘Р”"
         BEGIN
-            MENUITEM "Нет камер",                   ID_SAVE_CAMERA_0
+            MENUITEM "РќРµС‚ РєР°РјРµСЂ",                   ID_SAVE_CAMERA_0
         END
         MENUITEM SEPARATOR
         MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
         MENUITEM SEPARATOR
-        MENUITEM "Вы&xод",                      ID_APP_EXIT
+        MENUITEM "Р’С‹&xРѕРґ",                      ID_APP_EXIT
     END
-    POPUP "Размер"
+    POPUP "Р Р°Р·РјРµСЂ"
     BEGIN
         MENUITEM SEPARATOR
-        MENUITEM "Добавить размер..",           ID_SIZE_ADD
+        MENUITEM "Р”РѕР±Р°РІРёС‚СЊ СЂР°Р·РјРµСЂ..",           ID_SIZE_ADD
     END
-    POPUP "Фон"
+    POPUP "Р¤РѕРЅ"
     BEGIN
-        MENUITEM "Изображение..\tCtrl+I",       ID_OPEN_IMAGE
-        MENUITEM "Видео...\tCtrl+D",            ID_OPEN_VIDEO
+        MENUITEM "РР·РѕР±СЂР°Р¶РµРЅРёРµ..\tCtrl+I",       ID_OPEN_IMAGE
+        MENUITEM "Р’РёРґРµРѕ...\tCtrl+D",            ID_OPEN_VIDEO
         MENUITEM SEPARATOR
-        MENUITEM "Добавить камеру...",          ID_OPEN_ADD_CAMERA
+        MENUITEM "Р”РѕР±Р°РІРёС‚СЊ РєР°РјРµСЂСѓ...",          ID_OPEN_ADD_CAMERA
     END
-    POPUP "Редактировать"
+    POPUP "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ"
     BEGIN
-        MENUITEM "&Отменить\tCtrl+Z",           ID_EDIT_UNDO
-        MENUITEM "&Повторить\tCtrl+Y",          ID_EDIT_REDO
+        MENUITEM "&РћС‚РјРµРЅРёС‚СЊ\tCtrl+Z",           ID_EDIT_UNDO
+        MENUITEM "&РџРѕРІС‚РѕСЂРёС‚СЊ\tCtrl+Y",          ID_EDIT_REDO
     END
-    POPUP "Цвета"
+    POPUP "Р¦РІРµС‚Р°"
     BEGIN
-        MENUITEM "Редактировать рамку...",      ID_COLORS_BORDER
+        MENUITEM "Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ СЂР°РјРєСѓ...",      ID_COLORS_BORDER
     END
-    POPUP "Помощь"
+    POPUP "РџРѕРјРѕС‰СЊ"
     BEGIN
-        MENUITEM "О программе..",               ID_APP_ABOUT
+        MENUITEM "Рћ РїСЂРѕРіСЂР°РјРјРµ..",               ID_APP_ABOUT
     END
-    POPUP "Окна"
+    POPUP "РћРєРЅР°"
     BEGIN
-        MENUITEM "Слои",                        ID_WINDOW_LAYERS
+        MENUITEM "РЎР»РѕРё",                        ID_WINDOW_LAYERS
     END
 END
 
@@ -278,28 +278,28 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDR_MAINFRAME           "Редактор маски\n\nMsEdit\nФайлы маски(*.dat)\n.dat\nДокумент MsEdit\nMsEdit Document"
-    IDS_TOOLTIP_1           "Выберите толщину линий"
-    IDS_TOOLTIP_2           "Толщина линии 1"
-    IDS_TOOLTIP_3           "Толщина линии 2"
-    IDS_TOOLTIP_4           "Толщина линии 3"
-    IDS_TOOLTIP_5           "Толщина линии 4"
-    IDS_TOOLTIP_6           "Толщина линии 5"
-    IDS_FIG_PEN             "карандаш"
-    IDS_FIG_LINE            "линия"
-    IDS_FIG_RECT            "прямоугольник"
-    IDS_FIG_POLYLINE        "многоугольник"
-    IDS_FIG_FILL            "заливка"
-    IDS_MESSAGE             "Нельзя использовать инструмент ""%s"" потому что слой невидимый"
-    IDS_NAME_LAYER_0        "Первый слой"
-    IDS_NAME_LAYER_1        "Второй слой"
-    IDS_UNKLAYER            "Неизвестный слой"
+    IDR_MAINFRAME           "Р РµРґР°РєС‚РѕСЂ РјР°СЃРєРё\n\nMsEdit\nР¤Р°Р№Р»С‹ РјР°СЃРєРё(*.dat)\n.dat\nР”РѕРєСѓРјРµРЅС‚ MsEdit\nMsEdit Document"
+    IDS_TOOLTIP_1           "Р’С‹Р±РµСЂРёС‚Рµ С‚РѕР»С‰РёРЅСѓ Р»РёРЅРёР№"
+    IDS_TOOLTIP_2           "РўРѕР»С‰РёРЅР° Р»РёРЅРёРё 1"
+    IDS_TOOLTIP_3           "РўРѕР»С‰РёРЅР° Р»РёРЅРёРё 2"
+    IDS_TOOLTIP_4           "РўРѕР»С‰РёРЅР° Р»РёРЅРёРё 3"
+    IDS_TOOLTIP_5           "РўРѕР»С‰РёРЅР° Р»РёРЅРёРё 4"
+    IDS_TOOLTIP_6           "РўРѕР»С‰РёРЅР° Р»РёРЅРёРё 5"
+    IDS_FIG_PEN             "РєР°СЂР°РЅРґР°С€"
+    IDS_FIG_LINE            "Р»РёРЅРёСЏ"
+    IDS_FIG_RECT            "РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє"
+    IDS_FIG_POLYLINE        "РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРє"
+    IDS_FIG_FILL            "Р·Р°Р»РёРІРєР°"
+    IDS_MESSAGE             "РќРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚ ""%s"" РїРѕС‚РѕРјСѓ С‡С‚Рѕ СЃР»РѕР№ РЅРµРІРёРґРёРјС‹Р№"
+    IDS_NAME_LAYER_0        "РџРµСЂРІС‹Р№ СЃР»РѕР№"
+    IDS_NAME_LAYER_1        "Р’С‚РѕСЂРѕР№ СЃР»РѕР№"
+    IDS_UNKLAYER            "РќРµРёР·РІРµСЃС‚РЅС‹Р№ СЃР»РѕР№"
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_APP_TITLE       "Редактор маски"
-    AFX_IDS_IDLEMESSAGE     "Готов"
+    AFX_IDS_APP_TITLE       "Р РµРґР°РєС‚РѕСЂ РјР°СЃРєРё"
+    AFX_IDS_IDLEMESSAGE     "Р“РѕС‚РѕРІ"
 END
 
 STRINGTABLE 
@@ -314,21 +314,21 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_FILE_NEW             "Создать новый документ\nНовый"
-    ID_FILE_OPEN            "Открыть  документ\nОткрыть"
-    ID_FILE_CLOSE           "Закрыть  документ\nЗакрыть"
-    ID_FILE_SAVE            "Сохранить  документ\nСохранить"
-    ID_FILE_SAVE_AS         "Сохранить  документ с другим именем\nСохранить как..."
-    ID_FILE_PAGE_SETUP      "Изменить опции печати\nНастройка страницы"
-    ID_FILE_PRINT_SETUP     "Изменить принтер и опции печати\nНастройка принтера"
-    ID_FILE_PRINT           "Напечатать документ\nПечать"
-    ID_FILE_PRINT_PREVIEW   "Показать превью\nПревью"
+    ID_FILE_NEW             "РЎРѕР·РґР°С‚СЊ РЅРѕРІС‹Р№ РґРѕРєСѓРјРµРЅС‚\nРќРѕРІС‹Р№"
+    ID_FILE_OPEN            "РћС‚РєСЂС‹С‚СЊ  РґРѕРєСѓРјРµРЅС‚\nРћС‚РєСЂС‹С‚СЊ"
+    ID_FILE_CLOSE           "Р—Р°РєСЂС‹С‚СЊ  РґРѕРєСѓРјРµРЅС‚\nР—Р°РєСЂС‹С‚СЊ"
+    ID_FILE_SAVE            "РЎРѕС…СЂР°РЅРёС‚СЊ  РґРѕРєСѓРјРµРЅС‚\nРЎРѕС…СЂР°РЅРёС‚СЊ"
+    ID_FILE_SAVE_AS         "РЎРѕС…СЂР°РЅРёС‚СЊ  РґРѕРєСѓРјРµРЅС‚ СЃ РґСЂСѓРіРёРј РёРјРµРЅРµРј\nРЎРѕС…СЂР°РЅРёС‚СЊ РєР°Рє..."
+    ID_FILE_PAGE_SETUP      "РР·РјРµРЅРёС‚СЊ РѕРїС†РёРё РїРµС‡Р°С‚Рё\nРќР°СЃС‚СЂРѕР№РєР° СЃС‚СЂР°РЅРёС†С‹"
+    ID_FILE_PRINT_SETUP     "РР·РјРµРЅРёС‚СЊ РїСЂРёРЅС‚РµСЂ Рё РѕРїС†РёРё РїРµС‡Р°С‚Рё\nРќР°СЃС‚СЂРѕР№РєР° РїСЂРёРЅС‚РµСЂР°"
+    ID_FILE_PRINT           "РќР°РїРµС‡Р°С‚Р°С‚СЊ РґРѕРєСѓРјРµРЅС‚\nРџРµС‡Р°С‚СЊ"
+    ID_FILE_PRINT_PREVIEW   "РџРѕРєР°Р·Р°С‚СЊ РїСЂРµРІСЊСЋ\nРџСЂРµРІСЊСЋ"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_APP_ABOUT            "Вывести системную информацию о программе\nО программе"
-    ID_APP_EXIT             "Выйти из приложения с предложением сохраниться\nВыход"
+    ID_APP_ABOUT            "Р’С‹РІРµСЃС‚Рё СЃРёСЃС‚РµРјРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РїСЂРѕРіСЂР°РјРјРµ\nРћ РїСЂРѕРіСЂР°РјРјРµ"
+    ID_APP_EXIT             "Р’С‹Р№С‚Рё РёР· РїСЂРёР»РѕР¶РµРЅРёСЏ СЃ РїСЂРµРґР»РѕР¶РµРЅРёРµРј СЃРѕС…СЂР°РЅРёС‚СЊСЃСЏ\nР’С‹С…РѕРґ"
 END
 
 STRINGTABLE 
@@ -353,130 +353,130 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_NEXT_PANE            "Переключиться на следующий элемент окна\nСледующий элемент"
-    ID_PREV_PANE            "Переключиться на предыдующий элемент окна\nПредыдующий элемент"
+    ID_NEXT_PANE            "РџРµСЂРµРєР»СЋС‡РёС‚СЊСЃСЏ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ РѕРєРЅР°\nРЎР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚"
+    ID_PREV_PANE            "РџРµСЂРµРєР»СЋС‡РёС‚СЊСЃСЏ РЅР° РїСЂРµРґС‹РґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ РѕРєРЅР°\nРџСЂРµРґС‹РґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_WINDOW_SPLIT         "Разделить активное окно на панели\nРазделить"
+    ID_WINDOW_SPLIT         "Р Р°Р·РґРµР»РёС‚СЊ Р°РєС‚РёРІРЅРѕРµ РѕРєРЅРѕ РЅР° РїР°РЅРµР»Рё\nР Р°Р·РґРµР»РёС‚СЊ"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_EDIT_CLEAR           "Стереть выделенное\nСтереть"
-    ID_EDIT_CLEAR_ALL       "Стереть все\nСтереть все"
-    ID_EDIT_COPY            "Скопировать в Clipboard\nСкопировать"
-    ID_EDIT_CUT             "Вырезать в  Clipboard\nВырезать"
-    ID_EDIT_FIND            "Найти текст\nНайти"
-    ID_EDIT_PASTE           "Вставить Clipboard\nВставить"
-    ID_EDIT_REPEAT          "Повторить действие\nПовторить"
-    ID_EDIT_REPLACE         "Найти и заменить текст\nЗамена"
-    ID_EDIT_SELECT_ALL      "Выделить весь документ\nВыделить все"
-    ID_EDIT_UNDO            "Отменить последнее действие\nОтменить"
-    ID_EDIT_REDO            "Сделать ранее отмененное действие\nПовторить"
+    ID_EDIT_CLEAR           "РЎС‚РµСЂРµС‚СЊ РІС‹РґРµР»РµРЅРЅРѕРµ\nРЎС‚РµСЂРµС‚СЊ"
+    ID_EDIT_CLEAR_ALL       "РЎС‚РµСЂРµС‚СЊ РІСЃРµ\nРЎС‚РµСЂРµС‚СЊ РІСЃРµ"
+    ID_EDIT_COPY            "РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РІ Clipboard\nРЎРєРѕРїРёСЂРѕРІР°С‚СЊ"
+    ID_EDIT_CUT             "Р’С‹СЂРµР·Р°С‚СЊ РІ  Clipboard\nР’С‹СЂРµР·Р°С‚СЊ"
+    ID_EDIT_FIND            "РќР°Р№С‚Рё С‚РµРєСЃС‚\nРќР°Р№С‚Рё"
+    ID_EDIT_PASTE           "Р’СЃС‚Р°РІРёС‚СЊ Clipboard\nР’СЃС‚Р°РІРёС‚СЊ"
+    ID_EDIT_REPEAT          "РџРѕРІС‚РѕСЂРёС‚СЊ РґРµР№СЃС‚РІРёРµ\nРџРѕРІС‚РѕСЂРёС‚СЊ"
+    ID_EDIT_REPLACE         "РќР°Р№С‚Рё Рё Р·Р°РјРµРЅРёС‚СЊ С‚РµРєСЃС‚\nР—Р°РјРµРЅР°"
+    ID_EDIT_SELECT_ALL      "Р’С‹РґРµР»РёС‚СЊ РІРµСЃСЊ РґРѕРєСѓРјРµРЅС‚\nР’С‹РґРµР»РёС‚СЊ РІСЃРµ"
+    ID_EDIT_UNDO            "РћС‚РјРµРЅРёС‚СЊ РїРѕСЃР»РµРґРЅРµРµ РґРµР№СЃС‚РІРёРµ\nРћС‚РјРµРЅРёС‚СЊ"
+    ID_EDIT_REDO            "РЎРґРµР»Р°С‚СЊ СЂР°РЅРµРµ РѕС‚РјРµРЅРµРЅРЅРѕРµ РґРµР№СЃС‚РІРёРµ\nРџРѕРІС‚РѕСЂРёС‚СЊ"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_VIEW_TOOLBAR         "Показать или убрать панель инструментов\nПанель инструментов"
-    ID_VIEW_STATUS_BAR      "Показать или убрать панель статуса\nПанель статуса"
+    ID_VIEW_TOOLBAR         "РџРѕРєР°Р·Р°С‚СЊ РёР»Рё СѓР±СЂР°С‚СЊ РїР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ\nРџР°РЅРµР»СЊ РёРЅСЃС‚СЂСѓРјРµРЅС‚РѕРІ"
+    ID_VIEW_STATUS_BAR      "РџРѕРєР°Р·Р°С‚СЊ РёР»Рё СѓР±СЂР°С‚СЊ РїР°РЅРµР»СЊ СЃС‚Р°С‚СѓСЃР°\nРџР°РЅРµР»СЊ СЃС‚Р°С‚СѓСЃР°"
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_SCSIZE          "Изменить размер окна"
-    AFX_IDS_SCMOVE          "Изменить положение окна"
-    AFX_IDS_SCMINIMIZE      "Свернуть окно"
-    AFX_IDS_SCMAXIMIZE      "Развернуть окно"
-    AFX_IDS_SCNEXTWINDOW    "Переключиться на следующее окно"
-    AFX_IDS_SCPREVWINDOW    "Переключиться на предыдущее окно"
-    AFX_IDS_SCCLOSE         "Закрыть окно с предложением сохранить изменения"
+    AFX_IDS_SCSIZE          "РР·РјРµРЅРёС‚СЊ СЂР°Р·РјРµСЂ РѕРєРЅР°"
+    AFX_IDS_SCMOVE          "РР·РјРµРЅРёС‚СЊ РїРѕР»РѕР¶РµРЅРёРµ РѕРєРЅР°"
+    AFX_IDS_SCMINIMIZE      "РЎРІРµСЂРЅСѓС‚СЊ РѕРєРЅРѕ"
+    AFX_IDS_SCMAXIMIZE      "Р Р°Р·РІРµСЂРЅСѓС‚СЊ РѕРєРЅРѕ"
+    AFX_IDS_SCNEXTWINDOW    "РџРµСЂРµРєР»СЋС‡РёС‚СЊСЃСЏ РЅР° СЃР»РµРґСѓСЋС‰РµРµ РѕРєРЅРѕ"
+    AFX_IDS_SCPREVWINDOW    "РџРµСЂРµРєР»СЋС‡РёС‚СЊСЃСЏ РЅР° РїСЂРµРґС‹РґСѓС‰РµРµ РѕРєРЅРѕ"
+    AFX_IDS_SCCLOSE         "Р—Р°РєСЂС‹С‚СЊ РѕРєРЅРѕ СЃ РїСЂРµРґР»РѕР¶РµРЅРёРµРј СЃРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ"
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_SCRESTORE       "Развернуть окно"
-    AFX_IDS_SCTASKLIST      "Включить лист заданий"
+    AFX_IDS_SCRESTORE       "Р Р°Р·РІРµСЂРЅСѓС‚СЊ РѕРєРЅРѕ"
+    AFX_IDS_SCTASKLIST      "Р’РєР»СЋС‡РёС‚СЊ Р»РёСЃС‚ Р·Р°РґР°РЅРёР№"
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "Закрыть режим превью\nОтменить превью"
+    AFX_IDS_PREVIEW_CLOSE   "Р—Р°РєСЂС‹С‚СЊ СЂРµР¶РёРј РїСЂРµРІСЊСЋ\nРћС‚РјРµРЅРёС‚СЊ РїСЂРµРІСЊСЋ"
 END
 
 STRINGTABLE 
 BEGIN
-    IDS_NOIMAGE             "Нет изображения"
+    IDS_NOIMAGE             "РќРµС‚ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ"
 END
 
 STRINGTABLE 
 BEGIN
-    IDS_EXC_TABLE_OPEN      "Не могу открыть таблицу БД"
-    IDS_MASK_ICON_UNKNOWN   "Н"
-    IDS_MASK_ICON_VEHICLES  "Т"
-    IDS_MASK_ICON_HUMANS    "Ч"
-    IDS_MASK_ICON_MOVEDETECTION "Д"
-    IDS_DB_CONNECT          "Ошибка при соединении с БД"
-    IDS_DB_DATA             "В БД нет данных для камеры"
+    IDS_EXC_TABLE_OPEN      "РќРµ РјРѕРіСѓ РѕС‚РєСЂС‹С‚СЊ С‚Р°Р±Р»РёС†Сѓ Р‘Р”"
+    IDS_MASK_ICON_UNKNOWN   "Рќ"
+    IDS_MASK_ICON_VEHICLES  "Рў"
+    IDS_MASK_ICON_HUMANS    "Р§"
+    IDS_MASK_ICON_MOVEDETECTION "Р”"
+    IDS_DB_CONNECT          "РћС€РёР±РєР° РїСЂРё СЃРѕРµРґРёРЅРµРЅРёРё СЃ Р‘Р”"
+    IDS_DB_DATA             "Р’ Р‘Р” РЅРµС‚ РґР°РЅРЅС‹С… РґР»СЏ РєР°РјРµСЂС‹"
 END
 
 STRINGTABLE 
 BEGIN
-    IDS_OPEN_CAMERA         "Камера"
-    IDS_FILTER_IMAGE        "Все файлы изображений|*.bmp;*.jpeg;*.jpg;*.png|BMP изображение(*.bmp)|*.bmp|JPEG изображение(*.jpeg,*.jpg)|*.jpeg;*.jpg|PNG изображение(*.png)|*.png||"
-    IDS_FILTER_VIDEO        "Видео(*.avi)|*.avi||"
+    IDS_OPEN_CAMERA         "РљР°РјРµСЂР°"
+    IDS_FILTER_IMAGE        "Р’СЃРµ С„Р°Р№Р»С‹ РёР·РѕР±СЂР°Р¶РµРЅРёР№|*.bmp;*.jpeg;*.jpg;*.png|BMP РёР·РѕР±СЂР°Р¶РµРЅРёРµ(*.bmp)|*.bmp|JPEG РёР·РѕР±СЂР°Р¶РµРЅРёРµ(*.jpeg,*.jpg)|*.jpeg;*.jpg|PNG РёР·РѕР±СЂР°Р¶РµРЅРёРµ(*.png)|*.png||"
+    IDS_FILTER_VIDEO        "Р’РёРґРµРѕ(*.avi)|*.avi||"
     IDS_EXC_INVALID_MASK_SIZE 
-                            "Неправильный размер маски, ожидалось %dx%d, имеется %dx%d"
-    IDS_EXC_INVALID_MASK_FILE "Неправильная маска или поврежденный файл"
-    IDS_EXC_CONNECT_ID      "Не могу связаться с указанным сервером"
-    IDS_EXC_CONNECT_SERVER  "Нет изображения с сервера"
-    IDS_EXC_DSHOW           "ошибка DirectShow"
+                            "РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РјР°СЃРєРё, РѕР¶РёРґР°Р»РѕСЃСЊ %dx%d, РёРјРµРµС‚СЃСЏ %dx%d"
+    IDS_EXC_INVALID_MASK_FILE "РќРµРїСЂР°РІРёР»СЊРЅР°СЏ РјР°СЃРєР° РёР»Рё РїРѕРІСЂРµР¶РґРµРЅРЅС‹Р№ С„Р°Р№Р»"
+    IDS_EXC_CONNECT_ID      "РќРµ РјРѕРіСѓ СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ СѓРєР°Р·Р°РЅРЅС‹Рј СЃРµСЂРІРµСЂРѕРј"
+    IDS_EXC_CONNECT_SERVER  "РќРµС‚ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ СЃ СЃРµСЂРІРµСЂР°"
+    IDS_EXC_DSHOW           "РѕС€РёР±РєР° DirectShow"
     IDS_EXC_INVALID_IMAGE_SIZE 
-                            "Неправильный размер изображения, ожидалось %dx%d, имеется %dx%d"
-    IDS_EXC_INVALID_IMAGE_FILE "Некорректное изображение"
+                            "РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ, РѕР¶РёРґР°Р»РѕСЃСЊ %dx%d, РёРјРµРµС‚СЃСЏ %dx%d"
+    IDS_EXC_INVALID_IMAGE_FILE "РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ"
     IDS_REGISTRYKEY         "ElVEES"
     IDS_REG_DB              "Software\\ElVEES\\Common"
     IDS_REG_DB_PARAM        "DbInitString"
-    IDS_EXC_DATA_SOURCE     "Неправильное имя источника данных"
-    IDS_EXC_DB_CONNECT      "Не могу связаться с БД"
+    IDS_EXC_DATA_SOURCE     "РќРµРїСЂР°РІРёР»СЊРЅРѕРµ РёРјСЏ РёСЃС‚РѕС‡РЅРёРєР° РґР°РЅРЅС‹С…"
+    IDS_EXC_DB_CONNECT      "РќРµ РјРѕРіСѓ СЃРІСЏР·Р°С‚СЊСЃСЏ СЃ Р‘Р”"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_FIG_LINE             "Линия\nЛиния"
-    ID_FIG_RECT             "Заполненный прямоугольник\nЗаполненный прямоугольник"
-    ID_FIG_FILL             "Заливка\nЗаливка"
-    ID_FIG_PEN              "Ручка\nРучка"
+    ID_FIG_LINE             "Р›РёРЅРёСЏ\nР›РёРЅРёСЏ"
+    ID_FIG_RECT             "Р—Р°РїРѕР»РЅРµРЅРЅС‹Р№ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє\nР—Р°РїРѕР»РЅРµРЅРЅС‹Р№ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє"
+    ID_FIG_FILL             "Р—Р°Р»РёРІРєР°\nР—Р°Р»РёРІРєР°"
+    ID_FIG_PEN              "Р СѓС‡РєР°\nР СѓС‡РєР°"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_BACKGROUND           "Установить фон\nУстановить фон"
-    ID_VIDEO_PLAY           "Играть\nИграть"
-    ID_VIDEO_STOP           "Стоп\nСтоп"
-    ID_VIDEO_PAUSE          "Пауза\nПауза"
-    ID_FIG_POLYLINE         "Заполненный многоугольник\nЗаполненный многоугольник"
+    ID_BACKGROUND           "РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С„РѕРЅ\nРЈСЃС‚Р°РЅРѕРІРёС‚СЊ С„РѕРЅ"
+    ID_VIDEO_PLAY           "РРіСЂР°С‚СЊ\nРРіСЂР°С‚СЊ"
+    ID_VIDEO_STOP           "РЎС‚РѕРї\nРЎС‚РѕРї"
+    ID_VIDEO_PAUSE          "РџР°СѓР·Р°\nРџР°СѓР·Р°"
+    ID_FIG_POLYLINE         "Р—Р°РїРѕР»РЅРµРЅРЅС‹Р№ РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРє\nР—Р°РїРѕР»РЅРµРЅРЅС‹Р№ РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРє"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_SCALE                "Масштабирование\nМасштабирование"
+    ID_SCALE                "РњР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ\nРњР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_THICKNESS            "Выбор толщины линии\nВыбор толщины линии"
+    ID_THICKNESS            "Р’С‹Р±РѕСЂ С‚РѕР»С‰РёРЅС‹ Р»РёРЅРёРё\nР’С‹Р±РѕСЂ С‚РѕР»С‰РёРЅС‹ Р»РёРЅРёРё"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_GRID                 "Сетка\nСетка"
+    ID_GRID                 "РЎРµС‚РєР°\nРЎРµС‚РєР°"
 END
 
 STRINGTABLE 
 BEGIN
-    IDS_INDEX_LAYER         "Слой %d"
+    IDS_INDEX_LAYER         "РЎР»РѕР№ %d"
 END
 
 #endif    // Russian resources
@@ -577,7 +577,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
     LTEXT           "Mask Editor",IDC_STATIC,39,30,63,8,SS_NOPREFIX
-    LTEXT           "Copyright © ElVEES, 2004-2005",IDC_STATIC,39,15,119,8
+    LTEXT           "Copyright В© ElVEES, 2004-2005",IDC_STATIC,39,15,119,8
     DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
     LTEXT           "#",IDC_STATIC_VERSION,109,30,58,8
 END
@@ -768,7 +768,7 @@ BEGIN
             VALUE "FileDescription", "Mask Editor"
             VALUE "FileVersion", "1, 5, 0, 412"
             VALUE "InternalName", "MaskEdit"
-            VALUE "LegalCopyright", "Copyright © ElVEES, 2004-2005"
+            VALUE "LegalCopyright", "Copyright В© ElVEES, 2004-2005"
             VALUE "OriginalFilename", "MsEdit.EXE"
             VALUE "ProductName", "MaskEditor Application"
             VALUE "ProductVersion", "1, 5, 0, 412"
@@ -837,7 +837,7 @@ BEGIN
     IDS_FIG_POLYLINE        "polyline"
     IDS_FIG_FILL            "fill"
     IDS_MESSAGE             "Could not use the %s tool because the target layer is hidden"
-    IDS_LAYER               "Слой %s"
+    IDS_LAYER               "РЎР»РѕР№ %s"
     IDS_UNKLAYER            "Unknown layer"
 END
 

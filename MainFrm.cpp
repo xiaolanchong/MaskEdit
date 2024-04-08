@@ -52,20 +52,20 @@ static UINT indicators[] =
 CMainFrame::CMainFrame():
 	m_SizeHandler(ID_SIZE_0),
 	m_CamHandler(ID_OPEN_CAM1),
-	dlg(NULL)
+	m_dlg(NULL)
 {
 	// TODO: add member initialization code here
-	//Создать диалоговое окно для редактора слоев
-	dlg = new CLayerDlg();
+	//РЎРѕР·РґР°С‚СЊ РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ РґР»СЏ СЂРµРґР°РєС‚РѕСЂР° СЃР»РѕРµРІ
+	m_dlg = new CLayerDlg();
 }
 
 CMainFrame::~CMainFrame()
 {
-	//Удалить диалоговое окно
-	if( dlg != NULL)
+	//РЈРґР°Р»РёС‚СЊ РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ
+	if(m_dlg != NULL)
 	{
-		dlg->DestroyWindow();
-		SAFE_DELETE(dlg);
+		m_dlg->DestroyWindow();
+		SAFE_DELETE(m_dlg);
 	}
 }
 
@@ -74,7 +74,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	//Главный toolbar
+	//Р“Р»Р°РІРЅС‹Р№ toolbar
 	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP
 		| /*CBRS_GRIPPER |*/ CBRS_TOOLTIPS | CBRS_FLYBY /*|CBRS_SIZE_DYNAMIC*/) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
@@ -83,7 +83,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 
-	//Видео toolbar
+	//Р’РёРґРµРѕ toolbar
 	if(	! m_wndVideoBar.CreateEx( this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_BOTTOM | CBRS_TOOLTIPS ) ||
 		! m_wndVideoBar.LoadToolBar( IDR_SEEKER ) )
 	{
@@ -91,33 +91,33 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 
-	//Настроить видео-бар
+	//РќР°СЃС‚СЂРѕРёС‚СЊ РІРёРґРµРѕ-Р±Р°СЂ
 	CSize size = GetEditorState().GetImageSize();
 	CRect rcClient(CPoint(0,0), size);	
 	int nSeekerWidth = rcClient.Width();
 	m_wndVideoBar.CreateSeeker(nSeekerWidth - 72);
 
 
-	//Настроить главный toolbar
+	//РќР°СЃС‚СЂРѕРёС‚СЊ РіР»Р°РІРЅС‹Р№ toolbar
 	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
 	DWORD dwStyle = m_wndToolBar.GetButtonStyle(m_wndToolBar.CommandToIndex(ID_BACKGROUND));
 	dwStyle |= BTNS_WHOLEDROPDOWN;
-	//Поставить нужные стили кнопкам главного toolbar
+	//РџРѕСЃС‚Р°РІРёС‚СЊ РЅСѓР¶РЅС‹Рµ СЃС‚РёР»Рё РєРЅРѕРїРєР°Рј РіР»Р°РІРЅРѕРіРѕ toolbar
 	m_wndToolBar.SetButtonStyle(m_wndToolBar.CommandToIndex(ID_BACKGROUND), dwStyle);
-	//Список с картинками цвета для слоев
+	//РЎРїРёСЃРѕРє СЃ РєР°СЂС‚РёРЅРєР°РјРё С†РІРµС‚Р° РґР»СЏ СЃР»РѕРµРІ
 	m_Organizer.AttachFrameWnd(this);
 	m_Organizer.AutoSetMenuImage();
 
-	//Меню с размером масок
+	//РњРµРЅСЋ СЃ СЂР°Р·РјРµСЂРѕРј РјР°СЃРѕРє
 	CMenu* pMenu = GetMenu();
 	pMenu = pMenu->GetSubMenu( submenu_size );
 	m_SizeHandler.AddItem( pMenu, std::make_pair( 352, 288) );
 	m_SizeHandler.AddItem( pMenu, std::make_pair( 640, 480) );
 	m_SizeHandler.CheckItem( pMenu, ID_SIZE_0 );
 
-	//Меню с фигурами
-	// TBSTYLE_FLAT - В классическом стиле кнопки плоские
-	// TBSTYLE_TRANSPARENT - Добавляет поддержку XP фона
+	//РњРµРЅСЋ СЃ С„РёРіСѓСЂР°РјРё
+	// TBSTYLE_FLAT - Р’ РєР»Р°СЃСЃРёС‡РµСЃРєРѕРј СЃС‚РёР»Рµ РєРЅРѕРїРєРё РїР»РѕСЃРєРёРµ
+	// TBSTYLE_TRANSPARENT - Р”РѕР±Р°РІР»СЏРµС‚ РїРѕРґРґРµСЂР¶РєСѓ XP С„РѕРЅР°
 	if (!m_wndFigureBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP
 		| /*CBRS_GRIPPER |*/ CBRS_TOOLTIPS | CBRS_FLYBY /*| CBRS_SIZE_DYNAMIC*/ | TBSTYLE_TRANSPARENT) ||
 		!m_wndFigureBar.LoadToolBar(IDR_FIGURE))
@@ -126,55 +126,55 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 
-	//Могут быть dropdawn кнопки
+	//РњРѕРіСѓС‚ Р±С‹С‚СЊ dropdawn РєРЅРѕРїРєРё
 	m_wndFigureBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
 
-	//Можно загрузить картинки на кнопках
+	//РњРѕР¶РЅРѕ Р·Р°РіСЂСѓР·РёС‚СЊ РєР°СЂС‚РёРЅРєРё РЅР° РєРЅРѕРїРєР°С…
 	BOOL bShowImage = 0;
 	if(bShowImage)
 	{
-		// CBRS_TOOLTIPS - Всплывающие подсказки
-		// CBRS_FLYBY - Описание в StatusBar'e
-		// TBSTYLE_LIST - Текст справа от картинок (не используется сейчас)
+		// CBRS_TOOLTIPS - Р’СЃРїР»С‹РІР°СЋС‰РёРµ РїРѕРґСЃРєР°Р·РєРё
+		// CBRS_FLYBY - РћРїРёСЃР°РЅРёРµ РІ StatusBar'e
+		// TBSTYLE_LIST - РўРµРєСЃС‚ СЃРїСЂР°РІР° РѕС‚ РєР°СЂС‚РёРЅРѕРє (РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ СЃРµР№С‡Р°СЃ)
 		m_wndFigureBar.SetBarStyle(m_wndToolBar.GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY );
 		m_wndFigureBar.ModifyStyle(0, TBSTYLE_LIST, TRUE);
 		
-		// Загрузка полноцветных картинок
+		// Р—Р°РіСЂСѓР·РєР° РїРѕР»РЅРѕС†РІРµС‚РЅС‹С… РєР°СЂС‚РёРЅРѕРє
 		m_listNormal.Create(23, 23, ILC_COLOR32 | ILC_MASK, 1, 1);
 		m_bmpNormal.LoadBitmap(IDB_MAIN_NORMAL);
 		m_listNormal.Add(&m_bmpNormal, RGB(230, 230, 230));
 		m_wndFigureBar.GetToolBarCtrl().SetImageList(&m_listNormal);
 	
-		// Размер кнопки надо задавать не задумываясь о тексте.
-		// Длина текста будет учтена автоматически благодаря TBBS_AUTOSIZE
+		// Р Р°Р·РјРµСЂ РєРЅРѕРїРєРё РЅР°РґРѕ Р·Р°РґР°РІР°С‚СЊ РЅРµ Р·Р°РґСѓРјС‹РІР°СЏСЃСЊ Рѕ С‚РµРєСЃС‚Рµ.
+		// Р”Р»РёРЅР° С‚РµРєСЃС‚Р° Р±СѓРґРµС‚ СѓС‡С‚РµРЅР° Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё Р±Р»Р°РіРѕРґР°СЂСЏ TBBS_AUTOSIZE
 		m_wndFigureBar.SetSizes(CSize(30,29), 
 			CSize(23,23));
 		m_wndFigureBar.SetHeight(29);
 	}
 
-	//Задать стили кнопкам
+	//Р—Р°РґР°С‚СЊ СЃС‚РёР»Рё РєРЅРѕРїРєР°Рј
 	m_wndFigureBar.SetButtonStyle( 0, TBBS_CHECKED  );
 	m_wndFigureBar.SetButtonStyle( 5, BTNS_DROPDOWN );
 	m_wndFigureBar.SetButtonStyle( 6, BTNS_DROPDOWN );
 	
 	
-	//Создать диалоговое окно
-	BOOL bRes = dlg->Create(IDD_LAYERDLG, this);
+	//РЎРѕР·РґР°С‚СЊ РґРёР°Р»РѕРіРѕРІРѕРµ РѕРєРЅРѕ
+	BOOL bRes = m_dlg->Create(IDD_LAYERDLG, this);
 	if(!bRes)
-		TRACE(_T("Ошибка создания диалогового окна \n"));
+		TRACE(_T("РћС€РёР±РєР° СЃРѕР·РґР°РЅРёСЏ РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР° \n"));
 
-	//Загрузить информацию о редакторе слоев из реестра
-	bRes = dlg->RegLoadWindowPosition();
+	//Р—Р°РіСЂСѓР·РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЂРµРґР°РєС‚РѕСЂРµ СЃР»РѕРµРІ РёР· СЂРµРµСЃС‚СЂР°
+	bRes = m_dlg->RegLoadWindowPosition();
 	if(!bRes)
-		TRACE("%s::Ошибка загрузки позиции окна из реестра\n", APPNAME);
+		TRACE("%s::РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё РїРѕР·РёС†РёРё РѕРєРЅР° РёР· СЂРµРµСЃС‚СЂР°\n", APPNAME);
 
-	//Назначить текущую маску - первую
+	//РќР°Р·РЅР°С‡РёС‚СЊ С‚РµРєСѓС‰СѓСЋ РјР°СЃРєСѓ - РїРµСЂРІСѓСЋ
 	GetEditorState().SetCurrentMask( 1 );
-	//Поставить выделение в check box
-	dlg->m_CheckBox.SetCurSel(0);
-	dlg->m_CheckBox.SetCheck(0, TRUE);
+	//РџРѕСЃС‚Р°РІРёС‚СЊ РІС‹РґРµР»РµРЅРёРµ РІ check box
+	m_dlg->m_CheckBox.SetCurSel(0);
+	m_dlg->m_CheckBox.SetCheck(0, TRUE);
 
-	//Создать меню для выбора цвета
+	//РЎРѕР·РґР°С‚СЊ РјРµРЅСЋ РґР»СЏ РІС‹Р±РѕСЂР° С†РІРµС‚Р°
 	CreateMenu();
 
 	try
@@ -272,13 +272,13 @@ void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 					reinterpret_cast<long>(pWndOther->GetSafeHwnd()));
 
 
-	//Взять документ связанный с текущим представлением
+	//Р’Р·СЏС‚СЊ РґРѕРєСѓРјРµРЅС‚ СЃРІСЏР·Р°РЅРЅС‹Р№ СЃ С‚РµРєСѓС‰РёРј РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµРј
 	CMsEditDoc* pCurrDoc = (CMsEditDoc*)GetActiveDocument();
-	//Взять текущие представление
+	//Р’Р·СЏС‚СЊ С‚РµРєСѓС‰РёРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ
 	CMsEditView* CurrView = (CMsEditView*)GetActiveView();
-	//Запомнить в check box документ и представление
-	dlg->m_CheckBox.pDoc = pCurrDoc;
-	dlg->m_CheckBox.pView = CurrView;
+	//Р—Р°РїРѕРјРЅРёС‚СЊ РІ check box РґРѕРєСѓРјРµРЅС‚ Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ
+	m_dlg->m_CheckBox.pDoc = pCurrDoc;
+	m_dlg->m_CheckBox.pView = CurrView;
 
 }
 
@@ -428,16 +428,16 @@ void CMainFrame::OnColorsDynamicMenu(UINT nID)
 		if(GetEditorState().IsExtendedMode())
 		{
 			CString strMaskIcon;
-			Color cl = GetEditorState().GetColor(CEditorState::cl_border);
-			m_ilColors.Replace (0, GetRectIcon(cl));
+			Color clBorder = GetEditorState().GetColor(CEditorState::cl_border);
+			m_ilColors.Replace (0, GetRectIcon(clBorder));
 			m_Organizer.SetMenuImage( ID_COLORS_BORDER + 0, &m_ilColors, 0 );
 
 			for ( size_t i = 1; i < COUNT_LAYER + 1; ++i )
 			{
 				CString sName;
 				sName.Format( _T("%u"), i );
-				Color cl = GetEditorState().GetColor( CEditorState::IndexToMaskNumber( i - 1 ) );
-				HICON hMask = GetRectIcon( cl );
+				Color clMask = GetEditorState().GetColor( CEditorState::IndexToMaskNumber( i - 1 ) );
+				HICON hMask = GetRectIcon(clMask);
 				m_ilColors.Replace(i, hMask );
 				m_Organizer.SetMenuImage( ID_COLORS_BORDER + i , &m_ilColors, i  );
 			}
@@ -451,9 +451,9 @@ void CMainFrame::OnColorsDynamicMenu(UINT nID)
 
 		GetActiveView()->SendMessage(WM_COLOR);
 
-		//Перерисовать редактор слоев с учетом изменений
-		dlg->m_CheckBox.Invalidate();
-		dlg->m_CheckBox.UpdateWindow();
+		//РџРµСЂРµСЂРёСЃРѕРІР°С‚СЊ СЂРµРґР°РєС‚РѕСЂ СЃР»РѕРµРІ СЃ СѓС‡РµС‚РѕРј РёР·РјРµРЅРµРЅРёР№
+		m_dlg->m_CheckBox.Invalidate();
+		m_dlg->m_CheckBox.UpdateWindow();
 	}
 }
 
@@ -486,14 +486,15 @@ HICON	CMainFrame::GetTextIcon(CString strText, Color cl)
 	//		gr.SetTextRenderingHint( TextRenderingHintSingleBitPerPixel ); 
 
 			
+	SolidBrush brush(cl);
 	gr.DrawString(	Helper::Convert(strText).c_str(), -1, &font, 
 					RectF((float)rc.left, (float)rc.top, (float)rc.right, (float)rc.bottom), 
-					&stringFormat, &SolidBrush( cl));
+					&stringFormat, &brush);
 	
 
 	HICON  h;
 	Status s = bmp.GetHICON(&h);
-
+	VERIFY(s == Gdiplus::Ok);
 	return h;
 	
 	
@@ -520,7 +521,7 @@ HICON	CMainFrame::GetRectIcon(Color cl)
 
 	HICON  h;
 	Status s = bmp.GetHICON(&h);
-
+	VERIFY(s == Gdiplus::Ok);
 	return h;	
 }
 
@@ -534,24 +535,24 @@ void CMainFrame::OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu)
 
 void CMainFrame::OnToolsLayers(UINT nID)
 {
-	//Показывать или нет редактор слоев
-	if(!dlg->m_dwWindowState)
+	//РџРѕРєР°Р·С‹РІР°С‚СЊ РёР»Рё РЅРµС‚ СЂРµРґР°РєС‚РѕСЂ СЃР»РѕРµРІ
+	if(!m_dlg->m_dwWindowState)
 	{
-		dlg->ShowWindow(SW_SHOW);
-		dlg->m_dwWindowState = 1;
+		m_dlg->ShowWindow(SW_SHOW);
+		m_dlg->m_dwWindowState = 1;
 	}
 	else
 	{
-		dlg->ShowWindow(SW_HIDE);
-		dlg->m_dwWindowState = 0;
+		m_dlg->ShowWindow(SW_HIDE);
+		m_dlg->m_dwWindowState = 0;
 	}
 	
 		
 }
  void CMainFrame::OnUpdateToolsLayers(CCmdUI* pCmdUI)
 {
-	//Поставить или убрать галочку
-	if((!dlg->m_dwWindowState))
+	//РџРѕСЃС‚Р°РІРёС‚СЊ РёР»Рё СѓР±СЂР°С‚СЊ РіР°Р»РѕС‡РєСѓ
+	if((!m_dlg->m_dwWindowState))
 		pCmdUI->SetCheck(FALSE);
 	else
 		pCmdUI->SetCheck(TRUE);

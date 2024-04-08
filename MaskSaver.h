@@ -12,38 +12,38 @@
 #include "MaskHolder.h"
 #include "common/Exception.h"
 
-//! сериализация маски в двоичный массив
+//! СЃРµСЂРёР°Р»РёР·Р°С†РёВ¤ РјР°СЃРєРё РІ РґРІРѕРёС‡РЅС‹Р№ РјР°СЃСЃРёРІ
 class CMaskSaver  
 {
-	//! размер маски
+	//! СЂР°Р·РјРµСЂ РјР°СЃРєРё
 	CRect			m_rcArea;
 
-	//! 2x мерный массив (для 32 слоев)
+	//! 2x РјРµСЂРЅС‹Р№ РјР°СЃСЃРёРІ (РґР»В¤ 32 СЃР»РѕРµРІ)
 	std::vector< std::vector< DWORD > >			m_MaskDump32;
-	//! битовый 2х мерный массив (для 8 слоев)
+	//! Р±РёС‚РѕРІС‹Р№ 2С… РјРµСЂРЅС‹Р№ РјР°СЃСЃРёРІ (РґР»В¤ 8 СЃР»РѕРµРІ)
 	std::vector< std::vector< BYTE > >			m_MaskDump8;
 
 public:
 	CMaskSaver(CRect Area);
 	virtual ~CMaskSaver();
 
-	//! добваить слой во внутренний битовый массив
-	//! \param Mask слой маски
-	//! \param Bit номер бита в массиве
+	//! РґРѕР±РІР°РёС‚СЊ СЃР»РѕР№ РІРѕ РІРЅСѓС‚СЂРµРЅРЅРёР№ Р±РёС‚РѕРІС‹Р№ РјР°СЃСЃРёРІ
+	//! \param Mask СЃР»РѕР№ РјР°СЃРєРё
+	//! \param Bit РЅРѕРјРµСЂ Р±РёС‚Р° РІ РјР°СЃСЃРёРІРµ
 	void AddMask( const CMask& Mask, int Bit);
-	//! сохранить в архив
+	//! СЃРѕС…СЂР°РЅРёС‚СЊ РІ Р°СЂС…РёРІ
 	//! \param ar 
 	void Save(CArchive& ar) const MY_THROW (FileException) ;
 	
-	//! сохранить маску как набор байтов 
+	//! СЃРѕС…СЂР°РЅРёС‚СЊ РјР°СЃРєСѓ РєР°Рє РЅР°Р±РѕСЂ Р±Р°Р№С‚РѕРІ 
 	void Save( std::vector<BYTE>& Arr ) const;
 
 };
 
-//! загрузить слои маски
+//! Р·Р°РіСЂСѓР·РёС‚СЊ СЃР»РѕРё РјР°СЃРєРё
 class CMaskLoader  
 {
-	//! внутренне представление
+	//! РІРЅСѓС‚СЂРµРЅРЅРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ
 	std::vector< std::vector< DWORD > >	m_MaskDump32;
 	std::vector< std::vector< BYTE > >	m_MaskDump8;
 	
@@ -55,16 +55,16 @@ public:
 	void Load(CArchive& ar) MY_THROW (FileException);
 	void Load( const std::vector<BYTE>& Arr ) ;
 	
-	//Взять маску с новым форматом (32 бита)
+	//В¬Р·В¤С‚СЊ РјР°СЃРєСѓ СЃ РЅРѕРІС‹Рј С„РѕСЂРјР°С‚РѕРј (32 Р±РёС‚Р°)
 	const std::vector< std::vector<DWORD> > GetMask32() const;
-	//Взять маску в старом формате (8 бит)
+	//В¬Р·В¤С‚СЊ РјР°СЃРєСѓ РІ СЃС‚Р°СЂРѕРј С„РѕСЂРјР°С‚Рµ (8 Р±РёС‚)
 	const std::vector< std::vector<BYTE> > GetMask8() const;
 
 	
 
-	//! загрузить маску из источника данных
-	//! \param file источник данных, должен предоставлять операцию 
-	//!        Read(void* pBuffer, size_t NumberOfReadBytes ), CFile подходит
+	//! Р·Р°РіСЂСѓР·РёС‚СЊ РјР°СЃРєСѓ РёР· РёСЃС‚РѕС‡РЅРёРєР° РґР°РЅРЅС‹С…
+	//! \param file РёСЃС‚РѕС‡РЅРёРє РґР°РЅРЅС‹С…, РґРѕР»Р¶РµРЅ РїСЂРµРґРѕСЃС‚Р°РІР»В¤С‚СЊ РѕРїРµСЂР°С†РёСЋ 
+	//!        Read(void* pBuffer, size_t NumberOfReadBytes ), CFile РїРѕРґС…РѕРґРёС‚
 	template < class T> void LoadFromTemplate( T& file )
 	{
 	try
@@ -76,7 +76,7 @@ public:
 		CSize size = GetEditorState().GetImageSize();
 		file.Read(&FlagVersion, 4);
 
-		//Проверить какие первый 4 байта
+		//С•СЂРѕРІРµСЂРёС‚СЊ РєР°РєРёРµ РїРµСЂРІС‹Р№ 4 Р±Р°Р№С‚Р°
 		if(FlagVersion == 0xfffffffc)
 		{
 			m_bFlagVersion = TRUE;
@@ -102,7 +102,7 @@ public:
 			throw FormatFileException( szFileName );
 		}
 		
-		//Если 32 слойный файл
+		//в‰€СЃР»Рё 32 СЃР»РѕР№РЅС‹Р№ С„Р°Р№Р»
 		if(m_bFlagVersion)
 		{
 	
@@ -132,7 +132,7 @@ public:
 
 
 		}
-		//Если 8 слойный файл
+		//в‰€СЃР»Рё 8 СЃР»РѕР№РЅС‹Р№ С„Р°Р№Р»
 		else
 		{
 			

@@ -19,8 +19,8 @@ MACRO_EXCEPTION(VideoSizeException, VideoException);
 MACRO_EXCEPTION(VideoFileException, VideoException);
 MACRO_EXCEPTION(DirectShowException, VideoFileException);
 
-//! \brief отрисовка изображений из видеофайлов
-//! причем можно пропускать кадры, используется direct show 
+//! \brief РѕС‚СЂРёСЃРѕРІРєР° РёР·РѕР±СЂР°Р¶РµРЅРёР№ РёР· РІРёРґРµРѕС„Р°Р№Р»РѕРІ
+//! РїСЂРёС‡РµРј РјРѕР¶РЅРѕ РїСЂРѕРїСѓСЃРєР°С‚СЊ РєР°РґСЂС‹, РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ direct show 
 //! \version 1.0
 //! \date 02-23-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
@@ -72,30 +72,30 @@ class CVideoBackground : public CControlBackground
 	void	Grab(CWnd* pWnd, const std::wstring& FileName);
 
 public:
-	//! \param pWnd окно для уведомления кадра
-	//! \param FileName имя видеофайла
+	//! \param pWnd РѕРєРЅРѕ РґР»СЏ СѓРІРµРґРѕРјР»РµРЅРёСЏ РєР°РґСЂР°
+	//! \param FileName РёРјСЏ РІРёРґРµРѕС„Р°Р№Р»Р°
 	CVideoBackground(CWnd* pWnd, const std::wstring& FileName);
 	virtual ~CVideoBackground();
 
 	virtual void	Draw(Graphics& gr, CRect rc) const;
 
-	//! остановка
+	//! РѕСЃС‚Р°РЅРѕРІРєР°
 	void			Stop();
-	//! пауза проигрывания
+	//! РїР°СѓР·Р° РїСЂРѕРёРіСЂС‹РІР°РЅРёСЏ
 	void			Pause();
 	void			Play();
 
-	//! получить текущую позицию в файле 
-	//! \return позиция [0, 1]
+	//! РїРѕР»СѓС‡РёС‚СЊ С‚РµРєСѓС‰СѓСЋ РїРѕР·РёС†РёСЋ РІ С„Р°Р№Р»Рµ 
+	//! \return РїРѕР·РёС†РёСЏ [0, 1]
 	float			GetPos() const;
-	//! установить позицию (а-ля Seek)
+	//! СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР·РёС†РёСЋ (Р°-Р»СЏ Seek)
 	void			SetPos(float Pos);
-	//! начать проигрывать файл с начала
+	//! РЅР°С‡Р°С‚СЊ РїСЂРѕРёРіСЂС‹РІР°С‚СЊ С„Р°Р№Р» СЃ РЅР°С‡Р°Р»Р°
 	void			Replay();
 	//! 
 	void			ProcessMessage();
-	//! возможно ли позиыирование (не для все форматов видеофайлов это возможно)
-	//! да/нет
+	//! РІРѕР·РјРѕР¶РЅРѕ Р»Рё РїРѕР·РёС‹РёСЂРѕРІР°РЅРёРµ (РЅРµ РґР»СЏ РІСЃРµ С„РѕСЂРјР°С‚РѕРІ РІРёРґРµРѕС„Р°Р№Р»РѕРІ СЌС‚Рѕ РІРѕР·РјРѕР¶РЅРѕ)
+	//! РґР°/РЅРµС‚
 	bool			IsSeekable();
 
 	OAFilterState	GetState();

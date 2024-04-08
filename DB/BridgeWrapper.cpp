@@ -1,10 +1,10 @@
 //======================================================================================//
 //                                         DVR                                          //
 //                                                                                      //
-//                               Copyright© ElVEES, 2006                                //
+//                               CopyrightÂ© ElVEES, 2006                                //
 //                                                                                      //
 //--------------------------------------------------------------------------------------//
-/* Description: Âçàèìîäåéñòâèå ñ DBBridge
+/* Description: Ð’Ð·Ð°Ð¸Ð¼Ð¾Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ Ñ DBBridge
 
     Author: Eugene Gorbachev (Eugene.Gorbachev@biones.com)
     Date:   13.03.2006
@@ -12,6 +12,8 @@
 //======================================================================================//
 
 #include "stdafx.h"
+
+#ifdef WITH_ORWELL
 #include "BridgeWrapper.h"
 #include "../common/tstring.h"
 
@@ -92,32 +94,32 @@ LPCTSTR BridgeWrapper::LoadNameLayer(LPWSTR szNameLayer)
 
 	do
 	{
-		//Ïîñòàâèòü â î÷åðåäü çàïðîñ
+		//ÐŸÐ¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ð² Ð¾Ñ‡ÐµÑ€ÐµÐ´ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ
 		dbbRes = iDBBridge->GetDBParameter(DBBS_GLOBAL, 0, szNameLayer, DBBT_STRING, &dwSize, (void**)&pBuffer );
 
 	}
 	while((dbbRes == DBB_S_ALREADY_ACCEPTED) || (dbbRes == DBB_S_ACCEPTED));
 
-	//Âåðíóòü áóôåð èëè íîëü åñëè íåò çàïèñè â ýòîì ïîëå
+	//Ð’ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð±ÑƒÑ„ÐµÑ€ Ð¸Ð»Ð¸ Ð½Ð¾Ð»ÑŒ ÐµÑÐ»Ð¸ Ð½ÐµÑ‚ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð² ÑÑ‚Ð¾Ð¼ Ð¿Ð¾Ð»Ðµ
 	return pBuffer;
 }
 
 long BridgeWrapper::ConnectDB()
 {
-	//Ñôîðìèðîâàòü ñòðîêó ñîåäèíåíèÿ
+	//Ð¡Ñ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑ‚Ñ€Ð¾ÐºÑƒ ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ñ
 	CString dbString;
 	dbString.Format(L"Provider=SQLOLEDB.1;Persist Security Info=True;Data Source=NASH;Packet Size=8000;Use Encryption for Data=False;User ID=Ksenia;Password=123;");
 
-	//Ñîçäàòü èíòåðôåéñ 
+	//Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ Ð¸Ð½Ñ‚ÐµÑ€Ñ„ÐµÐ¹Ñ 
 	long dbbRes = CreateDBBridge2(dbString,  &iDBBridge);
 
 	return dbbRes;
 
 }
-//Èñïîëüçóåòñÿ äëÿ çàïèñè â áä
+//Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð´Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð² Ð±Ð´
 long BridgeWrapper::SaveNameLayer(LPWSTR szNameLayer)
 {
-	TCHAR pBuffer[19] = _T("Cëîé äëÿ 10 êàìåðû"); 
+	TCHAR pBuffer[19] = _T("CÐ»Ð¾Ð¹ Ð´Ð»Ñ 10 ÐºÐ°Ð¼ÐµÑ€Ñ‹"); 
 	DWORD dwSize = sizeof(pBuffer);
 	long dbbRes = iDBBridge->SetDBParameter(DBBS_GLOBAL, 0, szNameLayer, DBBT_STRING, dwSize, (void*)pBuffer );
 
@@ -202,7 +204,7 @@ boost::optional<int>	BridgeWrapper::GetParam( CIDBBridge* pBridge, int nCameraID
 	}
 }
 
-
+#endif // WITH_ORWELL
 
 
 #endif

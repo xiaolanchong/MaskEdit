@@ -11,14 +11,14 @@ IMPLEMENT_DYNAMIC(CLayerDlg, CDialog)
 CLayerDlg::CLayerDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CLayerDlg::IDD, pParent)
 {
-	//Выделить необходимое количество памяти
+	//Р’С‹РґРµР»РёС‚СЊ РЅРµРѕР±С…РѕРґРёРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїР°РјСЏС‚Рё
 	LayerInfo.resize(COUNT_LAYER);
 
 }
 
 CLayerDlg::~CLayerDlg()
 {
-	//Удалить внутренние указатели в векторе
+	//РЈРґР°Р»РёС‚СЊ РІРЅСѓС‚СЂРµРЅРЅРёРµ СѓРєР°Р·Р°С‚РµР»Рё РІ РІРµРєС‚РѕСЂРµ
 	for(UINT i = 0; i<COUNT_LAYER; i++)
 		SAFE_DELETE(LayerInfo[i].strName);
 	
@@ -42,37 +42,37 @@ BOOL CLayerDlg::OnInitDialog()
 
 	// TODO:  Add extra initialization here
 
-	//Соединиться с бд
+	//РЎРѕРµРґРёРЅРёС‚СЊСЃСЏ СЃ Р±Рґ
 	long dbbOk = CBridgeWrapper.ConnectDB();
 
-	//Добавить в List Box узлы	
+	//Р”РѕР±Р°РІРёС‚СЊ РІ List Box СѓР·Р»С‹	
 	for(int i=0; i<COUNT_LAYER; i++)
 	{
-		//Сформировать название поля
+		//РЎС„РѕСЂРјРёСЂРѕРІР°С‚СЊ РЅР°Р·РІР°РЅРёРµ РїРѕР»СЏ
 		CString str;
 		str.Format(_T("mask_field%d"), i);
 
-		//Сделать запрос если соединение успешно
+		//РЎРґРµР»Р°С‚СЊ Р·Р°РїСЂРѕСЃ РµСЃР»Рё СЃРѕРµРґРёРЅРµРЅРёРµ СѓСЃРїРµС€РЅРѕ
 		LPCTSTR sName = NULL;
 		if(!dbbOk)
 			sName = CBridgeWrapper.LoadNameLayer((LPWSTR)(LPCWSTR)str);
 
-		//Заполнить структуру с информацией об узле
+		//Р—Р°РїРѕР»РЅРёС‚СЊ СЃС‚СЂСѓРєС‚СѓСЂСѓ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ РѕР± СѓР·Р»Рµ
 		LayerInfo[i].strName = sName;
 		LayerInfo[i].nID = i;
 
-		//Добавить узел
+		//Р”РѕР±Р°РІРёС‚СЊ СѓР·РµР»
 		m_CheckBox.AddItem(&(LayerInfo[i]));
 
 	}
 
-	//Удалить интерфейс
+	//РЈРґР°Р»РёС‚СЊ РёРЅС‚РµСЂС„РµР№СЃ
 	dbbOk = CBridgeWrapper.ReleaseDbb();
 	if(dbbOk)
-		TRACE(_T("%s::Ошибка при удалении интерфейса CIDBBridge"), APPNAME);
+		TRACE(_T("%s::РћС€РёР±РєР° РїСЂРё СѓРґР°Р»РµРЅРёРё РёРЅС‚РµСЂС„РµР№СЃР° CIDBBridge"), APPNAME);
 
 
-	//Заполнить массив с масками
+	//Р—Р°РїРѕР»РЅРёС‚СЊ РјР°СЃСЃРёРІ СЃ РјР°СЃРєР°РјРё
 	FillArrMask();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -83,7 +83,7 @@ void CLayerDlg::OnClose()
 {
 	// TODO: Add your message handler code here and/or call default
 
-	//Не показывать и не уничтожать редактор слоев  
+	//РќРµ РїРѕРєР°Р·С‹РІР°С‚СЊ Рё РЅРµ СѓРЅРёС‡С‚РѕР¶Р°С‚СЊ СЂРµРґР°РєС‚РѕСЂ СЃР»РѕРµРІ  
 	m_dwWindowState = 0;
 	ShowWindow(SW_HIDE);
 
@@ -91,7 +91,7 @@ void CLayerDlg::OnClose()
 }
 void CLayerDlg::FillArrMask()
 {
-	// Заполнить массив с двоичными идентификаторами
+	// Р—Р°РїРѕР»РЅРёС‚СЊ РјР°СЃСЃРёРІ СЃ РґРІРѕРёС‡РЅС‹РјРё РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР°РјРё
 	m_CheckBox.m_Masks.reserve(33);
 	m_CheckBox.m_Masks.push_back( CEditorState::ms_none );
 	for(int i = 0; i<COUNT_LAYER; i++)
@@ -100,17 +100,17 @@ void CLayerDlg::FillArrMask()
 }
 
  // Registry
-// Восстановить позицию окна редактора слоев из реестра 
+// Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР·РёС†РёСЋ РѕРєРЅР° СЂРµРґР°РєС‚РѕСЂР° СЃР»РѕРµРІ РёР· СЂРµРµСЃС‚СЂР° 
 BOOL CLayerDlg::RegLoadWindowPosition()
 {
-	// Взять позицию и размеры окна по-умолчанию
+	// Р’Р·СЏС‚СЊ РїРѕР·РёС†РёСЋ Рё СЂР°Р·РјРµСЂС‹ РѕРєРЅР° РїРѕ-СѓРјРѕР»С‡Р°РЅРёСЋ
 	WINDOWPLACEMENT wp;
 	ZeroMemory(&wp, sizeof(wp));
 	wp.length = sizeof(wp);
 
 	GetWindowPlacement(&wp);
 
-	// Позиция окна при первом запуске
+	// РџРѕР·РёС†РёСЏ РѕРєРЅР° РїСЂРё РїРµСЂРІРѕРј Р·Р°РїСѓСЃРєРµ
 	int nDesktopWidth = ::GetSystemMetrics(SM_CXMAXIMIZED);
 	int nDesktopHeight = ::GetSystemMetrics(SM_CYMAXIMIZED);
 	int nWidth = wp.rcNormalPosition.right - wp.rcNormalPosition.left; 	
@@ -144,14 +144,14 @@ BOOL CLayerDlg::RegLoadWindowPosition()
 
 BOOL CLayerDlg::RegSaveWindowPosition()
 {
-	// Взять позицию окна в нормальном состоянии
+	// Р’Р·СЏС‚СЊ РїРѕР·РёС†РёСЋ РѕРєРЅР° РІ РЅРѕСЂРјР°Р»СЊРЅРѕРј СЃРѕСЃС‚РѕСЏРЅРёРё
 	WINDOWPLACEMENT wp;
 	ZeroMemory(&wp, sizeof(wp));
 	wp.length = sizeof(wp);
 
 	GetWindowPlacement(&wp);
 
-	// Сохранить в реестр
+	// РЎРѕС…СЂР°РЅРёС‚СЊ РІ СЂРµРµСЃС‚СЂ
 	CRegistry::SaveDWORD(REGKEY_APP, REGVALUE_WINDOWLEFT, wp.rcNormalPosition.left);
 	CRegistry::SaveDWORD(REGKEY_APP, REGVALUE_WINDOWTOP, wp.rcNormalPosition.top);
 	CRegistry::SaveDWORD(REGKEY_APP, REGVALUE_WINDOWSTATE, m_dwWindowState);
@@ -167,7 +167,7 @@ void CLayerDlg::DoDataExchange(CDataExchange* pDX)
 
 	CDialog::DoDataExchange(pDX);
 
-	//Связать CheckBox c диалоговым окном
+	//РЎРІСЏР·Р°С‚СЊ CheckBox c РґРёР°Р»РѕРіРѕРІС‹Рј РѕРєРЅРѕРј
 	DDX_Control(pDX, IDC_CHECK, m_CheckBox);
 }
 
@@ -175,10 +175,10 @@ void CLayerDlg::OnDestroy()
 {
 	// TODO: Add your message handler code here
 
-	// Сохранить в реестр
+	// РЎРѕС…СЂР°РЅРёС‚СЊ РІ СЂРµРµСЃС‚СЂ
 	BOOL bRes = RegSaveWindowPosition();
 	if(!bRes)
-		TRACE("%s::Ошибка сохранения позиции окна в реестр\n", APPNAME);
+		TRACE("%s::РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РїРѕР·РёС†РёРё РѕРєРЅР° РІ СЂРµРµСЃС‚СЂ\n", APPNAME);
 
 	CDialog::OnDestroy();
 }

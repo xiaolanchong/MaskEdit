@@ -218,6 +218,7 @@ BOOL CAboutDlg::OnInitDialog()
 	GetModuleFileName( AfxGetInstanceHandle(), buf, MAX_PATH ) ;
 
 	BOOL z = Ver.GetFileVersionInfo(buf);
+	VERIFY(z);
 	CString str = Ver.GetValue(  _T("FileVersion"));
 	str.Replace(',', '.');
 	str.Remove(' ');

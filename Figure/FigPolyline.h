@@ -12,7 +12,7 @@
 #include "Figure.h"
 #include <vector>
 
-//! \brief замкнутый заполненный многоугольник
+//! \brief Р·Р°РјРєРЅСѓС‚С‹Р№ Р·Р°РїРѕР»РЅРµРЅРЅС‹Р№ РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРє
 //! \version 1.0
 //! \date 03-22-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
@@ -21,12 +21,12 @@
 //!
 class CFigPolyline : public CComplexFigure  
 {
-	//! цвет заливки
+	//! С†РІРµС‚ Р·Р°Р»РёРІРєРё
 	int					m_Color;
 
-	//! массив вершин
+	//! РјР°СЃСЃРёРІ РІРµСЂС€РёРЅ
 	std::vector<Point>	m_Points;
-	//! конечная точка, совпадает с m_Points.back()
+	//! РєРѕРЅРµС‡РЅР°СЏ С‚РѕС‡РєР°, СЃРѕРІРїР°РґР°РµС‚ СЃ m_Points.back()
 	Point				m_End;
 public:
 	CFigPolyline(int cl, CPoint Start);

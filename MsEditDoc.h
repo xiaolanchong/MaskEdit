@@ -48,7 +48,7 @@ public:
 	
 //Variable
 public:
-	// Индексы видимых слоев
+	// В»РЅРґРµРєСЃС‹ РІРёРґРёРјС‹С… СЃР»РѕРµРІ
 	int nShowLayer[COUNT_LAYER];
 
 

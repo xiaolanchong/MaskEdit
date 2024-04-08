@@ -47,9 +47,9 @@ CMsEditDoc::CMsEditDoc()
   
    CreateMasks();
 
-   //Îáíóëèòü ìàññèâ-ñïèñîê âèäèìûõ ñëîåâ
+   //ÑœÐ±Ð½ÑƒÐ»Ð¸Ñ‚ÑŒ Ð¼Ð°ÑÑÐ¸Ð²-ÑÐ¿Ð¸ÑÐ¾Ðº Ð²Ð¸Ð´Ð¸Ð¼Ñ‹Ñ… ÑÐ»Ð¾ÐµÐ²
    ZeroMemory(nShowLayer, sizeof(int)*COUNT_LAYER);
-   //Èçíà÷àëüíî - âèäèìûé 1 ñëîé
+   //Â»Ð·Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð¾ - Ð²Ð¸Ð´Ð¸Ð¼Ñ‹Ð¹ 1 ÑÐ»Ð¾Ð¹
    nShowLayer[0] = 1;
 }
 
@@ -138,7 +138,7 @@ void	CMsEditDoc::Save(CArchive& ar) MY_THROW (FileException)
 	Saver.Save( ar );	
 }
 
-//! ïîðÿäîê áèò èçìåíåí 0 1 2 7 3 4 5 6 -> 0 1 2 3 4 5 6 7
+//! Ð¿Ð¾Ñ€Â¤Ð´Ð¾Ðº Ð±Ð¸Ñ‚ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½ 0 1 2 7 3 4 5 6 -> 0 1 2 3 4 5 6 7
 
 void	CMsEditDoc::SaveMask( CMaskSaver& Saver )
 {

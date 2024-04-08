@@ -12,11 +12,11 @@
 #include "Figure.h"
 
 
-//! \brief карандаш - набор отрезков от руки
+//! \brief РєР°СЂР°РЅРґР°С€ - РЅР°Р±РѕСЂ РѕС‚СЂРµР·РєРѕРІ РѕС‚ СЂСѓРєРё
 //! \version 1.0
 //! \date 03-22-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
-//! \todo возможно надо унаследовать класс от CComplexFigure
+//! \todo РІРѕР·РјРѕР¶РЅРѕ РЅР°РґРѕ СѓРЅР°СЃР»РµРґРѕРІР°С‚СЊ РєР»Р°СЃСЃ РѕС‚ CComplexFigure
 //! \bug 
 //!
 class CFigPen : public CSimpleFigure  
@@ -32,7 +32,7 @@ public:
 	virtual void Draw(Graphics& gr) const ;
 	virtual void DrawEdit(Graphics& gr) const ;
 	virtual void Adjust(CPoint Start, CPoint End)  ;
-	//! добавить точку в массив
+	//! РґРѕР±Р°РІРёС‚СЊ С‚РѕС‡РєСѓ РІ РјР°СЃСЃРёРІ
 	//! \param point 
 	virtual void SetEndPoint(CPoint point);
 	

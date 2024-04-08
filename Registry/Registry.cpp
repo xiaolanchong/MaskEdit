@@ -11,7 +11,7 @@ CRegistry::~CRegistry(void)
 {
 }
 
-// Загружает значение из реестра. Если такого значения нет загружает dwDefault
+// Р—Р°РіСЂСѓР¶Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РёР· СЂРµРµСЃС‚СЂР°. Р•СЃР»Рё С‚Р°РєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РЅРµС‚ Р·Р°РіСЂСѓР¶Р°РµС‚ dwDefault
 BOOL CRegistry::LoadDWORD(LPCTSTR szKey, LPCTSTR szValueName, LPDWORD lpdwData, DWORD dwDefault)
 {
 	
@@ -57,7 +57,7 @@ BOOL CRegistry::LoadDWORD(LPCTSTR szKey, LPCTSTR szValueName, LPDWORD lpdwData, 
 	return TRUE;
 }
 
-// Сохраняет значение в реестре, перезаписывая существующее или создавая новое
+// РЎРѕС…СЂР°РЅСЏРµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°СЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°СЏ РЅРѕРІРѕРµ
 BOOL CRegistry::SaveDWORD(LPCTSTR szKey, LPCTSTR szValueName, DWORD dwData)
 {
 
@@ -95,7 +95,7 @@ BOOL CRegistry::SaveDWORD(LPCTSTR szKey, LPCTSTR szValueName, DWORD dwData)
 }
 
 
-// Сохраняет значение в реестре, перезаписывая существующее или создавая новое
+// РЎРѕС…СЂР°РЅСЏРµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°СЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°СЏ РЅРѕРІРѕРµ
 BOOL CRegistry::LoadString(LPCTSTR szKey, LPCTSTR szValueName, CString& csData, LPCTSTR szDefault)
 {
 	
@@ -133,8 +133,8 @@ BOOL CRegistry::LoadString(LPCTSTR szKey, LPCTSTR szValueName, CString& csData, 
 			if(szBuffer)
 			{
 				// 
-				// При чтении cтроки указывается количество символов которое надо 
-				// загрузить, включая терминантный ноль 
+				// РџСЂРё С‡С‚РµРЅРёРё cС‚СЂРѕРєРё СѓРєР°Р·С‹РІР°РµС‚СЃСЏ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ РєРѕС‚РѕСЂРѕРµ РЅР°РґРѕ 
+				// Р·Р°РіСЂСѓР·РёС‚СЊ, РІРєР»СЋС‡Р°СЏ С‚РµСЂРјРёРЅР°РЅС‚РЅС‹Р№ РЅРѕР»СЊ 
 				//
 				
 				if(::RegQueryValueEx(hKey, szValueName, NULL, NULL, (LPBYTE)szBuffer, &cbData) == ERROR_SUCCESS)
@@ -142,7 +142,7 @@ BOOL CRegistry::LoadString(LPCTSTR szKey, LPCTSTR szValueName, CString& csData, 
 					csData.Format(_T("%s"), (LPCTSTR)szBuffer);
 				}	 
 
-				// Переполнение буффера
+				// РџРµСЂРµРїРѕР»РЅРµРЅРёРµ Р±СѓС„С„РµСЂР°
 				if(szBuffer[cbData-1] != _T('\0'))
 					ASSERT(FALSE);
 				
@@ -166,7 +166,7 @@ BOOL CRegistry::LoadString(LPCTSTR szKey, LPCTSTR szValueName, CString& csData, 
 	return TRUE;
 }
 
-// Сохраняет значение в реестре, перезаписывая существующее или создавая новое
+// РЎРѕС…СЂР°РЅСЏРµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°СЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°СЏ РЅРѕРІРѕРµ
 BOOL CRegistry::SaveString(LPCTSTR szKey, LPCTSTR szValueName, LPCTSTR szData)
 {
 
@@ -193,8 +193,8 @@ BOOL CRegistry::SaveString(LPCTSTR szKey, LPCTSTR szValueName, LPCTSTR szData)
 	if(szData)
 	{
 		// 
-		// При записи cтроки указывается размер буффера 
-		// выделенного под строку в байтах 
+		// РџСЂРё Р·Р°РїРёСЃРё cС‚СЂРѕРєРё СѓРєР°Р·С‹РІР°РµС‚СЃСЏ СЂР°Р·РјРµСЂ Р±СѓС„С„РµСЂР° 
+		// РІС‹РґРµР»РµРЅРЅРѕРіРѕ РїРѕРґ СЃС‚СЂРѕРєСѓ РІ Р±Р°Р№С‚Р°С… 
 		//
 		DWORD cbBufferSize = (lstrlen(szData) * sizeof(TCHAR)) + sizeof(TCHAR);
 		
@@ -221,7 +221,7 @@ BOOL CRegistry::SaveString(LPCTSTR szKey, LPCTSTR szValueName, LPCTSTR szData)
 	return TRUE;
 }
 
-// Загружает значение в реестре, перезаписывая существующее или создавая новое
+// Р—Р°РіСЂСѓР¶Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°СЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°СЏ РЅРѕРІРѕРµ
 BOOL CRegistry::LoadBOOL(LPCTSTR szKey, LPCTSTR szValueName, LPBOOL lpbData, BOOL bDefault)
 {
 	CString csKey(szKey);
@@ -276,7 +276,7 @@ BOOL CRegistry::LoadBOOL(LPCTSTR szKey, LPCTSTR szValueName, LPBOOL lpbData, BOO
 	return TRUE;
 }
 
-// Сохраняет значение в реестре, перезаписывая существующее или создавая новое
+// РЎРѕС…СЂР°РЅСЏРµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°СЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°СЏ РЅРѕРІРѕРµ
 BOOL CRegistry::SaveBOOL(LPCTSTR szKey, LPCTSTR szValueName, BOOL bData)
 {
 	CString csKey(szKey);
@@ -315,10 +315,10 @@ BOOL CRegistry::SaveBOOL(LPCTSTR szKey, LPCTSTR szValueName, BOOL bData)
 }
 
 
-// Эквивалент API только принимает нормальный путь и возвращает BOOL
+// Р­РєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РїСЂРёРЅРёРјР°РµС‚ РЅРѕСЂРјР°Р»СЊРЅС‹Р№ РїСѓС‚СЊ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 BOOL CRegistry::RegOpenKey(LPCTSTR szKey, PHKEY phkResult)
 {
-	// Разбивает путь на дескриптор главного ключа и относительный путь
+	// Р Р°Р·Р±РёРІР°РµС‚ РїСѓС‚СЊ РЅР° РґРµСЃРєСЂРёРїС‚РѕСЂ РіР»Р°РІРЅРѕРіРѕ РєР»СЋС‡Р° Рё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№ РїСѓС‚СЊ
 	HKEY hRootKey = NULL;
 	CString csSubKey;
 	BOOL bRes = CRegistry::SplitPath(szKey, &hRootKey, csSubKey);
@@ -339,10 +339,10 @@ BOOL CRegistry::RegOpenKey(LPCTSTR szKey, PHKEY phkResult)
 
 
 
-// Эквивалент API только принимает нормальный путь  
+// Р­РєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РїСЂРёРЅРёРјР°РµС‚ РЅРѕСЂРјР°Р»СЊРЅС‹Р№ РїСѓС‚СЊ  
 BOOL CRegistry::RegOpenKeyEx(LPCTSTR szKey,DWORD ulOptions, REGSAM samDesired, PHKEY phkResult)
 {
-	// Разбивает путь на дескриптор главного ключа и относительный путь
+	// Р Р°Р·Р±РёРІР°РµС‚ РїСѓС‚СЊ РЅР° РґРµСЃРєСЂРёРїС‚РѕСЂ РіР»Р°РІРЅРѕРіРѕ РєР»СЋС‡Р° Рё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№ РїСѓС‚СЊ
 	HKEY hRootKey = NULL;
 	CString csSubKey;
 	BOOL bRes = CRegistry::SplitPath(szKey, &hRootKey, csSubKey);
@@ -360,7 +360,7 @@ BOOL CRegistry::RegOpenKeyEx(LPCTSTR szKey,DWORD ulOptions, REGSAM samDesired, P
 	return TRUE;
 }
 
-// Эквивалент API только возвращает BOOL  
+// Р­РєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL  
 BOOL CRegistry::RegCloseKey(HKEY hKey)
 {
 	LONG retCode = ::RegCloseKey(hKey);
@@ -373,7 +373,7 @@ BOOL CRegistry::RegCloseKey(HKEY hKey)
 	return TRUE;
 }
 
-// Эквивалент API только возвращает BOOL 
+// Р­РєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL 
 BOOL CRegistry::RegQueryInfoKey(HKEY hKey, LPTSTR lpClass, LPDWORD lpcClass, LPDWORD lpReserved,
 		LPDWORD lpcSubKeys, LPDWORD lpcMaxSubKeyLen, LPDWORD lpcMaxClassLen, LPDWORD lpcValues,
 		LPDWORD lpcMaxValueNameLen, LPDWORD lpcMaxValueLen, LPDWORD lpcbSecurityDescriptor,
@@ -391,7 +391,7 @@ BOOL CRegistry::RegQueryInfoKey(HKEY hKey, LPTSTR lpClass, LPDWORD lpcClass, LPD
 	return TRUE;
 }
 
-// Эквивалент API только возвращает BOOL
+// Р­РєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 BOOL CRegistry::RegEnumKeyEx(HKEY hKey, DWORD dwIndex, LPTSTR lpName, LPDWORD lpcName, 
 	LPDWORD lpReserved, LPTSTR lpClass, LPDWORD lpcClass, PFILETIME lpftLastWriteTime)
 {
@@ -406,10 +406,10 @@ BOOL CRegistry::RegEnumKeyEx(HKEY hKey, DWORD dwIndex, LPTSTR lpName, LPDWORD lp
 	return TRUE;
 }
 
-// Эквивалент API только возвращает BOOL
+// Р­РєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 BOOL CRegistry::RegCreateKeyEx(LPCTSTR szKey, DWORD Reserved, LPTSTR lpClass, DWORD dwOptions, REGSAM samDesired, LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, LPDWORD lpdwDisposition)
 {
-	// Разбивает путь на дескриптор главного ключа и относительный путь
+	// Р Р°Р·Р±РёРІР°РµС‚ РїСѓС‚СЊ РЅР° РґРµСЃРєСЂРёРїС‚РѕСЂ РіР»Р°РІРЅРѕРіРѕ РєР»СЋС‡Р° Рё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№ РїСѓС‚СЊ
 	HKEY hRootKey = NULL;
 	CString csSubKey;
 	BOOL bRes = CRegistry::SplitPath(szKey, &hRootKey, csSubKey);
@@ -428,7 +428,7 @@ BOOL CRegistry::RegCreateKeyEx(LPCTSTR szKey, DWORD Reserved, LPTSTR lpClass, DW
 	return TRUE;
 }
 
-// Эквивалент API только возвращает BOOL
+// Р­РєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 BOOL CRegistry::RegEnumValue(HKEY hKey, DWORD dwIndex, LPTSTR lpValueName, LPDWORD lpcValueName, LPDWORD lpReserved, LPDWORD lpType, LPBYTE lpData, LPDWORD lpcbData)
 {
 	LONG retCode = ::RegEnumValue(hKey, dwIndex, lpValueName, lpcValueName, lpReserved, lpType, lpData, lpcbData);
@@ -442,10 +442,10 @@ BOOL CRegistry::RegEnumValue(HKEY hKey, DWORD dwIndex, LPTSTR lpValueName, LPDWO
 }
 
 
-// Эквивалент API только возвращает BOOL
+// Р­РєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 BOOL CRegistry::RegDeleteKey(LPCTSTR szKey)
 {
-	// Разбивает путь на дескриптор главного ключа и относительный путь
+	// Р Р°Р·Р±РёРІР°РµС‚ РїСѓС‚СЊ РЅР° РґРµСЃРєСЂРёРїС‚РѕСЂ РіР»Р°РІРЅРѕРіРѕ РєР»СЋС‡Р° Рё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№ РїСѓС‚СЊ
 	HKEY hRootKey = NULL;
 	CString csSubKey;
 
@@ -471,7 +471,7 @@ BOOL CRegistry::RegDeleteKey(LPCTSTR szKey)
 
 
 
-// Разбивает путь на дескриптор главного ключа и относительный путь
+// Р Р°Р·Р±РёРІР°РµС‚ РїСѓС‚СЊ РЅР° РґРµСЃРєСЂРёРїС‚РѕСЂ РіР»Р°РІРЅРѕРіРѕ РєР»СЋС‡Р° Рё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№ РїСѓС‚СЊ
 BOOL CRegistry::SplitPath(LPCTSTR szKey, PHKEY phKey, CString& csSubKey)
 {
 	if(phKey)
@@ -483,7 +483,7 @@ BOOL CRegistry::SplitPath(LPCTSTR szKey, PHKEY phKey, CString& csSubKey)
 	if(csKey.IsEmpty() || csKey.GetLength() == 0)
 		return FALSE;
 
-	// Длина главной части
+	// Р”Р»РёРЅР° РіР»Р°РІРЅРѕР№ С‡Р°СЃС‚Рё
 	int nLength = csKey.Find(_T('\\'));
 	if(nLength == -1)
 		nLength = csKey.GetLength();
@@ -522,7 +522,7 @@ BOOL CRegistry::SplitPath(LPCTSTR szKey, PHKEY phKey, CString& csSubKey)
 	return hKey ? TRUE : FALSE;
 }
 
-// Расшифровывает сообщение
+// Р Р°СЃС€РёС„СЂРѕРІС‹РІР°РµС‚ СЃРѕРѕР±С‰РµРЅРёРµ
 void CRegistry::REGTRACE(LONG lErrorCode)
 {
 	LPVOID lpMsgBuf = NULL;

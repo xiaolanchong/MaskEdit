@@ -1,10 +1,10 @@
 //======================================================================================//
 //                                         DVR                                          //
 //                                                                                      //
-//                               Copyright© ElVEES, 2006                                //
+//                               CopyrightÂ© ElVEES, 2006                                //
 //                                                                                      //
 //--------------------------------------------------------------------------------------//
-/* Description: Undo-Redo õðàíèëèùå
+/* Description: Undo-Redo Ñ…Ñ€Ð°Ð½Ð¸Ð»Ð¸Ñ‰Ðµ
 
     Author: Eugene Gorbachev (Eugene.Gorbachev@biones.com)
     Date:   10.03.2006
@@ -17,7 +17,7 @@
 //                                 class UndoRedoStack                                  //
 //======================================================================================//
 
-//! \brief Undo-Redo õðàíèëèùå
+//! \brief Undo-Redo Ñ…Ñ€Ð°Ð½Ð¸Ð»Ð¸Ñ‰Ðµ
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
 //! \date   10.03.2006
 //! \version 1.0

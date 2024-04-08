@@ -12,7 +12,7 @@
 #include "Background.h"
 #include <string>
 
-//! \brief пустой, ничего нет на фоне, просто нарисовать "No image" или что-то в этом роде
+//! \brief РїСѓСЃС‚РѕР№, РЅРёС‡РµРіРѕ РЅРµС‚ РЅР° С„РѕРЅРµ, РїСЂРѕСЃС‚Рѕ РЅР°СЂРёСЃРѕРІР°С‚СЊ "No image" РёР»Рё С‡С‚Рѕ-С‚Рѕ РІ СЌС‚РѕРј СЂРѕРґРµ
 //! \version 1.0
 //! \date 03-22-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)

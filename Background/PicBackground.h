@@ -16,7 +16,7 @@ MACRO_EXCEPTION(ImageException, CommonException);
 MACRO_EXCEPTION(ImageFileException, ImageException);
 MACRO_EXCEPTION(ImageSizeException, ImageException);
 
-//! \brief отрисовать изображение как фон
+//! \brief РѕС‚СЂРёСЃРѕРІР°С‚СЊ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РєР°Рє С„РѕРЅ
 //! \version 1.0
 //! \date 02-23-2006
 //! \author Eugene Gorbachev (Eugene.Gorbachev@biones.com)
@@ -25,12 +25,12 @@ MACRO_EXCEPTION(ImageSizeException, ImageException);
 //!
 class CPicBackground : public CBackground  
 {
-	//! собственно, изображение
+	//! СЃРѕР±СЃС‚РІРµРЅРЅРѕ, РёР·РѕР±СЂР°Р¶РµРЅРёРµ
 	Image			m_Image;
 public:
-	//! создать из картинки
-	//! \param FileName название файла, из кот. загружается картикна
-	//! \exception ImageException если не удалось загрузить или размеры не совпадают
+	//! СЃРѕР·РґР°С‚СЊ РёР· РєР°СЂС‚РёРЅРєРё
+	//! \param FileName РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°, РёР· РєРѕС‚. Р·Р°РіСЂСѓР¶Р°РµС‚СЃСЏ РєР°СЂС‚РёРєРЅР°
+	//! \exception ImageException РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РіСЂСѓР·РёС‚СЊ РёР»Рё СЂР°Р·РјРµСЂС‹ РЅРµ СЃРѕРІРїР°РґР°СЋС‚
 	CPicBackground(const std::wstring& FileName);
 	virtual ~CPicBackground();
 

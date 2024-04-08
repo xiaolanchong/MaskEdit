@@ -5,12 +5,12 @@
 #include "MsEditView.h"
 #include "ResourceMgr.h"
 
-// Информация о строке в CheckListBox
+// РРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЃС‚СЂРѕРєРµ РІ CheckListBox
 struct LayerInfo
 {
-	//Строка в CheckBox
+	//РЎС‚СЂРѕРєР° РІ CheckBox
 	LPCTSTR strName;
-	//Идентификатор записи
+	//РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р·Р°РїРёСЃРё
 	DWORD nID;
 };
 
@@ -26,22 +26,22 @@ public:
 	virtual ~CCheckBoxLayers();
 
 public:
-	//Самостоятельно рисуем CheckListBox
+	//РЎР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ СЂРёСЃСѓРµРј CheckListBox
 	virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
-	//Переопределяем основные параметры CheckListBox
+	//РџРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј РѕСЃРЅРѕРІРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ CheckListBox
 	virtual void MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct);
-	//Добавить строку в CheckListBox
+	//Р”РѕР±Р°РІРёС‚СЊ СЃС‚СЂРѕРєСѓ РІ CheckListBox
 	void AddItem(LayerInfo* sName);
 	
 public:
-	//Документ для текущего представления
+	//Р”РѕРєСѓРјРµРЅС‚ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ
 	CMsEditDoc* pDoc;
-	//Текущее представление
+	//РўРµРєСѓС‰РµРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ
 	CMsEditView* pView;
-	//Вектор с идентификаторами масок
+	//Р’РµРєС‚РѕСЂ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР°РјРё РјР°СЃРѕРє
 	std::vector< int >		m_Masks;
-	//Размеры CheckBox
-	int cx, cy;
+	//Р Р°Р·РјРµСЂС‹ CheckBox
+	int m_cx, m_cy;
 
 protected:
 	DECLARE_MESSAGE_MAP()

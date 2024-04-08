@@ -1,7 +1,7 @@
 #pragma once
 
-// Если какая либо функция возвращает FALSE то она автоматически пишет в TRACE 
-// описание ошибки, вызывая REGTRACE
+// в‰€СЃР»Рё РєР°РєР°В¤ Р»РёР±Рѕ С„СѓРЅРєС†РёВ¤ РІРѕР·РІСЂР°С‰Р°РµС‚ FALSE С‚Рѕ РѕРЅР° Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїРёС€РµС‚ РІ TRACE 
+// РѕРїРёСЃР°РЅРёРµ РѕС€РёР±РєРё, РІС‹Р·С‹РІР°В¤ REGTRACE
 
 class CRegistry
 {
@@ -9,42 +9,42 @@ public:
 	CRegistry(void);
 	~CRegistry(void);
 
-	// Загружает значение из реестра. Если такого значения нет загружает dwDefault
+	// В«Р°РіСЂСѓР¶Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РёР· СЂРµРµСЃС‚СЂР°. в‰€СЃР»Рё С‚Р°РєРѕРіРѕ Р·РЅР°С‡РµРЅРёВ¤ РЅРµС‚ Р·Р°РіСЂСѓР¶Р°РµС‚ dwDefault
 	static BOOL LoadDWORD(LPCTSTR szKey, LPCTSTR szValueName, LPDWORD lpdwData, DWORD dwDefault = 0);
-	// Сохраняет значение в реестре, перезаписывая существующее или создавая новое
+	// вЂ”РѕС…СЂР°РЅВ¤РµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°В¤ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°В¤ РЅРѕРІРѕРµ
 	static BOOL SaveDWORD(LPCTSTR szKey, LPCTSTR szValueName, DWORD dwData);
-	// Загружает значение в реестре, перезаписывая существующее или создавая новое
+	// В«Р°РіСЂСѓР¶Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°В¤ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°В¤ РЅРѕРІРѕРµ
 	static BOOL LoadString(LPCTSTR szKey, LPCTSTR szValueName, CString& csData, LPCTSTR szDefault);
-	// Сохраняет значение в реестре, перезаписывая существующее или создавая новое
+	// вЂ”РѕС…СЂР°РЅВ¤РµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°В¤ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°В¤ РЅРѕРІРѕРµ
 	static BOOL SaveString(LPCTSTR szKey, LPCTSTR szValueName, LPCTSTR szData);
-	// Загружает значение в реестре, перезаписывая существующее или создавая новое
+	// В«Р°РіСЂСѓР¶Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°В¤ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°В¤ РЅРѕРІРѕРµ
 	static BOOL LoadBOOL(LPCTSTR szKey, LPCTSTR szValueName, LPBOOL lpbData, BOOL bDefault);
-	// Сохраняет значение в реестре, перезаписывая существующее или создавая новое
+	// вЂ”РѕС…СЂР°РЅВ¤РµС‚ Р·РЅР°С‡РµРЅРёРµ РІ СЂРµРµСЃС‚СЂРµ, РїРµСЂРµР·Р°РїРёСЃС‹РІР°В¤ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ РёР»Рё СЃРѕР·РґР°РІР°В¤ РЅРѕРІРѕРµ
 	static BOOL SaveBOOL(LPCTSTR szKey, LPCTSTR szValueName, BOOL bData);
 	
 
-	// Эквивалент API только принимает нормальный путь и возвращает BOOL
+	// РЃРєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РїСЂРёРЅРёРјР°РµС‚ РЅРѕСЂРјР°Р»СЊРЅС‹Р№ РїСѓС‚СЊ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 	static BOOL RegOpenKeyEx(LPCTSTR szKey,DWORD ulOptions, REGSAM samDesired, PHKEY phkResult);
-	// Эквивалент API только принимает нормальный путь и возвращает BOOL
+	// РЃРєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РїСЂРёРЅРёРјР°РµС‚ РЅРѕСЂРјР°Р»СЊРЅС‹Р№ РїСѓС‚СЊ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 	static BOOL RegOpenKey(LPCTSTR szKey, PHKEY phkResult);
-	// Эквивалент API только возвращает BOOL  
+	// РЃРєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL  
 	static BOOL RegCloseKey(HKEY hKey);
-	// Эквивалент API только возвращает BOOL 
+	// РЃРєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL 
 	static BOOL RegQueryInfoKey(HKEY hKey, LPTSTR lpClass, LPDWORD lpcClass, LPDWORD lpReserved, LPDWORD lpcSubKeys, LPDWORD lpcMaxSubKeyLen, LPDWORD lpcMaxClassLen, LPDWORD lpcValues, LPDWORD lpcMaxValueNameLen, LPDWORD lpcMaxValueLen, LPDWORD lpcbSecurityDescriptor, PFILETIME lpftLastWriteTime);
-	// Эквивалент API только возвращает BOOL
+	// РЃРєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 	static BOOL RegEnumKeyEx(HKEY hKey, DWORD dwIndex, LPTSTR lpName, LPDWORD lpcName, LPDWORD lpReserved, LPTSTR lpClass, LPDWORD lpcClass, PFILETIME lpftLastWriteTime);
-	// Эквивалент API только возвращает BOOL
+	// РЃРєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 	static BOOL RegCreateKeyEx(LPCTSTR szKey, DWORD Reserved, LPTSTR lpClass, DWORD dwOptions, REGSAM samDesired, LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, LPDWORD lpdwDisposition);
-	// Эквивалент API только возвращает BOOL
+	// РЃРєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 	static BOOL RegEnumValue(HKEY hKey, DWORD dwIndex, LPTSTR lpValueName, LPDWORD lpcValueName, LPDWORD lpReserved, LPDWORD lpType, LPBYTE lpData, LPDWORD lpcbData);
-	// Эквивалент API только возвращает BOOL
+	// РЃРєРІРёРІР°Р»РµРЅС‚ API С‚РѕР»СЊРєРѕ РІРѕР·РІСЂР°С‰Р°РµС‚ BOOL
 	static BOOL RegDeleteKey(LPCTSTR szKey);
 
 
 private:
-	// Выводит информацию об ошибках реестра
+	// В¬С‹РІРѕРґРёС‚ РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± РѕС€РёР±РєР°С… СЂРµРµСЃС‚СЂР°
 	static void REGTRACE(LONG lErrorCode);
-	// Разбивает путь на дескриптор главного ключа и относительный путь
+	// вЂ“Р°Р·Р±РёРІР°РµС‚ РїСѓС‚СЊ РЅР° РґРµСЃРєСЂРёРїС‚РѕСЂ РіР»Р°РІРЅРѕРіРѕ РєР»СЋС‡Р° Рё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№ РїСѓС‚СЊ
 	static BOOL SplitPath(LPCTSTR szKey, PHKEY phKey, CString& csSubKey);
 
 };

@@ -58,15 +58,15 @@ void CMask::Draw(Graphics& gr, CFigure* pCurrent ) const
 void CMask::Create()
 {
 	CSize size = GetEditorState().GetImageSize();
-	Bitmap *bmp = ::new  Bitmap (size.cx, size.cy, PixelFormat32bppARGB) ;
-	m_Bitmap = boost::shared_ptr<Bitmap>( bmp, Helper::Deleter<Bitmap>());
+	Bitmap *bmp = new  Bitmap (size.cx, size.cy, PixelFormat32bppARGB) ;
+	m_Bitmap = boost::shared_ptr<Bitmap>( bmp/*, Helper::Deleter<Bitmap>()*/);
 	Graphics MemGr( m_Bitmap.get() );
 	MemGr.Clear(Color(0,0,0,0));
 }
 
 void CMask::Add( const boost::shared_ptr<CFigure>& fig, bool bCreateNewSnapshot ) 
 {
-	//! здесь можно обойтись без глубокого копирования
+	//! Р·РґРµСЃСЊ РјРѕР¶РЅРѕ РѕР±РѕР№С‚РёСЃСЊ Р±РµР· РіР»СѓР±РѕРєРѕРіРѕ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 	if(bCreateNewSnapshot)
 		m_MaskData.Add( m_MaskData.Top() /*MaskList_t()*/ );
 	m_MaskData.Top().push_back( fig );

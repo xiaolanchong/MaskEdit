@@ -15,6 +15,8 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
+#ifdef WITH_ORWELL
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -123,3 +125,5 @@ void	CRealtimeBackground::Play()
 	ResetEvent(m_hFeedback);
 	::AfxBeginThread( ThreadProc, this );
 }
+
+#endif
