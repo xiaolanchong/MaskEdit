@@ -40,7 +40,7 @@ std::shared_ptr<CIDBBridge>	BridgeWrapper::CreateBridge()
 	long err = CreateDBBridge( NULL, &pBridge );
 	if( err == DBB_S_OK )
 	{
-		return std::shared_ptr<CIDBBridge>( pBridge, boost::bind( &CIDBBridge::Release, _1 ) );
+		return std::shared_ptr<CIDBBridge>(pBridge, [](CIDBBridge* p) { p->Release(); });
 	}
 	else
 	{
@@ -178,7 +178,7 @@ void	BridgeWrapper::SetNullParam( CIDBBridge* pBridge, int nCameraID, const wcha
 	}
 }
 
-boost::optional<int>	BridgeWrapper::GetParam( CIDBBridge* pBridge, int nCameraID, const wchar_t* szParamName)
+std::optional<int>	BridgeWrapper::GetParam( CIDBBridge* pBridge, int nCameraID, const wchar_t* szParamName)
 {
 	DWORD	dwBufferSize ;
 	void*	pBuffer;
@@ -195,11 +195,11 @@ boost::optional<int>	BridgeWrapper::GetParam( CIDBBridge* pBridge, int nCameraID
 			_ASSERTE( dwBufferSize == sizeof(int) );
 			int nValue = *reinterpret_cast<int*>(pBuffer);
 			pBridge->ReleaseBuffer( pBuffer );
-			return boost::optional<int>(nValue);
+			return std::optional<int>(nValue);
 		}
 		else 
 		{
-			return boost::optional<int>();
+			return std::optional<int>();
 		}
 	}
 }

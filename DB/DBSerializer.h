@@ -57,6 +57,8 @@ public:
 };
 
 #else
+
+// Dummly implementation
 class DBSerializer : protected COleDBConnection
 {
 public:

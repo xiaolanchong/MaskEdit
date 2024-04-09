@@ -72,9 +72,6 @@ protected:
 	// Картинка ассоциированная с главным контекстом
 	CBitmap m_MemBitmap;
 	CBitmap m_GreenBitmap;
-	// Для освобождения контекста в конце
-	CBitmap* m_pOldBitmap;
-	CBitmap* m_pOldGrenBitmap;
 
 	//Размер виртуальной страницы
 	CSize m_sizeTotal;
@@ -162,7 +159,7 @@ protected:
 	//Удалить контекст. Вернуть результат удаления. 
 	//S_OK - удачное удаление
 	//E_FAIL - при удалении произошла ошибка
-	HRESULT ClearDC(CDC* m_CreateDC, CBitmap* m_CreateBitmap, CBitmap* m_pOldBitmap);
+	HRESULT ClearDC(CDC* m_CreateDC, CBitmap* m_CreateBitmap);
 
 
 // Generated message map functions

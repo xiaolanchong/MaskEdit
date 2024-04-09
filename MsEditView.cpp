@@ -162,14 +162,8 @@ CMsEditView::CMsEditView() :
 	nIDCheckItemLine(1),
 	m_CurrentThickness(1),
 	m_bCheckGrid(FALSE),
-	m_bNeedShowGrid(FALSE),
-	m_pOldBitmap(NULL),
-	m_pOldGrenBitmap(NULL)
-	
+	m_bNeedShowGrid(FALSE)
 {
-
-	
-
 	// TODO: add construction code here
 	for(int i = 0; i<COUNT_LAYER; i++)
 		GetEditorState().ClearMask( 1<<i );
@@ -186,11 +180,7 @@ CMsEditView::CMsEditView() :
 
 	GetEditorState().RegisterHandler(this);
 	m_n2IDMask.resize(COUNT_LAYER, 0);
-
-
 }
-
-
 
 CMsEditView::~CMsEditView()
 {
@@ -201,7 +191,6 @@ BOOL CMsEditView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
-
 	
 	return CScrollView::PreCreateWindow(cs);
 }
@@ -435,8 +424,6 @@ void CMsEditView::OnLButtonUp(UINT nFlags, CPoint point)
 		}
 	}
 
-	
-
 	CScrollView::OnLButtonUp(nFlags, point);
 }
 
@@ -459,8 +446,6 @@ void CMsEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		::ClipCursor( NULL);
 		Invalidate(FALSE);
 	}
-
-	
 
 	CScrollView::OnLButtonDblClk(nFlags, point);
 }
@@ -672,13 +657,13 @@ void	CMsEditView::Draw(CDC* pDC)
 	if(m_bNeedCreateMemDC)
 	{
 		//Удаляем и создаем контекст
-		HRESULT hRes = ClearDC( &m_MemDC, &m_MemBitmap, m_pOldBitmap );
+		HRESULT hRes = ClearDC( &m_MemDC, &m_MemBitmap );
 		if(SUCCEEDED(hRes))
-			m_pOldBitmap = CreateDC(pDC, &m_MemDC, &m_MemBitmap, CSize(size.cx, size.cy));
+			CreateDC(pDC, &m_MemDC, &m_MemBitmap, CSize(size.cx, size.cy));
 		
-		hRes = ClearDC( &m_GreenDC, &m_GreenBitmap, m_pOldGrenBitmap );
+		hRes = ClearDC( &m_GreenDC, &m_GreenBitmap );
 		if(SUCCEEDED(hRes))
-			m_pOldGrenBitmap = CreateDC(pDC, &m_GreenDC, &m_GreenBitmap, CSize(m_sizeTotal.cx/m_nScale, m_sizeTotal.cy/m_nScale));
+			CreateDC(pDC, &m_GreenDC, &m_GreenBitmap, CSize(m_sizeTotal.cx/m_nScale, m_sizeTotal.cy/m_nScale));
 	
 		OnMemDraw(pDC);
 		m_bNeedCreateMemDC = FALSE;
@@ -777,15 +762,15 @@ CBitmap* CMsEditView::CreateDC(CDC* pDC, CDC* m_CreateDC, CBitmap* m_CreateBitma
 	return pOldBitmap;
 
 }
-HRESULT CMsEditView::ClearDC(CDC* m_CreateDC, CBitmap* m_CreateBitmap, CBitmap* pOldBitmap)
+HRESULT CMsEditView::ClearDC(CDC* m_CreateDC, CBitmap* m_CreateBitmap)
 {
 	//Результат выполнения
 	BOOL bOk = TRUE;
 
 	// Уничтожить контекст
-	if((m_CreateDC->GetSafeHdc() != NULL) && (pOldBitmap != NULL))
+	if((m_CreateDC->GetSafeHdc() != NULL) /* && (pOldBitmap != NULL)*/)
 	{
-		m_CreateDC->SelectObject(pOldBitmap);
+		m_CreateDC->SelectObject(CBitmap::FromHandle(nullptr));
 		bOk = m_CreateDC->DeleteDC();
 	}
 
@@ -887,8 +872,6 @@ void CMsEditView::OnVideoStop()
 	// TODO: Add your command handler code here
 	CControlBackground* pVideo = dynamic_cast<CControlBackground*>(m_CurrentBG.get());
 	if( !pVideo) return;
-
-//	CControlBackground* pVideo = dynamic_cast<CControlBackground*>(m_CurrentBG.get());
 
 	pVideo->Stop();	
 	m_PlayerSettings.State = PlayerSettings::stop;
@@ -1023,8 +1006,6 @@ void	CMsEditView::SetRealtimeSettings()
 {
 
 }
-
-
 
 void CMsEditView::OnOpenImage() 
 {

@@ -79,6 +79,8 @@ public:
 
 #else
 
+#include "EditorState.h"
+
 class BridgeWrapper
 {
 	static constexpr long OK = 0;
@@ -88,16 +90,24 @@ public:
 
 	CString LoadNameLayer(LPWSTR szNameLayer)
 	{ 
-		CString newLayer;
-		newLayer.Format(_T("Layer%u"), m_layerCounter);
-		++m_layerCounter;
-		newLayer += _T("_");
-		newLayer += szNameLayer;
-		return newLayer;
+		const auto layerCounter = m_layerCounter++;
+		switch (1 << layerCounter)
+		{
+		case CEditorState::ms_unknown: return _T("Unknown");
+		case CEditorState::ms_humans: return _T("Humans");
+		case CEditorState::ms_vehicles: return _T("Vehicles");
+		case CEditorState::ms_movedetection: return _T("Move detection");
+		default:
+		{
+			CString newLayer;
+			newLayer.Format(_T("Mask %u"), m_layerCounter);
+			return newLayer;
+		}
+		}
 	}
 	long ReleaseDbb() { return OK; }
 private:
-	unsigned int m_layerCounter = 1;
+	unsigned int m_layerCounter = 0;
 };
 
 #endif // WITH_ORWELL

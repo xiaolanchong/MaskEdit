@@ -55,9 +55,6 @@
 
 #ifdef WITH_ORWELL
 //Boost
-#include <boost/shared_ptr.hpp>
-#include <boost/optional.hpp>
-#include <boost/bind.hpp>
 #include <boost/format.hpp>
 #endif
 
